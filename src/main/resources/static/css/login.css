@@ -69,3 +69,10 @@
 		margin-top:10px;
  	}
 }
+
+#a1::before {
+    content:"ㅣ";
+    width: 5px;
+    height: 10px;
+    margin: 4px 7px;
+}
