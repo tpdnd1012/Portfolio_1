@@ -14,6 +14,7 @@ public class MemberEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 들어오는 값이 NULL일 경우 자동번호 부여
+    @Column
     private Long no; // 회원번호
 
     @Column
