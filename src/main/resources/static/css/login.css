@@ -1,4 +1,4 @@
-
+@charset "UTF-8";
 /*
     Note: It is best to use a less version of this file ( see http://css2less.cc
     For the media queries use @screen-sm-min instead of 768px.
@@ -71,7 +71,7 @@
 }
 
 #a1::before {
-    content:"ㅣ";
+    content:"\3163";
     width: 5px;
     height: 10px;
     margin: 4px 7px;
