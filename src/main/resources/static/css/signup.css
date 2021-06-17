@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+#div1 table {
+    margin:0 auto;
+    font-size: 17px;
+    box-shadow: 0 3px 6px black;
+}
+
+#div1 table th {
+    padding: 15px 5px 15px 10px;
+    width: 130px;
+    border-right: solid 1px #E0DEDE;
+}
+
+#div1 table td {
+    padding: 15px 20px;
+}
+
+#div2 {
+    text-align:center;
+}
+
+#div2 .btn {
+    margin: 27px 20px 0 20px;
+}
