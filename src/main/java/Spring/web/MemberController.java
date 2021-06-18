@@ -54,7 +54,25 @@ public class MemberController {
 
         String address1 = request.getParameter("address1");
 
-        return "";
+        String address2 = request.getParameter("address2");
+
+        String address3 = request.getParameter("address3");
+
+        if(address3 == null) {
+            address3 = " ";
+        }
+
+        String address4 = request.getParameter("address4");
+
+        String address = address1 + "-" + address2 + "-" + address3 + "-" + address4;
+
+        memberDto.setPhone(phone);
+        memberDto.setEmail(email);
+        memberDto.setAddress(address);
+
+        memberService.membersave(memberDto);
+
+        return "redirect:/login";
 
     }
 

@@ -79,3 +79,55 @@ window.addEventListener('DOMContentLoaded', () => {
             }
         }).open();
     }
+
+function sign_check() {
+
+    var signupform = document.form;
+
+    if(!signupform.member_id.value){
+        alert('아이디를 입력해주세요');
+        signupform.member_id.focus();
+        return false;
+    }
+
+    if(signupform.member_id.value.length < 4 || signupform.member_id.value.length >= 20) {
+        alert('영문, 숫자[최소 4글자~20글자] 입력해주세요.');
+        signupform.member_id.focus();
+        return false;
+    }
+
+    // 영문, 숫자만 id로 사용
+    var regx = /^[a-zA-Z0-9]*$/; // 자바 스크립트 정규 표현식 (중요)
+
+    if(!regx.test(signupform.member_id.value)) {
+
+        // 현재 정규표현식이 포함되어 있지 않으면
+        alert('영문과 숫자로만 입력해주세요.');
+        return false;
+
+    }
+
+    if(!signupform.member_pw.value){
+        alert('패스워드를 입력해주세요.');
+        signupform.member_pw.focus();
+        return false;
+    }
+
+    if(signupform.member_pw.value != signupform.member_pw2.value){
+        alert('패스워드가 일치하지 않습니다.');
+        signupform.member_pw2.focus();
+        return false;
+    }
+
+    if(!signupform.name.value){
+        alert('이름을 입력해주세요.');
+        signupform.name.focus();
+        return false;
+    }
+
+    if(!signupform.gender.value) {
+        alert('성별을 선택해주세요.');
+        return false;
+    }
+
+}

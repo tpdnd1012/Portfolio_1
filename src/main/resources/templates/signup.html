@@ -24,7 +24,7 @@
   </div>
 
     <div id="div1">
-    <form method="post" action="/signup">
+    <form method="post" action="/signup" name="form">
 
       <table style="border: solid 1px #E0DEDE; width:1030px;">
 
@@ -103,7 +103,6 @@
             <input type="text" id="sample4_roadAddress" placeholder="도로명주소" name="address2">
             <input type="text" id="sample4_jibunAddress" placeholder="지번주소" name="address3">
             <input type="text" id="sample4_detailAddress" placeholder="상세주소" name="address4">
-            <input type="text" id="sample4_extraAddress" placeholder="참고항목">
             <span id="guide" style="color:#999;display:none"></span>
 
           </td>
@@ -112,7 +111,7 @@
       </table>
 
       <div id="div2">
-        <button type="submit" class="btn btn-light" style="border-radius: 15px; padding: 12px 17px;">완료</button>
+        <button type="button" class="btn btn-light" onclick="sign_check()" style="border-radius: 15px; padding: 12px 17px;">완료</button>
         <button type="button" class="btn btn-light" style="border-radius: 15px; padding: 12px 17px;">취소</button>
       </div>
 

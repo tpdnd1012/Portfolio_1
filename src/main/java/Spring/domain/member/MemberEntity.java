@@ -1,5 +1,6 @@
 package Spring.domain.member;
 
+import Spring.domain.BaseTime;
 import Spring.web.dto.MemberDto;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,7 +11,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @NoArgsConstructor // 기본(비어있는) 생성자
-public class MemberEntity {
+public class MemberEntity extends BaseTime {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 들어오는 값이 NULL일 경우 자동번호 부여
