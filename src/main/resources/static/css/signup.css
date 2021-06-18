@@ -10,10 +10,12 @@
     padding: 15px 5px 15px 10px;
     width: 130px;
     border-right: solid 1px #E0DEDE;
+    text-align: center;
+    border-bottom: solid 1px #EFEDED;
 }
 
 #div1 table td {
-    padding: 15px 20px;
+    padding: 15px 20px 15px 50px;
 }
 
 #div2 {
@@ -22,4 +24,11 @@
 
 #div2 .btn {
     margin: 27px 20px 0 20px;
+}
+
+#btn1 {
+    font-size: 13px;
+    border-radius: 7px;
+    background-color: white;
+    border: solid 1px lightgray;
 }

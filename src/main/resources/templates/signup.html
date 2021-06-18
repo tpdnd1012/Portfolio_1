@@ -24,72 +24,72 @@
   </div>
 
     <div id="div1">
-    <form>
+    <form method="post" action="/signup">
 
-      <table style="border: solid 1px #E0DEDE; width:500px;">
+      <table style="border: solid 1px #E0DEDE; width:1030px;">
 
         <tr>
           <th>아이디</th>
           <td>
-            <input type="text" class="form-control" style="width:190px; display:inline-block; height:25px;">&nbsp;&nbsp;&nbsp;
-            <input type="button" value="중복체크">
+            <input type="text" name="member_id" class="form-control" style="width:190px; display:inline-block; height:25px;" placeholder="ID">&nbsp;&nbsp;&nbsp;
+            <input type="button" id="btn1" value="중복체크">
           </td>
         </tr>
 
         <tr>
           <th>비밀번호</th>
           <td>
-            <input type="password" class="form-control" style="width:190px; display:inline-block; height:25px;">
+            <input type="password" name="member_pw" class="form-control" style="width:190px; display:inline-block; height:25px;" placeholder="Passwrod">
           </td>
         </tr>
 
         <tr>
           <th>비밀번호 확인</th>
           <td>
-            <input type="password" class="form-control" style="width:190px; display:inline-block; height:25px;">
+            <input type="password" name="member_pw2" class="form-control" style="width:190px; display:inline-block; height:25px;" placeholder="Confirm Password">
           </td>
         </tr>
 
         <tr>
           <th>이름</th>
           <td>
-            <input type="text" class="form-control" style="width:190px; display:inline-block; height:25px;">
+            <input type="text" name="name" class="form-control" style="width:190px; display:inline-block; height:25px;" placeholder="Name">
           </td>
         </tr>
 
         <tr>
           <th>성별</th>
           <td>
-            <input type="radio" class="custom-control-input"><label class="custom-control-label">남자</label>
-            <input type="radio" class="custom-control-input"><label class="custom-control-label">여자</label>
+            <input type="radio" class="custom-control-input" name="gender" value="남자"><label class="custom-control-label">남자</label>
+            <input type="radio" class="custom-control-input" name="gender" value="여자"><label class="custom-control-label">여자</label>
           </td>
         </tr>
 
         <tr>
           <th>생년월일</th>
           <td>
-            <input type="date" class="form-control" style="width:190px; display:inline-block; height:25px;">
+            <input type="date" name="birth" class="form-control" style="width:190px; display:inline-block; height:25px;">
           </td>
         </tr>
 
         <tr>
           <th>휴대폰 번호</th>
           <td>
-            <input type="text" class="form-control" style="width:55px; display:inline-block; height:25px;"> -
-            <input type="text" class="form-control" style="width:65px; display:inline-block; height:25px;"> -
-            <input type="text" class="form-control" style="width:65px; display:inline-block; height:25px;">
+            <input type="text" name="phone1" class="form-control" style="width:55px; display:inline-block; height:25px;"> -
+            <input type="text" name="phone2" class="form-control" style="width:65px; display:inline-block; height:25px;"> -
+            <input type="text" name="phone3" class="form-control" style="width:65px; display:inline-block; height:25px;">
           </td>
         </tr>
 
         <tr>
           <th>이메일</th>
           <td>
-            <input type="text" class="form-control" style="width:100px; display:inline-block; height:25px;">&nbsp;@&nbsp;
-            <select class="form-select" style="width:160px; display:inline-block; height:35px; font-size:13px;">
-              <option>선택해주세요</option>
-              <option>naver.com</option>
-              <option>kakao.com</option>
-              <option>google.com</option>
+            <input type="text" name="email1" class="form-control" style="width:100px; display:inline-block; height:25px;">&nbsp;@&nbsp;
+            <select class="form-select" name="email2" style="width:160px; display:inline-block; height:35px; font-size:13px;">
+              <option value="">선택해주세요</option>
+              <option value="@naver.com">naver.com</option>
+              <option value="@kakao.com">kakao.com</option>
+              <option value="@google.com">google.com</option>
             </select>
           </td>
         </tr>
@@ -102,9 +102,9 @@
             <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
             <input type="text" id="sample4_roadAddress" placeholder="도로명주소" name="address2">
             <input type="text" id="sample4_jibunAddress" placeholder="지번주소" name="address3">
-            <span id="guide" style="color:#999;display:none"></span>
             <input type="text" id="sample4_detailAddress" placeholder="상세주소" name="address4">
             <input type="text" id="sample4_extraAddress" placeholder="참고항목">
+            <span id="guide" style="color:#999;display:none"></span>
 
           </td>
         </tr>
@@ -112,7 +112,7 @@
       </table>
 
       <div id="div2">
-        <button type="button" class="btn btn-light" style="border-radius: 15px; padding: 12px 17px;">완료</button>
+        <button type="submit" class="btn btn-light" style="border-radius: 15px; padding: 12px 17px;">완료</button>
         <button type="button" class="btn btn-light" style="border-radius: 15px; padding: 12px 17px;">취소</button>
       </div>
 
