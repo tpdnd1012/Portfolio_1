@@ -5,10 +5,8 @@ import Spring.web.dto.MemberDto;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -73,6 +71,39 @@ public class MemberController {
         memberService.membersave(memberDto);
 
         return "redirect:/login";
+
+    }
+
+    // 로그인 처리
+    @PostMapping("/login")
+    public String login_c(MemberDto logindto) {
+
+        // 로그인 서비스 연결
+        MemberDto memberDto = memberService.memberlogin(logindto);
+
+        if(memberDto != null) {
+
+            // 로그인 성공 => 세션에 담기
+            session.setAttribute("loginuser", memberDto);
+
+            return "redirect:/";
+
+        } else {
+
+            // 로그인 실패
+            return "redirect:/login";
+
+        }
+
+    }
+
+    // 로그아웃 처리
+    @GetMapping("/logout")
+    public String logout() {
+
+        session.invalidate(); // 세션 초기화
+
+        return "redirect:/";
 
     }
 

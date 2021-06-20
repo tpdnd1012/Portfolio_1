@@ -130,4 +130,35 @@ function sign_check() {
         return false;
     }
 
+    else {
+
+        return true;
+
+    }
+
 }
+
+function login_check() {
+
+    var loginform = document.loginform;
+
+    if(!loginform.member_id.value) {
+        alert('아이디를 입력해주세요.');
+        loginform.member_id.focus();
+        return false;
+    }
+
+    if(!loginform.member_pw.value) {
+            alert('패스워드를 입력해주세요.');
+            loginform.member_pw.focus();
+            return false;
+    }
+
+    else {
+
+        return true;
+
+    }
+
+}
+
