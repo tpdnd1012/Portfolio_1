@@ -110,14 +110,6 @@ public class MemberController {
 
     }
 
-    // 회원수정 전 페이지 요청
-    @GetMapping("/info")
-    public String info() {
-
-        return "info";
-
-    }
-
 //    // 아이디 중복 검사
 //    @PostMapping("/ID_Check/{id}")
 //    public String memberIdChkPOST( @PathVariable("id") String id , Model model ) {
@@ -141,10 +133,33 @@ public class MemberController {
 //    } // memberIdChkPOST() 종료
 //
 //}
+    // 회원가입 아이디 중복체크
     @RequestMapping(value = "/dataSend", method = RequestMethod.POST)
     public String dataSend(Model model, MemberDto dto) {
         int result = memberService.memberfind( dto.getMember_id() );
         model.addAttribute("msg", result);
         return "signup :: #resultDiv";
     }
+
+    // 회원수정 전 페이지 요청
+    @GetMapping("/info")
+    public String info() {
+
+        return "info";
+
+    }
+
+    // 회원수정 전 페이지 비밀번호 입력후 수정페이지
+    @RequestMapping(value = "/info", method = RequestMethod.POST)
+    public String memberinfo(HttpServletRequest request) {
+
+        String member_id = request.getParameter("member_id");
+        String member_pw = request.getParameter("member_qw");
+
+        memberService.memberinfo(member_id, member_pw);
+
+        return "index";
+
+    }
+
 }

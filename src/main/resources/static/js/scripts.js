@@ -150,7 +150,7 @@ function login_check() {
 }
 
 // 로그인후 뒤로가기 막기
-window.history.forward();
+//window.history.forward();
  function noBack() {
  window.history.forward();
 }
@@ -170,4 +170,18 @@ function id_check() {
           }).done(function (fragment) {
               $("#resultDiv").replaceWith(fragment);
           });
+}
+
+function info_check() {
+
+    var infoform = document.infoform;
+
+    if(!infoform.member_pw.value) {
+
+        alert('패스워드를 입력해주세요.');
+        infoform.member_pw.focus();
+        return false;
+
+    }
+
 }

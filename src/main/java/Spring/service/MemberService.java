@@ -57,6 +57,7 @@ public class MemberService {
         return null; // 없으면 NULL
     }
 
+    // 회원가입 아이디 중복체크
     @Transactional
     public int memberfind(String id) {
 
@@ -68,6 +69,18 @@ public class MemberService {
         }
         return 0;
 
+    }
+
+    // 회원 수정 전 인증
+    @Transactional
+    public MemberEntity memberinfo(String member_id, String member_qw) {
+
+        // 1. 회원 가져오기
+        Optional<MemberEntity> optionalMemberEntity = memberRepository.findByinfo(member_id, member_qw);
+
+        MemberEntity temp = optionalMemberEntity.get();
+
+        return temp;
     }
 
 
