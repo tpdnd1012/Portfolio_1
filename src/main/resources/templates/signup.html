@@ -24,15 +24,21 @@
   </div>
 
     <div id="div1">
-    <form method="post" action="/signup" name="form">
+    <form method="post" action="/signup" name="form" onsubmit="return sign_check()">
 
       <table style="border: solid 1px #E0DEDE; width:1030px;">
 
         <tr>
           <th>아이디</th>
           <td>
-            <input type="text" name="member_id" class="form-control" style="width:190px; display:inline-block; height:25px;" placeholder="ID">&nbsp;&nbsp;&nbsp;
-            <input type="button" id="btn1" value="중복체크">
+            <input type="text" id="member_id" name="member_id" class="form-control" style="width:190px; display:inline-block; height:25px;" placeholder="ID">&nbsp;&nbsp;&nbsp;
+            <input type="button" id="btn1" value="중복체크" onclick="id_check()">
+
+            <div id="resultDiv">
+              <p th:if="${msg==1}">현재 사용중인 아이디입니다</p>
+              <p th:if="${msg==0}">현재 사용중인 아이디 아닙니다</p>
+            </div>
+
           </td>
         </tr>
 
@@ -112,7 +118,7 @@
       </table>
 
       <div id="div2">
-        <button type="submit" class="btn btn-light" onclick="sign_check()" style="border-radius: 15px; padding: 12px 17px;">완료</button>
+        <button type="submit" class="btn btn-light" style="border-radius: 15px; padding: 12px 17px;">완료</button>
         <button type="button" class="btn btn-light" style="border-radius: 15px; padding: 12px 17px;">취소</button>
       </div>
 

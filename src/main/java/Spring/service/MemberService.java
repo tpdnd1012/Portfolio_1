@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -55,5 +56,19 @@ public class MemberService {
         }
         return null; // 없으면 NULL
     }
+
+    @Transactional
+    public int memberfind(String id) {
+
+        List<MemberEntity>  memberEntityList  =  memberRepository.findAll();
+
+        for( MemberEntity temp :  memberEntityList) {
+
+            if( temp.getMember_id().equals(id)){return 1;};
+        }
+        return 0;
+
+    }
+
 
 }

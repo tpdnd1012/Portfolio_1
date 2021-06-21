@@ -130,12 +130,6 @@ function sign_check() {
         return false;
     }
 
-    else {
-
-        return true;
-
-    }
-
 }
 
 function login_check() {
@@ -153,17 +147,27 @@ function login_check() {
             loginform.member_pw.focus();
             return false;
     }
-
-    else {
-
-        return true;
-
-    }
-
 }
 
 // 로그인후 뒤로가기 막기
 window.history.forward();
  function noBack() {
  window.history.forward();
+}
+
+function id_check() {
+
+	     var signupform = document.form;
+         var data = signupform.member_id.value;
+
+          var MemberDto={
+              member_id:data
+          };
+          $.ajax({
+              url: "/dataSend",
+              data: MemberDto,
+              type:"POST",
+          }).done(function (fragment) {
+              $("#resultDiv").replaceWith(fragment);
+          });
 }

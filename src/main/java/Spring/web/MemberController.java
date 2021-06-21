@@ -1,9 +1,11 @@
 package Spring.web;
 
+import Spring.domain.member.MemberEntity;
 import Spring.service.MemberService;
 import Spring.web.dto.MemberDto;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -56,7 +58,7 @@ public class MemberController {
 
         String address3 = request.getParameter("address3");
 
-        if(address3 == null) {
+        if (address3 == null) {
             address3 = " ";
         }
 
@@ -76,22 +78,24 @@ public class MemberController {
 
     // 로그인 처리
     @PostMapping("/login")
-    public String login_c(MemberDto logindto) {
+    public String login_c(MemberDto logindto, Model model) {
 
         // 로그인 서비스 연결
         MemberDto memberDto = memberService.memberlogin(logindto);
 
-        if(memberDto != null) {
+        String c = "0";
+
+        if (memberDto != null) {
 
             // 로그인 성공 => 세션에 담기
             session.setAttribute("loginuser", memberDto);
 
-            return "redirect:/";
+            return "index";
 
         } else {
-
             // 로그인 실패
-            return "redirect:/login";
+            model.addAttribute("c", "1");
+            return "login";
         }
 
     }
@@ -114,4 +118,33 @@ public class MemberController {
 
     }
 
+//    // 아이디 중복 검사
+//    @PostMapping("/ID_Check/{id}")
+//    public String memberIdChkPOST( @PathVariable("id") String id , Model model ) {
+//
+//        int re = memberService.memberfind(id);
+//        System.out.println( re );
+//
+//        return "/testPage :: #signup";
+//
+//
+////        String c = "0";
+////        if( re == 1 ){ // 중복 아이디
+////            model.addAttribute("c" , "1");
+////            System.out.println( re );
+////            return "signup";
+////        }else{ // 중복x
+////            model.addAttribute("c" , "0");
+////            System.out.println( re );
+////            return "signup";
+////        }
+//    } // memberIdChkPOST() 종료
+//
+//}
+    @RequestMapping(value = "/dataSend", method = RequestMethod.POST)
+    public String dataSend(Model model, MemberDto dto) {
+        int result = memberService.memberfind( dto.getMember_id() );
+        model.addAttribute("msg", result);
+        return "signup :: #resultDiv";
+    }
 }
