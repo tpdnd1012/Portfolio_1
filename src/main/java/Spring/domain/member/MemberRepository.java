@@ -7,6 +7,7 @@ import java.util.Optional;
 
 public interface MemberRepository extends JpaRepository<MemberEntity, Long> {
 
-    @Query("")
+    @Query(value = "select * from MemberEntity where member_id=?1 and member_pw=?2", nativeQuery = true)
     Optional<MemberEntity> findByinfo(String member_id, String member_pw);
+
 }

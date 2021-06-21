@@ -154,9 +154,12 @@ public class MemberController {
     public String memberinfo(HttpServletRequest request) {
 
         String member_id = request.getParameter("member_id");
-        String member_pw = request.getParameter("member_qw");
+        String member_pw = request.getParameter("member_pw");
 
-        memberService.memberinfo(member_id, member_pw);
+        MemberEntity temp = memberService.memberinfo(member_id, member_pw);
+
+        System.out.println(temp.getNo() + temp.getName());
+
 
         return "index";
 

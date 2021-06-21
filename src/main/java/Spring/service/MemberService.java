@@ -73,12 +73,14 @@ public class MemberService {
 
     // 회원 수정 전 인증
     @Transactional
-    public MemberEntity memberinfo(String member_id, String member_qw) {
+    public MemberEntity memberinfo(String member_id, String member_pw) {
 
         // 1. 회원 가져오기
-        Optional<MemberEntity> optionalMemberEntity = memberRepository.findByinfo(member_id, member_qw);
+        Optional<MemberEntity> optionalMemberEntity = memberRepository.findByinfo(member_id, member_pw);
 
         MemberEntity temp = optionalMemberEntity.get();
+
+        System.out.println(temp.getNo());
 
         return temp;
     }
