@@ -162,3 +162,8 @@ function login_check() {
 
 }
 
+// 로그인후 뒤로가기 막기
+window.history.forward();
+ function noBack() {
+ window.history.forward();
+}

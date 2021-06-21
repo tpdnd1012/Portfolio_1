@@ -92,7 +92,6 @@ public class MemberController {
 
             // 로그인 실패
             return "redirect:/login";
-
         }
 
     }
@@ -103,7 +102,15 @@ public class MemberController {
 
         session.invalidate(); // 세션 초기화
 
-        return "redirect:/";
+        return "redirect:/login";
+
+    }
+
+    // 회원수정 전 페이지 요청
+    @GetMapping("/info")
+    public String info() {
+
+        return "info";
 
     }
 

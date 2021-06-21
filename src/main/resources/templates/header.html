@@ -48,11 +48,11 @@
       </ul>
 
       <ul class="navbar-nav ms-auto py-4 py-lg-0" th:if="${session.loginuser!=null}"> <!-- 로그인 했을경우 -->
-        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" th:text="|${session.loginuser.name}님 환영합니다|"></a></li>
-        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{/}">Info</a></li>
         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{/}">BOOK LIST</a></li>
         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{/board}">Bulletin Board</a></li>
         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{/}">Shopping cart</a></li>
+        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" th:text="|${session.loginuser.name}님 환영합니다|"></a></li>
+        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{/info}">Info</a></li>
         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{/logout}">Logout</a></li>
       </ul>
 
