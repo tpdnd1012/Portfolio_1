@@ -80,10 +80,22 @@ public class MemberService {
 
         MemberEntity temp = optionalMemberEntity.get();
 
-        System.out.println(temp.getNo());
-
         return temp;
+
     }
 
+    // 회원 탈퇴
+    @Transactional
+    public int memberdelete(Long no) {
+
+        Optional<MemberEntity> optionalMemberEntity = memberRepository.findById(no);
+
+        MemberEntity memberEntity = optionalMemberEntity.get();
+
+        memberRepository.delete(memberEntity);
+
+        return 1;
+
+    }
 
 }

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="header :: header_h">
+  <meta charset="UTF-8">
+  <title>Login</title>
+</head>
+<body>
+<div th:replace="header :: header"></div>
+
+<div class="container" style="margin-top:90px;">
+
+  <div class="omb_login">
+
+    <h3 class="omb_authTitle">Info</h3>
+
+    <div class="row omb_row-sm-offset-3 omb_socialButtons">
+    </div>
+
+    <div class="row omb_row-sm-offset-3 omb_loginOr">
+      <div class="col-xs-12 col-sm-6">
+        <hr class="omb_hrOr">
+        <span class="omb_spanOr"></span>
+      </div>
+    </div>
+
+    <div id="div1">
+      <form action="/infowrite" name="infoform" method="post">
+
+        <table style="border: solid 1px #E0DEDE; width:700px;">
+
+          <tr>
+            <th>아이디</th>
+            <td>
+              <input type="text" id="member_id" name="member_id" class="form-control" th:value="${infouser.member_id}" readonly="readonly" style="width:190px; display:inline-block; height:25px;">&nbsp;&nbsp;&nbsp;
+            </td>
+          </tr>
+
+          <tr>
+            <th>이름</th>
+            <td>
+              <input type="text" name="name" class="form-control" th:value="${infouser.name}" style="width:190px; display:inline-block; height:25px;" readonly="readonly">
+            </td>
+          </tr>
+
+          <tr>
+            <th>성별</th>
+            <td>
+              <input type="text" class="form-control" name="gender" th:value="${infouser.gender}" style="width:190px; display:inline-block; height:25px;" readonly="readonly">
+            </td>
+          </tr>
+
+          <tr>
+            <th>생년월일</th>
+            <td>
+              <input type="text" name="birth" class="form-control" th:value="${infouser.birth}" style="width:190px; display:inline-block; height:25px;" readonly="readonly">
+            </td>
+          </tr>
+
+          <tr>
+            <th>휴대폰 번호</th>
+            <td>
+              <input type="text" name="phone" class="form-control" th:value="${infouser.phone}" style="width:190px; display:inline-block; height:25px;" readonly="readonly">
+            </td>
+          </tr>
+
+          <tr>
+            <th>이메일</th>
+            <td>
+              <input type="text" name="email" class="form-control" th:value="${infouser.email}" style="width:190px; display:inline-block; height:25px;" readonly="readonly">
+            </td>
+          </tr>
+
+          <tr>
+            <th>주소</th>
+            <td>
+
+              <input type="text" id="sample4_postcode" class="form-control" name="address" th:value="${infouser.address}" style="width:400px; display:inline-block; height:25px;" readonly="readonly">
+
+            </td>
+          </tr>
+
+        </table>
+
+        <div id="div2">
+
+          <button type="submit" class="btn btn-light" style="border-radius: 15px; padding: 12px 17px;">회원수정</button>
+
+          <a th:href="@{memberdelete}">
+            <button type="button" class="btn btn-light" style="border-radius: 15px; padding: 12px 17px;" th:onclick="if(!(confirm('정말 탈퇴하시겠습니까?')))return false">회원탈퇴</button>
+          </a>
+
+        </div>
+
+      </form>
+    </div>
+
+    <div class="row omb_row-sm-offset-3 omb_loginOr">
+      <div class="col-xs-12 col-sm-6">
+        <hr class="omb_hrOr">
+        <span class="omb_spanOr"></span>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+<br><br>
+
+<div th:replace="footer :: footer"></div>
+</body>
+</html>

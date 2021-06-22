@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "Member") // 작업도중 Repository에서 테이블 못찾는경우 있음 --> 이름설정(이름이 똑같아서 못찾는 경우도 있어서 그땐 다르게 설정해주고 확인)
 @Getter
 @NoArgsConstructor // 기본(비어있는) 생성자
 public class MemberEntity extends BaseTime {

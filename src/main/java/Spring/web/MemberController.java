@@ -50,7 +50,7 @@ public class MemberController {
         String email1 = request.getParameter("email1");
         String email2 = request.getParameter("email2");
 
-        String email = email1 + email2;
+        String email = email1 + "@" + email2;
 
         String address1 = request.getParameter("address1");
 
@@ -151,17 +151,48 @@ public class MemberController {
 
     // 회원수정 전 페이지 비밀번호 입력후 수정페이지
     @RequestMapping(value = "/info", method = RequestMethod.POST)
-    public String memberinfo(HttpServletRequest request) {
+    public String memberinfo(HttpServletRequest request, Model model) {
 
         String member_id = request.getParameter("member_id");
         String member_pw = request.getParameter("member_pw");
 
-        MemberEntity temp = memberService.memberinfo(member_id, member_pw);
+        MemberEntity infouser = memberService.memberinfo(member_id, member_pw);
 
-        System.out.println(temp.getNo() + temp.getName());
+        model.addAttribute("infouser", infouser);
 
+        return "memberinfo";
 
-        return "index";
+    }
+
+    // 회원탈퇴
+    @GetMapping("/memberdelete")
+    public String memberdelete() {
+
+        // 세션 가져오기
+        MemberDto memberDto = (MemberDto) session.getAttribute("loginuser");
+
+        // 세션의 회원번호 가져오기
+        Long no = memberDto.getNo();
+
+        // 삭제 서비스 넘기기
+        memberService.memberdelete(no);
+
+        // 세션 초기화
+        session.invalidate();
+
+        return "redirect:/";
+
+    }
+
+    // 마지막 수정 페이지 요청
+    @RequestMapping(value = "/infowrite", method = RequestMethod.POST)
+    public String infowrite(MemberDto memberDto, Model model) {
+
+        String[] phone = memberDto.getPhone().split("-");
+
+        model.addAttribute("loginuser", memberDto);
+
+        return "infowrite";
 
     }
 

@@ -155,6 +155,7 @@ function login_check() {
  window.history.forward();
 }
 
+// 아이디 중복체크
 function id_check() {
 
 	     var signupform = document.form;
@@ -172,6 +173,7 @@ function id_check() {
           });
 }
 
+// 로그인
 function info_check() {
 
     var infoform = document.infoform;
