@@ -31,7 +31,7 @@
                     <tr>
                         <th>아이디</th>
                         <td>
-                            <input type="text" id="member_id" name="member_id" class="form-control" th:value="${loginuser.member_id}" style="width:190px; display:inline-block; height:25px;" readonly="readonly">&nbsp;&nbsp;&nbsp;
+                            <input type="text" id="member_id" name="member_id" class="form-control" th:value="${updateuser.member_id}" style="width:190px; display:inline-block; height:25px;" readonly="readonly">&nbsp;&nbsp;&nbsp;
                         </td>
                     </tr>
 
@@ -52,43 +52,46 @@
                     <tr>
                         <th>이름</th>
                         <td>
-                            <input type="text" name="name" class="form-control" th:value="${loginuser.name}" style="width:190px; display:inline-block; height:25px;" placeholder="Name">
+                            <input type="text" name="name" class="form-control" th:value="${updateuser.name}" style="width:190px; display:inline-block; height:25px;" placeholder="Name">
                         </td>
                     </tr>
 
                     <tr>
                         <th>성별</th>
                         <td>
-                            <input type="radio" class="custom-control-input" name="gender" value="남자"><label class="custom-control-label">남자</label>
-                            <input type="radio" class="custom-control-input" name="gender" value="여자"><label class="custom-control-label">여자</label>
+                            <input type="radio" class="custom-control-input" name="gender" value="남자">
+                                <label class="custom-control-label">남자</label>
+
+                            <input type="radio" class="custom-control-input" name="gender" value="여자">
+                                <label class="custom-control-label">여자</label>
                         </td>
                     </tr>
 
                     <tr>
                         <th>생년월일</th>
                         <td>
-                            <input type="date" name="birth" class="form-control" th:value="${loginuser.birth}" style="width:190px; display:inline-block; height:25px;">
+                            <input type="date" name="birth" class="form-control" th:value="${updateuser.birth}" style="width:190px; display:inline-block; height:25px;">
                         </td>
                     </tr>
 
                     <tr>
                         <th>휴대폰 번호</th>
                         <td>
-                            <input type="text" name="phone1" class="form-control" style="width:55px; display:inline-block; height:25px;"> -
-                            <input type="text" name="phone2" class="form-control" style="width:65px; display:inline-block; height:25px;"> -
-                            <input type="text" name="phone3" class="form-control" style="width:65px; display:inline-block; height:25px;">
+                            <input type="text" name="phone1" class="form-control" th:value="${updateuser.phone1}" style="width:55px; display:inline-block; height:25px;"> -
+                            <input type="text" name="phone2" class="form-control" th:value="${updateuser.phone2}" style="width:65px; display:inline-block; height:25px;"> -
+                            <input type="text" name="phone3" class="form-control" th:value="${updateuser.phone3}" style="width:65px; display:inline-block; height:25px;">
                         </td>
                     </tr>
 
                     <tr>
                         <th>이메일</th>
                         <td>
-                            <input type="text" name="email1" class="form-control" style="width:100px; display:inline-block; height:25px;">&nbsp;@&nbsp;
+                            <input type="text" name="email1" class="form-control" style="width:100px; display:inline-block; height:25px;" th:value="${updateuser.email1}">&nbsp;@
                             <select class="form-select" name="email2" style="width:160px; display:inline-block; height:35px; font-size:13px;">
                                 <option value="">선택해주세요</option>
-                                <option value="@naver.com">naver.com</option>
-                                <option value="@kakao.com">kakao.com</option>
-                                <option value="@google.com">google.com</option>
+                                <option value="naver.com">naver.com</option>
+                                <option value="kakao.com">kakao.com</option>
+                                <option value="google.com">google.com</option>
                             </select>
                         </td>
                     </tr>
@@ -97,11 +100,11 @@
                         <th>주소</th>
                         <td>
 
-                            <input type="text" id="sample4_postcode" placeholder="우편번호" name="address1">
+                            <input type="text" id="sample4_postcode" placeholder="우편번호" name="address1" th:value="${updateuser.address1}">
                             <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-                            <input type="text" id="sample4_roadAddress" placeholder="도로명주소" name="address2">
-                            <input type="text" id="sample4_jibunAddress" placeholder="지번주소" name="address3">
-                            <input type="text" id="sample4_detailAddress" placeholder="상세주소" name="address4">
+                            <input type="text" id="sample4_roadAddress" placeholder="도로명주소" name="address2" th:value="${updateuser.address2}">
+                            <input type="text" id="sample4_jibunAddress" placeholder="지번주소" name="address3" th:value="${updateuser.address3}">
+                            <input type="text" id="sample4_detailAddress" placeholder="상세주소" name="address4" th:value="${updateuser.address4}">
                             <span id="guide" style="color:#999;display:none"></span>
                             <input type="hidden" id="sample4_extraAddress" placeholder="참고항목">
 

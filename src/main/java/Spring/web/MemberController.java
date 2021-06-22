@@ -3,6 +3,7 @@ package Spring.web;
 import Spring.domain.member.MemberEntity;
 import Spring.service.MemberService;
 import Spring.web.dto.MemberDto;
+import Spring.web.dto.UpdateDto;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpRequest;
@@ -186,11 +187,25 @@ public class MemberController {
 
     // 마지막 수정 페이지 요청
     @RequestMapping(value = "/infowrite", method = RequestMethod.POST)
-    public String infowrite(MemberDto memberDto, Model model) {
+    public String infowrite(MemberDto memberDto,UpdateDto updateDto, Model model) {
 
         String[] phone = memberDto.getPhone().split("-");
+        String[] email = memberDto.getEmail().split("@");
+        String[] address = memberDto.getAddress().split("-");
 
-        model.addAttribute("loginuser", memberDto);
+        updateDto.setPhone1(phone[0]);
+        updateDto.setPhone2(phone[1]);
+        updateDto.setPhone3(phone[2]);
+
+        updateDto.setEmail1(email[0]);
+        updateDto.setEmail2(email[1]);
+
+        updateDto.setAddress1(address[0]);
+        updateDto.setAddress2(address[1]);
+        updateDto.setAddress3(address[2]);
+        updateDto.setAddress4(address[3]);
+
+        model.addAttribute("updateuser", updateDto);
 
         return "infowrite";
 
