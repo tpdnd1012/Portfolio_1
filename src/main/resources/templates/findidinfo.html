@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="header :: header_h">
+    <meta charset="UTF-8">
+    <title>Find-ID</title>
+</head>
+<body>
+<div th:replace="header :: header"></div>
+
+<input type="text" th:value="${findid.member_id}">
+
+<div th:replace="footer :: footer"></div>
+</body>
+</html>

@@ -98,4 +98,27 @@ public class MemberService {
 
     }
 
+    // 회원 아이디 찾기
+    @Transactional
+    public MemberEntity findid(String name, String birth, String phone) {
+
+        // 1. 회원 엔티티 가져오기
+        Optional<MemberEntity> optionalMemberEntity = memberRepository.findid(name, birth, phone);
+
+        System.out.println( optionalMemberEntity );
+
+        if( optionalMemberEntity != null) {
+
+            MemberEntity memberEntity = optionalMemberEntity.get();
+
+            return memberEntity; // 받아온 정보로 조회되면 엔티티 리턴
+
+        } else {
+
+            return null; // 받아온 정보가 없으면 리턴 NULL
+
+        }
+
+    }
+
 }

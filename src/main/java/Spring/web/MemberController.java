@@ -211,4 +211,53 @@ public class MemberController {
 
     }
 
+    // 아이디 찾기 페이지요청
+    @GetMapping("/findid")
+    public String findid() {
+
+        return "findid";
+
+    }
+
+    // 비밀번호 찾기 페이지요청
+    @GetMapping("/findpw")
+    public String findpw() {
+
+        return "findpw";
+
+    }
+
+    // 아이디 찾기
+    @PostMapping("/findid")
+    public String findid_c(HttpServletRequest request, Model model) {
+
+        String name = request.getParameter("name");
+        String birth = request.getParameter("birth");
+
+        String phone1 = request.getParameter("phone1");
+        String phone2 = request.getParameter("phone2");
+        String phone3 = request.getParameter("phone3");
+
+        String phone = phone1 + "-" + phone2 + "-" + phone3;
+
+        MemberEntity findid = memberService.findid(name, birth, phone);
+
+        if(findid != null) {
+
+            model.addAttribute("findid", findid);
+
+            return "findidinfo";
+
+        } else {
+
+            String result = "동일한 정보의 회원이 없습니다.";
+
+            model.addAttribute("result", result);
+
+            return "findid";
+
+        }
+
+    }
+
 }

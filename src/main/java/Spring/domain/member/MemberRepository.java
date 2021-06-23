@@ -11,4 +11,6 @@ public interface MemberRepository extends JpaRepository<MemberEntity, Long> {
     @Query(value = "select * from Member where member_id=?1 and member_pw=?2", nativeQuery = true)
     Optional<MemberEntity> findByinfo(String member_id, String member_pw);
 
+    @Query(value = "select * from Member where name=?1 and birth=?2 and phone=?3", nativeQuery = true)
+    Optional<MemberEntity> findid(String name, String birth, String phone);
 }
