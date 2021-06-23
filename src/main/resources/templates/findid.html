@@ -57,7 +57,7 @@
 
         <div id="div2">
           <button type="submit" class="btn btn-light" style="border-radius: 15px; padding: 12px 17px;">아이디 찾기</button>
-          <button type="button" class="btn btn-light" style="border-radius: 15px; padding: 12px 17px;">취소</button>
+          <button type="button" class="btn btn-light" style="border-radius: 15px; padding: 12px 17px;" onclick="history.back()">취소</button>
         </div>
 
       </form>
@@ -70,7 +70,9 @@
       </div>
     </div>
 
-<input type="text" th:value="${result}">
+    <div th:if="${result != null}" style="text-align: center; color: #FA3030; font-size: 17px;">
+    <span th:text="${result}"></span>
+    </div>
 
 
   </div>

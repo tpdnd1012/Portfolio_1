@@ -105,9 +105,7 @@ public class MemberService {
         // 1. 회원 엔티티 가져오기
         Optional<MemberEntity> optionalMemberEntity = memberRepository.findid(name, birth, phone);
 
-        System.out.println( optionalMemberEntity );
-
-        if( optionalMemberEntity != null) {
+        if( optionalMemberEntity.isPresent()) { // .isPresent()
 
             MemberEntity memberEntity = optionalMemberEntity.get();
 
@@ -118,6 +116,41 @@ public class MemberService {
             return null; // 받아온 정보가 없으면 리턴 NULL
 
         }
+
+    }
+
+    // 회원 비밀번호 찾기
+    @Transactional
+    public MemberEntity findpw(String member_id, String birth, String email) {
+
+        // 회원 엔티티 가져오기
+        Optional<MemberEntity> optionalMemberEntity = memberRepository.findpw(member_id, birth, email);
+
+        if(optionalMemberEntity.isPresent()) {
+
+            MemberEntity memberEntity = optionalMemberEntity.get();
+
+            return memberEntity;
+
+        } else {
+
+            return null;
+
+        }
+
+    }
+    
+    // 회원 비밀번호 찾기 정보 입력후 비밀번호 재설정
+    @Transactional
+    public int modifypw(Long no, String member_pw) {
+
+        Optional<MemberEntity> optionalMemberEntity = memberRepository.findById(no);
+
+        MemberEntity memberEntity = optionalMemberEntity.get();
+
+        memberEntity.update(member_pw);
+
+        return 1;
 
     }
 

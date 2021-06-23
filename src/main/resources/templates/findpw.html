@@ -26,14 +26,14 @@
     </div>
 
     <div id="div1">
-      <form method="post" action="/signup" name="form" onsubmit="return sign_check()">
+      <form method="post" action="/findpw" name="form">
 
         <table style="border: solid 1px #E0DEDE; width:700px;">
 
           <tr>
             <th>아이디</th>
             <td>
-              <input type="text" name="name" class="form-control" style="width:190px; display:inline-block; height:25px;" placeholder="ID">
+              <input type="text" name="member_id" class="form-control" style="width:190px; display:inline-block; height:25px;" placeholder="ID">
             </td>
           </tr>
 
@@ -61,7 +61,7 @@
 
         <div id="div2">
           <button type="submit" class="btn btn-light" style="border-radius: 15px; padding: 12px 17px;">비밀번호 찾기</button>
-          <button type="button" class="btn btn-light" style="border-radius: 15px; padding: 12px 17px;">취소</button>
+          <button type="button" class="btn btn-light" style="border-radius: 15px; padding: 12px 17px;" onclick="history.back()">취소</button>
         </div>
 
       </form>
@@ -72,6 +72,10 @@
         <hr class="omb_hrOr">
         <span class="omb_spanOr"></span>
       </div>
+    </div>
+
+    <div th:if="${result != null}" style="text-align: center; color: #FA3030; font-size: 17px;">
+      <span th:text="${result}"></span>
     </div>
 
   </div>

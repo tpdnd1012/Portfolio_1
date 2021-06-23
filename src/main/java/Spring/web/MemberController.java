@@ -73,7 +73,7 @@ public class MemberController {
 
         memberService.membersave(memberDto);
 
-        return "redirect:/login";
+        return "login";
 
     }
 
@@ -107,7 +107,7 @@ public class MemberController {
 
         session.invalidate(); // 세션 초기화
 
-        return "redirect:/login";
+        return "login";
 
     }
 
@@ -257,6 +257,50 @@ public class MemberController {
             return "findid";
 
         }
+
+    }
+
+    // 비밀번호 찾기
+    @PostMapping("/findpw")
+    public String findpw_c(HttpServletRequest request, Model model) {
+
+        String member_id = request.getParameter("member_id");
+        String birth = request.getParameter("birth");
+
+        String email1 = request.getParameter("email1");
+        String email2 = request.getParameter("email2");
+
+        String email = email1 + "@" + email2;
+
+        MemberEntity findpw = memberService.findpw(member_id, birth, email);
+
+        if(findpw != null) {
+
+            model.addAttribute("findpw", findpw);
+
+            return "modifypw";
+
+        } else {
+
+            String result = "동일한 정보의 회원이 없습니다.";
+
+            model.addAttribute("result", result);
+
+            return "findpw";
+
+        }
+
+    }
+
+    @PostMapping("/modifypw")
+    public String modifypw(HttpServletRequest request) {
+
+        Long no = Long.parseLong(request.getParameter("no"));
+        String member_pw = request.getParameter("member_pw");
+
+        memberService.modifypw(no, member_pw);
+
+        return "login";
 
     }
 

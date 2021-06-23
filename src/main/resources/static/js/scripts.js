@@ -151,9 +151,9 @@ function login_check() {
 
 // 로그인후 뒤로가기 막기
 //window.history.forward();
- function noBack() {
+/* function noBack() {
  window.history.forward();
-}
+}*/
 
 // 아이디 중복체크
 function id_check() {

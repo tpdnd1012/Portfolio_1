@@ -69,4 +69,10 @@ public class MemberEntity extends BaseTime {
 
     }
 
+    public void update(String member_pw) {
+
+        this.member_pw = member_pw;
+
+    }
+
 }
