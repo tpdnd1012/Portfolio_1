@@ -59,11 +59,11 @@ public class MemberEntity extends BaseTime {
     // 회원 수정 메소드
     public MemberEntity modify(MemberDto memberDto) {
 
-        this.member_pw = member_pw;
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
+        this.member_pw = memberDto.getMember_pw();
+        this.name = memberDto.getName();
+        this.phone = memberDto.getPhone();
+        this.email = memberDto.getEmail();
+        this.address = memberDto.getEmail();
 
         return this;
 

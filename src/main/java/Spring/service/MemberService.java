@@ -6,6 +6,7 @@ import Spring.web.dto.MemberDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
@@ -81,6 +82,23 @@ public class MemberService {
         MemberEntity temp = optionalMemberEntity.get();
 
         return temp;
+
+    }
+
+    // 회원 수정 처리
+    @Transactional
+    public int membermodify(MemberDto modifyDto) {
+
+        // DB에서 회원찾기
+        Optional<MemberEntity> optionalMemberEntity = memberRepository.findById(modifyDto.getNo());
+
+        // 찾은 후 엔티티 가져오기
+        MemberEntity memberEntity = optionalMemberEntity.get();
+
+        // 업데이트 처리
+        memberEntity.modify(modifyDto);
+
+        return 1;
 
     }
 

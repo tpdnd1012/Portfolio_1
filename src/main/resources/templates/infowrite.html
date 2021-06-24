@@ -24,7 +24,7 @@
         </div>
 
         <div id="div1">
-            <form method="post" action="/signup" name="form" onsubmit="return sign_check()">
+            <form method="post" action="/modifymember" name="form" onsubmit="return sign_check()">
 
                 <table style="border: solid 1px #E0DEDE; width:1030px;">
 
@@ -59,10 +59,10 @@
                     <tr>
                         <th>성별</th>
                         <td>
-                            <input type="radio" class="custom-control-input" name="gender" value="남자">
+                            <input type="radio" class="custom-control-input" name="gender" value="남자" th:checked="${updateuser.gender}=='남자'">
                                 <label class="custom-control-label">남자</label>
 
-                            <input type="radio" class="custom-control-input" name="gender" value="여자">
+                            <input type="radio" class="custom-control-input" name="gender" value="여자" th:checked="${updateuser.gender}=='여자'">
                                 <label class="custom-control-label">여자</label>
                         </td>
                     </tr>
@@ -89,9 +89,9 @@
                             <input type="text" name="email1" class="form-control" style="width:100px; display:inline-block; height:25px;" th:value="${updateuser.email1}">&nbsp;@
                             <select class="form-select" name="email2" style="width:160px; display:inline-block; height:35px; font-size:13px;">
                                 <option value="">선택해주세요</option>
-                                <option value="naver.com">naver.com</option>
-                                <option value="kakao.com">kakao.com</option>
-                                <option value="google.com">google.com</option>
+                                <option value="naver.com" th:selected="${updateuser.email2}=='naver.com'">naver.com</option>
+                                <option value="kakao.com" th:selected="${updateuser.email2}=='kakao.com'">kakao.com</option>
+                                <option value="google.com" th:selected="${updateuser.email2}=='google.com'">google.com</option>
                             </select>
                         </td>
                     </tr>
