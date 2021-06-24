@@ -26,12 +26,14 @@
     <div id="div1">
       <form method="post" action="/updatecomplete" name="form" onsubmit="return sign_check()">
 
+        <input type="hidden" name="password" th:value="${session.loginuser.member_pw}">
+
         <table style="border: solid 1px #E0DEDE; width:1030px;">
 
           <tr>
             <th>기존 비밀번호</th>
             <td>
-              <input type="password" name="password" class="form-control" style="width:190px; display:inline-block; height:25px;" placeholder="Existing Password">
+              <input type="password" name="password2" class="form-control" th:value="${session.loginuser.member_pw}" style="width:190px; display:inline-block; height:25px;" placeholder="Existing Password">
             </td>
           </tr>
 
