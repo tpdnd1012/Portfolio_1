@@ -61,9 +61,10 @@ public class MemberEntity extends BaseTime {
 
         this.member_pw = memberDto.getMember_pw();
         this.name = memberDto.getName();
+        this.gender = memberDto.getGender();
         this.phone = memberDto.getPhone();
         this.email = memberDto.getEmail();
-        this.address = memberDto.getEmail();
+        this.address = memberDto.getAddress();
 
         return this;
 

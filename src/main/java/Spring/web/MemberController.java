@@ -150,8 +150,16 @@ public class MemberController {
 
     }
 
+    // 회원 수정 비밀번호 변경 페이지 요청
+    @GetMapping("/updatepw")
+    public String updatepw() {
+
+        return "updatepw";
+
+    }
+
     // 회원수정 전 페이지 비밀번호 입력후 수정 전 확인페이지
-    @RequestMapping(value = "/info", method = RequestMethod.POST)
+    @PostMapping("/info")
     public String memberinfo(HttpServletRequest request, Model model) {
 
         String member_id = request.getParameter("member_id");
@@ -162,6 +170,71 @@ public class MemberController {
         model.addAttribute("infouser", infouser);
 
         return "memberinfo";
+
+    }
+
+    // 마지막 수정 페이지 요청
+    @RequestMapping(value = "/updateinfo", method = RequestMethod.POST)
+    public String infowrite(UpdateDto updateDto, HttpServletRequest request, Model model) {
+
+        MemberDto temp = (MemberDto)session.getAttribute("loginuser");
+
+        String[] phone = temp.getPhone().split("-");
+        String[] email = temp.getEmail().split("@");
+        String[] address = temp.getAddress().split("-");
+
+        updateDto.setPhone1(phone[0]);
+        updateDto.setPhone2(phone[1]);
+        updateDto.setPhone3(phone[2]);
+
+        updateDto.setEmail1(email[0]);
+        updateDto.setEmail2(email[1]);
+
+        updateDto.setAddress1(address[0]);
+        updateDto.setAddress2(address[1]);
+        updateDto.setAddress3(address[2]);
+        updateDto.setAddress4(address[3]);
+
+        model.addAttribute("updateuser", updateDto);
+
+        return "updateinfo";
+
+    }
+
+    // 회원정보 수정 처리 완료
+    @RequestMapping(value = "/updatecomplete", method = RequestMethod.POST)
+    public String updatecomplete(MemberDto memberDto, HttpServletRequest request) {
+
+        String phone1 = request.getParameter("phone1");
+        String phone2 = request.getParameter("phone2");
+        String phone3 = request.getParameter("phone3");
+
+        String email1 = request.getParameter("email1");
+        String email2 = request.getParameter("email2");
+
+        String address1 = request.getParameter("address1");
+        String address2 = request.getParameter("address2");
+        String address3 = request.getParameter("address3");
+            if (address3 == null) {
+                address3 = " ";
+            }
+        String address4 = request.getParameter("address4");
+
+        String phone = phone1 + "-" + phone2 + "-" + phone3;
+        String email = email1 + "@" + email2;
+        String address = address1 + "-" + address2 + "-" + address3 + "-" + address4;
+
+        memberDto.setPhone(phone);
+        memberDto.setEmail(email);
+        memberDto.setAddress(address);
+
+        memberService.updateinfo(memberDto);
+
+        session.invalidate(); // 업데이트후 세션 초기화
+
+        session.setAttribute("loginuser", memberDto); // 초기화 후 로그인 메소드처럼 세션 다시 부여
+
+        return "index";
 
     }
 
@@ -182,83 +255,6 @@ public class MemberController {
         session.invalidate();
 
         return "redirect:/";
-
-    }
-
-    // 마지막 수정 페이지 요청
-    @RequestMapping(value = "/infowrite", method = RequestMethod.POST)
-    public String infowrite(MemberDto memberDto,UpdateDto updateDto, HttpServletRequest request, Model model) {
-
-        String[] phone = memberDto.getPhone().split("-");
-        String[] email = memberDto.getEmail().split("@");
-        String[] address = memberDto.getAddress().split("-");
-
-        updateDto.setPhone1(phone[0]);
-        updateDto.setPhone2(phone[1]);
-        updateDto.setPhone3(phone[2]);
-
-        updateDto.setEmail1(email[0]);
-        updateDto.setEmail2(email[1]);
-
-        updateDto.setAddress1(address[0]);
-        updateDto.setAddress2(address[1]);
-        updateDto.setAddress3(address[2]);
-        updateDto.setAddress4(address[3]);
-
-        model.addAttribute("updateuser", updateDto);
-
-        return "infowrite";
-
-    }
-    
-    // 회원 수정 처리
-    @PostMapping("/modifymember")
-    public String modifymember(MemberDto modifyDto, HttpServletRequest request) {
-
-        String password = request.getParameter("password");
-
-        String phone1 = request.getParameter("phone1");
-        String phone2 = request.getParameter("phone2");
-        String phone3 = request.getParameter("phone3");
-
-        String phone = phone1 + "-" + phone2 + "-" + phone3;
-
-        String email1 = request.getParameter("email1");
-        String email2 = request.getParameter("email2");
-
-        String email = email1 + "@" + email2;
-
-        String address1 = request.getParameter("address1");
-        String address2 = request.getParameter("address2");
-        String address3 = request.getParameter("address3");
-
-        if (address3 == null) {
-            address3 = " ";
-        }
-
-        String address4 = request.getParameter("address4");
-
-        String address = address1 + "-" + address2 + "-" + address3 + "-" + address4;
-
-        modifyDto.setPhone(phone);
-        modifyDto.setEmail(email);
-        modifyDto.setAddress(address);
-
-        if(!password.equals(modifyDto.getMember_pw())) {
-
-            memberService.membermodify(modifyDto);
-            
-            session.invalidate(); // 비밀번호 변경시 세션초기화 후 다시 로그인
-
-            return "login";
-
-        } else {
-
-            memberService.membermodify(modifyDto);
-
-            return "memberinfo";
-
-        }
 
     }
 

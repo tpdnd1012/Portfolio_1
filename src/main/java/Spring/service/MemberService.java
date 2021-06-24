@@ -87,7 +87,7 @@ public class MemberService {
 
     // 회원 수정 처리
     @Transactional
-    public int membermodify(MemberDto modifyDto) {
+    public int updateinfo(MemberDto modifyDto) {
 
         // DB에서 회원찾기
         Optional<MemberEntity> optionalMemberEntity = memberRepository.findById(modifyDto.getNo());

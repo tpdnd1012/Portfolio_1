@@ -24,7 +24,10 @@
         </div>
 
         <div id="div1">
-            <form method="post" action="/modifymember" name="form" onsubmit="return sign_check()">
+            <form method="post" action="/updatecomplete" name="form" onsubmit="return sign_check()">
+
+                <input type="hidden" name="no" th:value="${updateuser.no}">
+                <input type="hidden" name="member_pw" th:value="${updateuser.member_pw}">
 
                 <table style="border: solid 1px #E0DEDE; width:1030px;">
 
@@ -32,20 +35,6 @@
                         <th>아이디</th>
                         <td>
                             <input type="text" id="member_id" name="member_id" class="form-control" th:value="${updateuser.member_id}" style="width:190px; display:inline-block; height:25px;" readonly="readonly">&nbsp;&nbsp;&nbsp;
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <th>비밀번호</th>
-                        <td>
-                            <input type="password" name="member_pw" class="form-control" style="width:190px; display:inline-block; height:25px;" placeholder="Passwrod">
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <th>비밀번호 확인</th>
-                        <td>
-                            <input type="password" name="member_pw2" class="form-control" style="width:190px; display:inline-block; height:25px;" placeholder="Confirm Password">
                         </td>
                     </tr>
 
@@ -115,7 +104,7 @@
 
                 <div id="div2">
                     <button type="submit" class="btn btn-light" style="border-radius: 15px; padding: 12px 17px;">완료</button>
-                    <button type="button" class="btn btn-light" style="border-radius: 15px; padding: 12px 17px;">취소</button>
+                    <button type="button" class="btn btn-light" style="border-radius: 15px; padding: 12px 17px;" onclick="history.back()">취소</button>
                 </div>
 
             </form>

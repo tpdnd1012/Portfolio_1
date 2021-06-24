@@ -24,7 +24,10 @@
     </div>
 
     <div id="div1">
-      <form action="/infowrite" name="infoform" method="post">
+      <form action="/updateinfo" name="infoform" method="post">
+
+        <input type="hidden" name="no" th:value="${infouser.no}">
+        <input type="hidden" name="member_pw" th:value="${infouser.member_pw}">
 
         <table style="border: solid 1px #E0DEDE; width:700px;">
 
@@ -83,7 +86,9 @@
 
         <div id="div2">
 
-          <button type="submit" class="btn btn-light" style="border-radius: 15px; padding: 12px 17px;">회원수정</button>
+          <button type="submit" class="btn btn-light" style="border-radius: 15px; padding: 12px 17px;">정보변경</button>
+
+            <button type="button" class="btn btn-light" style="border-radius: 15px; padding: 12px 17px;" th:onclick="location.href='updatepw'">비밀번호 변경</button>
 
           <a th:href="@{memberdelete}">
             <button type="button" class="btn btn-light" style="border-radius: 15px; padding: 12px 17px;" th:onclick="if(!(confirm('정말 탈퇴하시겠습니까?')))return false">회원탈퇴</button>

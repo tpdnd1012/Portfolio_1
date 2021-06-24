@@ -42,6 +42,7 @@ public class MemberDto {
 
         this.member_pw = entity.getMember_pw();
         this.name = entity.getName();
+        this.gender = entity.getGender();
         this.phone = entity.getPhone();
         this.email = entity.getEmail();
         this.address = entity.getAddress();
