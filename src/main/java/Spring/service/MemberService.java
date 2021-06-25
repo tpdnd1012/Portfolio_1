@@ -171,5 +171,30 @@ public class MemberService {
         return 1;
 
     }
+    
+    // 비밀번호 찾기에서 변경할 회원정보 넘겨주기
+    public MemberEntity updatepw(Long no) {
+
+        Optional<MemberEntity> optionalMemberEntity = memberRepository.findById(no);
+
+        MemberEntity memberEntity = optionalMemberEntity.get();
+
+        return memberEntity;
+
+    }
+    
+    // 회원정보에서 패스워드변경 처리
+    @Transactional
+    public int updatepwcomplete(Long no, String member_pw) {
+
+        Optional<MemberEntity> optionalMemberEntity = memberRepository.findById(no);
+
+        MemberEntity memberEntity = optionalMemberEntity.get();
+
+        memberEntity.update(member_pw);
+
+        return 1;
+
+    }
 
 }

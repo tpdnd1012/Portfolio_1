@@ -187,3 +187,41 @@ function info_check() {
     }
 
 }
+
+// 비밀번호 변경 페이지 패스워드 검사
+function updatepw() {
+
+    var updatepwform = document.updatepwform; // form
+
+    if(!updatepwform.password2.value) {
+        alert("기존 비밀번호를 입력해주세요.");
+        updatepwform.password2.focus();
+        return false;
+    }
+
+    if(!updatepwform.member_pw.value) {
+        alert("변경할 비밀번호를 입력해주세요.");
+        updatepwform.member_pw.focus();
+        return false;
+    }
+
+    if(!updatepwform.member_pw2.value) {
+        alert("변경할 비밀번호 확인란을 입력해주세요.");
+        updatepwform.member_pw2.focus();
+        return false;
+    }
+
+    if(updatepwform.password.value != updatepwform.password2.value) {
+        alert("기존 비밀번호가 틀립니다.");
+        updatepwform.password2.focus();
+        return false;
+    }
+
+    if(updatepwform.member_pw.value != updatepwform.member_pw2.value) {
+        alert("변경할 패스워드가 다릅니다.");
+        updatepwform.member_pw2.focus();
+        return false;
+
+    }
+
+}

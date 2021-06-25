@@ -151,11 +151,30 @@ public class MemberController {
     }
 
     // 회원 수정 비밀번호 변경 페이지 요청
-    @GetMapping("/updatepw")
-    public String updatepw() {
+    @GetMapping("/updatepw/{no}")
+    public String updatepw(@PathVariable("no") Long no, Model model) {
+
+        MemberEntity memberEntity = memberService.updatepw(no);
+
+        model.addAttribute("member",memberEntity);
 
         return "updatepw";
 
+    }
+
+    // 비밀번호 수정 처리
+    @PostMapping("updatepwcomplete")
+    public String updatepwcomplete(HttpServletRequest request) {
+
+        Long no = Long.parseLong(request.getParameter("no"));
+        String member_pw = request.getParameter("member_pw");
+
+        memberService.updatepwcomplete(no, member_pw);
+
+        session.invalidate();
+
+        return "updatecompletepw";
+        
     }
 
     // 회원수정 전 페이지 비밀번호 입력후 수정 전 확인페이지
@@ -339,6 +358,7 @@ public class MemberController {
 
     }
 
+    // 비밀번호 찾기 후 바로 새 비밀번호로 변경
     @PostMapping("/modifypw")
     public String modifypw(HttpServletRequest request) {
 
