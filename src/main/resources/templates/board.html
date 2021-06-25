@@ -25,7 +25,8 @@
 
   </table>
   <hr>
-  <button type="button" class="btn btn-light" style="border-radius: 15px; padding: 7px 13px; float: right;">등록</button>
+  <a th:if="${session.loginuser != null}" th:href="@{/boardwrite}" class="btn btn-light" style="border-radius: 15px; padding: 7px 13px; float: right;">등록</a>
+  <div th:if="${session.loginuser == null}" style="text-align:center; color:red; margin-bottom:10px;">로그인 후 등록 가능합니다.</div>
 
   <!-- 페이징 처리 -->
   <div id="pag" style="text-align:center;">

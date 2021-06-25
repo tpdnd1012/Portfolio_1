@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class UpdateDto {
+public class MemberupdateDto {
 
     private Long no; // 회원번호
     private String member_id; // 회원 아이디
@@ -30,7 +30,7 @@ public class UpdateDto {
     private String address4; // 회원 주소4
 
     @Builder
-    public UpdateDto(Long no, String member_id, String member_pw, String name, String gender, String birth, String phone1, String phone2, String phone3, String email1, String email2, String address1, String address2, String address3, String address4) {
+    public MemberupdateDto(Long no, String member_id, String member_pw, String name, String gender, String birth, String phone1, String phone2, String phone3, String email1, String email2, String address1, String address2, String address3, String address4) {
         this.no = no;
         this.member_id = member_id;
         this.member_pw = member_pw;

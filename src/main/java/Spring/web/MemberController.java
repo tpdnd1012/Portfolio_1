@@ -3,10 +3,8 @@ package Spring.web;
 import Spring.domain.member.MemberEntity;
 import Spring.service.MemberService;
 import Spring.web.dto.MemberDto;
-import Spring.web.dto.UpdateDto;
-import lombok.Getter;
+import Spring.web.dto.MemberupdateDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -194,7 +192,7 @@ public class MemberController {
 
     // 마지막 수정 페이지 요청
     @RequestMapping(value = "/updateinfo", method = RequestMethod.POST)
-    public String infowrite(UpdateDto updateDto, HttpServletRequest request, Model model) {
+    public String infowrite(MemberupdateDto updateDto, HttpServletRequest request, Model model) {
 
         MemberDto temp = (MemberDto)session.getAttribute("loginuser");
 
