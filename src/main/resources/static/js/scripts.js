@@ -225,3 +225,26 @@ function updatepw() {
     }
 
 }
+
+//  게시판 등록 제목, 내용 유효성 검사
+function boardwrite_check() {
+
+    var boardwriteform = document.boardwriteform;
+
+    if(!boardwriteform.title.value) {
+
+        alert("제목을 입력해주세요.");
+        boardwriteform.title.focus();
+        return false;
+
+    }
+
+    if(!boardwriteform.contents.value) {
+
+            alert("내용이 비어있습니다.");
+            boardwriteform.contents.focus();
+            return false;
+
+    }
+
+}

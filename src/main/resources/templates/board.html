@@ -13,14 +13,22 @@
   <br>
   <hr>
 
-  <table class="table table-hover table-striped">
+  <table class="table table-hover table-striped" style="text-align:center;">
 
     <tr class="thead-strong">
-      <th style="text-align: center;">번호</th>
-      <th style="text-align: center;">제목</th>
-      <th style="text-align: center;">작성자</th>
-      <th style="text-align: center;">작성일</th>
-      <th style="text-align: center;">조회수</th>
+      <th style="width:150px;">번호</th>
+      <th style="width:350px;">제목</th>
+      <th style="width:200px;">작성자</th>
+      <th style="width:200px;">작성일</th>
+      <th style="width:150px;">조회수</th>
+    </tr>
+
+    <tr th:each="boardDtos : ${boardDtos}">
+      <td th:text="${boardDtos.id}"></td>
+      <td th:text="${boardDtos.title}"></td>
+      <td th:text="${boardDtos.name}"></td>
+      <td th:text="${#temporals.format(boardDtos.createDate, 'yyyy-MM-dd')}"></td>
+      <td th:text="${boardDtos.count}"></td>
     </tr>
 
   </table>
@@ -31,10 +39,10 @@
   <!-- 페이징 처리 -->
   <div id="pag" style="text-align:center;">
     <!--시작페이지 , 끝페이지 설정-->
-    <!-- 타임리프 변수 정의 : th:with= -->
-    <!-- 첫페이지번호 :  ( 현재페이지/10 ) * 10 + 1 -->
-    <!-- 0/10  * 10 + 1 -> 1 -->
-    <!-- 13/10 * 10 + 1 => 11 -->
+      <!-- 타임리프 변수 정의 : th:with= -->
+        <!-- 첫페이지번호 :  ( 현재페이지/10 ) * 10 + 1 -->
+        <!-- 0/10  * 10 + 1 -> 1 -->
+        <!-- 13/10 * 10 + 1 => 11 -->
     <ul class="pagination justify-content-center">
       <!-- 첫페이지이동 -->
       <li class="page-item">

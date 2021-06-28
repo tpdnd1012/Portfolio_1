@@ -9,7 +9,7 @@
 
 <div class="container" style="margin-top:50px;">
 
-    <div class="omb_login">
+    <div class="omb_login" style="width:850px; margin:0 auto;">
 
         <h3 class="omb_authTitle">Publishing a Post</h3>
 
@@ -23,7 +23,7 @@
             </div>
         </div>
 
-            <form method="post" action="/signup" name="form" onsubmit="return sign_check()">
+            <form method="post" action="/boardwrite" name="boardwriteform" onsubmit="return boardwrite_check()">
 
                 <div class="form-group">
                     <label>제목</label>
@@ -32,7 +32,7 @@
 
                 <div class="form-group">
                     <label>작성자</label>
-                    <input type="text" name="name" class="form-control" th:value="${session.loginuser.name}" disabled="disabled">
+                    <input type="text" name="name" class="form-control" th:value="${session.loginuser.name}" readonly="readonly">
                 </div>
 
                 <div class="form-group">
@@ -40,7 +40,10 @@
                     <textarea name="contents" class="form-control" rows="10"></textarea>
                 </div>
 
-                <input type="submit" value="등록" class="btn btn-info">
+                <div style="text-align: right; margin: 30px 0;">
+                    <button type="submit" class="btn btn-outline-dark float-right" style="border-radius: 10px;">등록</button>
+                    <button type="button" class="btn btn-outline-dark" style="border-radius: 10px; margin-left: 30px;" onclick="history.back()">취소</button>
+                </div>
 
             </form>
         </div>

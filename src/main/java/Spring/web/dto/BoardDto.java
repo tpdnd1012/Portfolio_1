@@ -20,6 +20,7 @@ public class BoardDto {
     private int count; // 게시물 조회수
     private LocalDateTime createDate; // 게시물 생성일
 
+    // 생성자
     @Builder
     public BoardDto(Long id, String title, String name, String contents, int count, LocalDateTime createDate) {
         this.id = id;
@@ -30,6 +31,7 @@ public class BoardDto {
         this.createDate = createDate;
     }
 
+    // Dto ==> Entity 이동
     public BoardEntity toEntity() {
 
         return BoardEntity.builder()
