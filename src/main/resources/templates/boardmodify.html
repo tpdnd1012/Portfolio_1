@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="header :: header_h">
+  <meta charset="UTF-8">
+  <title>Board Update</title>
+</head>
+<body>
+<div th:replace="header :: header"></div>
+
+<div class="container" style="margin-top:50px;">
+
+  <div class="omb_login" style="width:850px; margin:0 auto;">
+
+    <h3 class="omb_authTitle">Modify Posts</h3>
+
+    <div class="row omb_row-sm-offset-3 omb_socialButtons">
+    </div>
+
+    <hr style="width: 850px; margin:0 auto; margin: 20px 0;">
+
+    <form method="post" action="/boardmodify" name="boardwriteform" onsubmit="return boardwrite_check()">
+
+      <input type="hidden" name="id" th:value="${boardDto.id}">
+
+      <div class="form-group">
+        <label>제목</label>
+        <input type="text" name="title" class="form-control" th:value="${boardDto.title}">
+      </div>
+
+      <div class="form-group">
+        <label>작성자</label>
+        <input type="text" name="name" class="form-control" th:value="${boardDto.name}" readonly="readonly">
+      </div>
+
+      <div class="form-group">
+        <label>내용</label>
+        <textarea name="contents" class="form-control" rows="10" th:text="${boardDto.contents}"></textarea>
+      </div>
+
+      <div style="text-align: right; margin: 30px 0;">
+        <button type="submit" class="btn btn-outline-dark float-right" style="border-radius: 10px; padding: 8px;">게시글 수정</button>
+        <button type="button" class="btn btn-outline-dark" style="border-radius: 10px; margin-left: 30px; padding: 8px;" onclick="history.back()">취소</button>
+      </div>
+
+    </form>
+
+    <hr style="width: 850px; margin:0 auto; margin: 20px 0;">
+
+  </div>
+
+</div>
+
+</div>
+<br><br>
+
+<div th:replace="footer :: footer"></div>
+</body>
+</html>

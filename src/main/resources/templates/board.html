@@ -25,7 +25,7 @@
 
     <tr th:each="boardDtos : ${boardDtos}">
       <td th:text="${boardDtos.id}"></td>
-      <td th:text="${boardDtos.title}"></td>
+      <td><a th:href="@{/boardview(no=${boardDtos.no}, id=${boardDtos.id},count=${boardDtos.count})}"><span th:text="${boardDtos.title}"></span></a></td>
       <td th:text="${boardDtos.name}"></td>
       <td th:text="${#temporals.format(boardDtos.createDate, 'yyyy-MM-dd')}"></td>
       <td th:text="${boardDtos.count}"></td>

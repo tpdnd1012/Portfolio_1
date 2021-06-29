@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 public class BoardDto {
 
     private Long id; // 게시물 번호
+    private Long no;// 회원식별용
     private String title; // 게시물 제목
     private String name; // 게시물 작성자
     private String contents; // 게시물 내용
@@ -22,8 +23,9 @@ public class BoardDto {
 
     // 생성자
     @Builder
-    public BoardDto(Long id, String title, String name, String contents, int count, LocalDateTime createDate) {
+    public BoardDto(Long id, Long no, String title, String name, String contents, int count, LocalDateTime createDate) {
         this.id = id;
+        this.no = no;
         this.title = title;
         this.name = name;
         this.contents = contents;
@@ -35,6 +37,7 @@ public class BoardDto {
     public BoardEntity toEntity() {
 
         return BoardEntity.builder()
+                .no(no)
                 .title(title)
                 .name(name)
                 .contents(contents)

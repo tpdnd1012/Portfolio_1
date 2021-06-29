@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="header :: header_h">
+  <meta charset="UTF-8">
+  <title>Login</title>
+</head>
+<body>
+<div th:replace="header :: header"></div>
+<div class="container">
+
+  <h1 class="text-center">Bulletin Board!</h1>
+  <br>
+  <hr class="boardviewhr1">
+
+  <table class="table table-hover table-striped boardviewtable">
+
+    <tr>
+      <th style="width:200px;">제목</th>
+      <td colspan="2" th:text="${boardDto.title}"></td>
+    </tr>
+
+    <tr>
+      <th style="width:200px;">조회수</th>
+      <td colspan="2" th:text="${boardDto.count}"></td>
+    </tr>
+
+    <tr>
+      <th style="width:200px;">작성자</th>
+      <td colspan="2" th:text="${boardDto.name}"></td>
+    </tr>
+
+    <tr>
+      <th style="width:200px;">작성일</th>
+      <td colspan="2" th:text="${#temporals.format(boardDto.createDate, 'yyyy-MM-dd')}"></td>
+    </tr>
+
+    <tr>
+      <th style="width:200px;">내용</th>
+      <td colspan="2" class="boardviewtabletd5" th:text="${boardDto.contents}"></td>
+    </tr>
+
+  </table>
+
+  <div style="margin-top: 20px; text-align: right; width: 83%;">
+
+      <a th:href="@{/board}" class="btn btn-light boardviewbtn">
+        목록
+      </a>
+
+      <a th:onclick="if(!(confirm('게시글을 수정하시겠습니까?'))) return false" th:if="${session.loginuser.no == boardDto.no}" th:href="@{'/boardmodify/' + ${boardDto.id}}" class="btn btn-light boardviewbtn">
+        수정
+      </a>
+
+      <a th:onclick="if(!(confirm('정말 삭제하시겠습니까?'))) return false" th:if="${session.loginuser.no == boardDto.no}" th:href="@{'/boarddelete/' + ${boardDto.id}}" class="btn btn-light boardviewbtn">
+        삭제
+      </a>
+
+  </div>
+
+  <hr class="boardviewhr2">
+
+</div>
+
+<br><br><br>
+
+<div th:replace="footer :: footer"></div>
+</body>
+</html>

@@ -16,14 +16,11 @@
         <div class="row omb_row-sm-offset-3 omb_socialButtons">
         </div>
 
-        <div class="row omb_row-sm-offset-3 omb_loginOr">
-            <div class="col-xs-12 col-sm-6">
-                <hr class="omb_hrOr">
-                <span class="omb_spanOr"></span>
-            </div>
-        </div>
+        <hr style="width: 850px; margin:0 auto; margin: 20px 0;">
 
             <form method="post" action="/boardwrite" name="boardwriteform" onsubmit="return boardwrite_check()">
+
+                <input type="hidden" name="no" th:value="${session.loginuser.no}">
 
                 <div class="form-group">
                     <label>제목</label>
@@ -46,13 +43,9 @@
                 </div>
 
             </form>
-        </div>
 
-        <div class="row omb_row-sm-offset-3 omb_loginOr">
-            <div class="col-xs-12 col-sm-6">
-                <hr class="omb_hrOr">
-                <span class="omb_spanOr"></span>
-            </div>
+            <hr style="width: 850px; margin:0 auto; margin: 20px 0;">
+
         </div>
 
     </div>

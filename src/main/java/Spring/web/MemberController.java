@@ -192,9 +192,10 @@ public class MemberController {
 
     // 마지막 수정 페이지 요청
     @RequestMapping(value = "/updateinfo", method = RequestMethod.POST)
-    public String infowrite(MemberupdateDto updateDto, HttpServletRequest request, Model model) {
+    public String updateinfo(MemberupdateDto updateDto, HttpServletRequest request, Model model) {
 
         MemberDto temp = (MemberDto)session.getAttribute("loginuser");
+
 
         String[] phone = temp.getPhone().split("-");
         String[] email = temp.getEmail().split("@");

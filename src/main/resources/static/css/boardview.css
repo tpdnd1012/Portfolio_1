@@ -1,0 +1,27 @@
+.boardviewbtn {
+    border-radius: 15px;
+    padding: 7px 13px;
+}
+
+.boardviewtable{
+    text-align: center;
+    width: 66%;
+    margin: 0 auto;
+}
+
+.boardviewtabletd5{
+    word-break: break-all;
+    text-align: left;
+}
+
+.boardviewhr1{
+    width: 66%;
+    margin:0 auto;
+    margin-bottom: 20px;
+}
+
+.boardviewhr2{
+    width: 66%;
+    margin:0 auto;
+    margin-top: 20px;
+}
