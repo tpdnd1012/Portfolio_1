@@ -26,7 +26,7 @@
       <div class="col-xs-12 col-sm-6">
         <form class="omb_loginForm" action="/info" autocomplete="off" method="POST" name="infoform" onsubmit="return info_check()">
 
-            <input type="hidden" class="form-control" name="member_id"th:value="${session.loginuser.member_id}">
+            <input type="hidden" class="form-control" name="member_id" th:value="${session.loginuser.member_id}">
 
           <div class="input-group" style="margin-bottom: 20px;">
             <input  type="password" class="form-control" name="member_pw" placeholder="비밀번호">

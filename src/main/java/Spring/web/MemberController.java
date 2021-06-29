@@ -194,12 +194,14 @@ public class MemberController {
     @RequestMapping(value = "/updateinfo", method = RequestMethod.POST)
     public String updateinfo(MemberupdateDto updateDto, HttpServletRequest request, Model model) {
 
-        MemberDto temp = (MemberDto)session.getAttribute("loginuser");
+        String updatephone = request.getParameter("phone");
+        String updateemail = request.getParameter("email");
+        String updateaddress = request.getParameter("address");
 
 
-        String[] phone = temp.getPhone().split("-");
-        String[] email = temp.getEmail().split("@");
-        String[] address = temp.getAddress().split("-");
+        String[] phone = updatephone.split("-");
+        String[] email = updateemail.split("@");
+        String[] address = updateaddress.split("-");
 
         updateDto.setPhone1(phone[0]);
         updateDto.setPhone2(phone[1]);
