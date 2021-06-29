@@ -18,7 +18,7 @@ public class BoardEntity extends BaseTime {
     @Column(name = "id")
     private Long id; // 게시물 번호, 기본키
     
-    @Column(name = "no" , unique = true)
+    @Column(name = "no")
     private Long no; // 회원 식별용(중복 방지)
 
     @Column(name = "title", length = 20)

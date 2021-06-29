@@ -5,6 +5,10 @@ import Spring.domain.board.BoardRepository;
 import Spring.web.dto.BoardDto;
 import Spring.web.dto.BoardupdateDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -26,8 +30,44 @@ public class BoardService {
 
     }
 
-    // 모든 게시물 출력
-    public List<BoardDto> list() {
+    // 모든 게시물 출력(페이징처리o)
+    public Page<BoardEntity> boardlist(Pageable pageable, String keyword, String search) {
+
+        // 현재 페이지
+        int page = (pageable.getPageNumber() == 0) ? 0 : (pageable.getPageNumber() - 1);
+                                           // 논리 ? 참[T] : 거짓[F]
+
+        // 현재 페이지 설정
+        pageable = PageRequest.of(page, 5, new Sort(Sort.Direction.DESC, "id"));
+                    // PageRequest.of(현재페이지, 페이지당 게시글수, Sort)
+
+        //현재 페이지의 게시물 찾기
+        if(keyword != null || search != null) {
+
+            if(keyword.equals("title")) {
+                return boardRepository.findAlltitle(search, pageable);
+            }
+
+            if(keyword.equals("contents")) {
+                return boardRepository.findAllcontents(search, pageable);
+            }
+
+            if(keyword.equals("name")) {
+                return boardRepository.findAllname(search, pageable);
+            }
+
+            if(keyword.equals("id")) {
+                return boardRepository.findAllid(Long.parseLong(search), pageable);
+            }
+
+        }
+
+        return boardRepository.findAll(pageable);
+
+    }
+
+    // 모든 게시물 출력(페이징처리x)
+    /*public List<BoardDto> list() {
 
         List<BoardEntity> boardEntityList = boardRepository.findAll();
 
@@ -47,7 +87,7 @@ public class BoardService {
 
         }
         return boardDtos;
-    }
+    }*/
 
     // 게시물 개별 출력
     public BoardDto boardget(Long id) {
