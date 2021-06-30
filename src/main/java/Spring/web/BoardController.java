@@ -11,6 +11,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -102,6 +103,10 @@ public class BoardController {
 
         BoardDto boardDto = boardService.boardget(id);
 
+        String contents = boardDto.getContents().replace("<br>", "\r\n");
+
+        boardDto.setContents(contents);
+
         model.addAttribute("boardDto", boardDto);
 
         return "boardmodify";
@@ -109,11 +114,18 @@ public class BoardController {
 
     // 게시글 수정 처리
     @PostMapping("/boardmodify")
-    public String boardmodify_c(BoardupdateDto modifyDto) {
+    public String boardmodify_c(BoardupdateDto modifyDto, HttpServletRequest request, RedirectAttributes re) {
+
+        String contents = request.getParameter("contents");
+
+        modifyDto.setContents(contents.replace("\r\n", "<br>"));
 
         boardService.boardmodify(modifyDto);
 
-        return "redirect:/board";
+        re.addAttribute("id", modifyDto.getId());
+        re.addAttribute("count", -1);
+
+        return "redirect:/boardview";
 
     }
 

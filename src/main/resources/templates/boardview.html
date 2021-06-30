@@ -12,34 +12,26 @@
   <br>
   <hr class="boardviewhr1">
 
-  <table class="table table-hover table-striped boardviewtable">
+  <table class="table table-striped boardviewtable">
+
+      <h2 style="margin-left: 17%; margin-bottom: 30px;" th:text="${boardDto.title}"></h2>
 
     <tr>
-      <th style="width:200px;">제목</th>
-      <td colspan="2" th:text="${boardDto.title}"></td>
-    </tr>
+      <th>작성자</th>
+      <td th:text="${boardDto.name}"></td>
 
-    <tr>
-      <th style="width:200px;">조회수</th>
-      <td colspan="2" th:text="${boardDto.count}"></td>
-    </tr>
+      <th>작성일</th>
+      <td th:text="${#temporals.format(boardDto.createDate, 'yyyy-MM-dd')}"></td>
 
-    <tr>
-      <th style="width:200px;">작성자</th>
-      <td colspan="2" th:text="${boardDto.name}"></td>
-    </tr>
-
-    <tr>
-      <th style="width:200px;">작성일</th>
-      <td colspan="2" th:text="${#temporals.format(boardDto.createDate, 'yyyy-MM-dd')}"></td>
-    </tr>
-
-    <tr>
-      <th style="width:200px;">내용</th>
-      <td colspan="2" class="boardviewtabletd5" th:utext="${#string.replace(boardDto.contents, nlString, '&lt;br /&gt;)}"></td>
+      <th>조회수</th>
+      <td th:text="${boardDto.count}"></td>
     </tr>
 
   </table>
+
+    <div class="contentsdiv">
+        <p class="boardviewtabletd5" th:utext="${boardDto.contents}"></p>
+    </div>
 
   <div style="margin-top: 20px; text-align: right; width: 83%;">
 

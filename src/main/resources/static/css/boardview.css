@@ -9,6 +9,11 @@
     margin: 0 auto;
 }
 
+.contentsdiv{
+    width: 66%;
+    margin: 0 auto;
+}
+
 .boardviewtabletd5{
     word-break: break-all;
     text-align: left;
