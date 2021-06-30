@@ -58,7 +58,11 @@ public class BoardController {
 
     // 게시물 등록 처리
     @PostMapping("/boardwrite")
-    public String boardwrite_c(BoardDto boardDto) {
+    public String boardwrite_c(BoardDto boardDto, HttpServletRequest request) {
+
+        String contents = request.getParameter("contents");
+
+        boardDto.setContents(contents.replace("\r\n", "<br>"));
 
         boardService.boardsave(boardDto);
 

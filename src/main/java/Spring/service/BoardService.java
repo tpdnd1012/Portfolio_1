@@ -45,7 +45,7 @@ public class BoardService {
         if(keyword != null || search != null) {
 
             if(keyword.equals("title")) {
-                return boardRepository.findAlltitle(search, pageable);
+                return boardRepository.findAlltitle(search, pageable );
             }
 
             if(keyword.equals("contents")) {

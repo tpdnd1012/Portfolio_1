@@ -36,7 +36,7 @@
 
     <tr>
       <th style="width:200px;">내용</th>
-      <td colspan="2" class="boardviewtabletd5" th:text="${boardDto.contents}"></td>
+      <td colspan="2" class="boardviewtabletd5" th:utext="${#string.replace(boardDto.contents, nlString, '&lt;br /&gt;)}"></td>
     </tr>
 
   </table>
