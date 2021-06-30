@@ -14,18 +14,16 @@
 
     <h2 style="margin-left: 17%; margin-bottom: 30px;" th:text="${boardDto.title}"></h2>
 
-    <div class="boardviewtable">
+    <table class="table" style="width: 66%; margin: 0 auto;">
 
-          <span style="margin:5px 10px 5px 0;">작성자</span>
-          <span th:text="${boardDto.name}"></span>
+        <tr>
+            <th style="text-align:left;">작성자</th><td style="text-align:left;"><span th:text="${boardDto.name}"></span></td>
+            <th style="text-align:left;">작성일</th><td style="text-align:left;"><span th:text="${#temporals.format(boardDto.createDate, 'yy-MM-dd')}"></span></td>
+            <th style="text-align:left;">조회수</th><td style="text-align:left;"><span th:text="${boardDto.count}"></span></td>
+        </th>
+        </tr>
 
-          <span style="margin:5px 10px 5px 60px;">작성일</span>
-          <span th:text="${#temporals.format(boardDto.createDate, 'yyyy-MM-dd')}"></span>
-
-          <span style="margin:5px 10px 5px 60px;">조회수</span>
-          <span th:text="${boardDto.count}"></span>
-
-    </div>
+    </table>
 
     <div class="contentsdiv">
         <p class="boardviewtabletd5" th:utext="${boardDto.contents}"></p>
