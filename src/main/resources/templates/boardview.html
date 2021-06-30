@@ -12,22 +12,26 @@
   <br>
   <hr class="boardviewhr1">
 
-  <table class="table table-striped boardviewtable">
+    <h2 style="margin-left: 17%; margin-bottom: 30px;" th:text="${boardDto.title}"></h2>
 
-      <h2 style="margin-left: 17%; margin-bottom: 30px;" th:text="${boardDto.title}"></h2>
+    <div class="boardviewtable">
 
-    <tr>
-      <th>작성자</th>
-      <td th:text="${boardDto.name}"></td>
+      <div>
+          <div>작성자</div>
+          <div th:text="${boardDto.name}"></div>
+      </div>
 
-      <th>작성일</th>
-      <td th:text="${#temporals.format(boardDto.createDate, 'yyyy-MM-dd')}"></td>
+      <div>
+          <div>작성일</div>
+          <div th:text="${#temporals.format(boardDto.createDate, 'yyyy-MM-dd')}"></div>
+      </div>
 
-      <th>조회수</th>
-      <td th:text="${boardDto.count}"></td>
-    </tr>
+      <div>
+          <div>조회수</div>
+          <div th:text="${boardDto.count}"></div>
+      </div>
 
-  </table>
+    </div>
 
     <div class="contentsdiv">
         <p class="boardviewtabletd5" th:utext="${boardDto.contents}"></p>

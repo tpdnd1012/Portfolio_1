@@ -4,9 +4,9 @@
 }
 
 .boardviewtable{
-    text-align: center;
     width: 66%;
-    margin: 0 auto;
+    margin-left: 17%;
+    background-color: lightgray;
 }
 
 .contentsdiv{
