@@ -93,5 +93,15 @@
     background-color:#8A8888;
     border-radius:10px;
     border:none;
+    margin-bottom: 10px;
+
+}
+
+#login-btn3 {
+
+    width:100%;
+    background-color:#8A8888;
+    border-radius:10px;
+    border:none;
 
 }

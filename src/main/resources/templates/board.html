@@ -16,18 +16,18 @@
   <table class="table table-hover table-striped" style="text-align:center;">
 
     <tr class="thead-strong">
-      <th style="width:150px;">번호</th>
-      <th style="width:350px;">제목</th>
-      <th style="width:200px;">작성자</th>
-      <th style="width:200px;">작성일</th>
-      <th style="width:150px;">조회수</th>
+      <th>번호</th>
+      <th>제목</th>
+      <th>작성자</th>
+      <th>작성일</th>
+      <th>조회수</th>
     </tr>
 
     <tr th:each="boardDtos : ${boardDtos}">
       <td th:text="${boardDtos.id}"></td>
       <td><a th:href="@{/boardview(no=${boardDtos.no}, id=${boardDtos.id},count=${boardDtos.count})}"><span th:text="${boardDtos.title}"></span></a></td>
       <td th:text="${boardDtos.name}"></td>
-      <td th:text="${#temporals.format(boardDtos.createDate, 'yyyy-MM-dd')}"></td>
+      <td th:text="${#temporals.format(boardDtos.createDate, 'yy-MM-dd')}"></td>
       <td th:text="${boardDtos.count}"></td>
     </tr>
 
