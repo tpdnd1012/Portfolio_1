@@ -13,9 +13,9 @@
   <br>
   <hr>
 
-  <table class="table table-striped" style="text-align:center;">
+  <table class="table table-hover table-striped" style="text-align:center;">
 
-    <tr class="thead-strong">
+    <tr>
       <th>번호</th>
       <th>제목</th>
       <th>작성자</th>
@@ -80,15 +80,15 @@
   <div class="row-fluid" style="text-align:center;">
   <form method="post" action="/boardsearch">
 
-    <select class="form-select" name="keyword" style="width:12%; display:inline-block;">
-      <option value="id">게시물번호</option>
+    <select class="form-select" name="keyword" style="width:100px; display:inline-block;">
+      <option value="id">번호</option>
       <option value="title">제목</option>
       <option value="contents">내용</option>
       <option value="name">작성자</option>
     </select>
 
     <input type="text" class="form-control" name="search" placeholder="Search" style="width: 25%; display:inline-block;">
-    <button type="submit" class="btn btn-default" style="padding: 16px 20px;">Search</button>
+    <button type="submit" class="btn btn-default" style="padding: 0 0 5px 5px;">Search</button>
 
   </form>
   </div>

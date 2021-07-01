@@ -12,7 +12,7 @@
   <br>
   <hr class="boardviewhr1">
 
-    <h2 style="margin-left: 17%; margin-bottom: 30px;" th:text="${boardDto.title}"></h2>
+    <!--<h2 style="margin-left: 17%; margin-bottom: 30px;" th:text="${boardDto.title}"></h2>
 
     <table class="table" style="width: 66%; margin: 0 auto;">
 
@@ -23,7 +23,28 @@
         </th>
         </tr>
 
-    </table>
+    </table>-->
+
+    <div class="omb_login">
+        <h2 style="margin-left: 17%; margin-bottom: 30px;" th:text="${boardDto.title}"></h2>
+        <div style="width: 66%; margin-left: 17%; background-color: #F3F0F0">
+        <div class="col-xs-12 col-sm-6" style="width: 57%;">
+
+            <div class="form-group" style="float: left;">
+                <label style="font-size: 16px;">작성자<span th:text="${boardDto.name}" style="margin: 0 13px 0 10px;"></span></label>
+            </div>
+
+            <div class="form-group" style="float: left;">
+                <label style="font-size: 16px;">작성일<span th:text="${#temporals.format(boardDto.createDate, 'yy-MM-dd')}" style="margin: 0 13px 0 10px;"></span></label>
+            </div>
+
+            <div class="form-group">
+                <label style="font-size: 16px;">조회수<span th:text="${boardDto.count}" style="margin-left: 10px;"></span></label>
+            </div>
+
+        </div>
+        </div>
+    </div>
 
     <div class="contentsdiv">
         <p class="boardviewtabletd5" th:utext="${boardDto.contents}"></p>
