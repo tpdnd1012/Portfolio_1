@@ -2,7 +2,9 @@ package Spring.web;
 
 import Spring.domain.board.BoardEntity;
 import Spring.service.BoardService;
+import Spring.service.BoardreplyService;
 import Spring.web.dto.BoardDto;
+import Spring.web.dto.BoardreplyDto;
 import Spring.web.dto.BoardupdateDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -21,6 +23,7 @@ import java.util.List;
 public class BoardController {
 
     private final BoardService boardService;
+    private final BoardreplyService boardreplyService;
 
     // 게시판 페이지 요청[페이징처리o]
     @GetMapping("/board")
@@ -83,6 +86,10 @@ public class BoardController {
         // 해당 게시물 출력
         BoardDto boardDto = boardService.boardget(id);
         model.addAttribute("boardDto", boardDto);
+
+        // 댓글 출력하기
+        List<BoardreplyDto> boardreplyDtos = boardreplyService.boardreplyDtoList(boardDto.getId());
+        model.addAttribute("replyDto", boardreplyDtos);
 
         return "boardview";
 

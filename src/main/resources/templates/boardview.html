@@ -61,19 +61,60 @@
 
   <hr class="boardviewhr2">
 
-    <div class="card mb-2" style="width: 66%; margin: 0 auto;">
-    <div class="card-header bg-light">
-        <i class="fa fa-comment fa"></i> REPLY
+    <!-- 댓글 입력 폼 -->
+    <form method="post" action="/replywrite">
+
+        <!-- 게시물 번호, 댓글 작성자, 댓글 수정 / 삭제 식별용 회원 NO 같이 넘기기 -->
+        <input type="hidden" name="boardid" th:value="${boardDto.id}">
+        <input type="hidden" name="name" th:value="${session.loginuser.name}">
+        <input type="hidden" name="no" th:value="${session.loginuser.no}">
+
+        <div class="card mb-2" style="width: 66%; margin: 0 auto;">
+            <div class="card-header bg-light">
+                <i class="fa fa-comment fa"></i> REPLY
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <textarea class="form-control" name="replycontents" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <button type="submit" class="btn btn-dark mt-3" onClick="javascript:addReply();">post reply</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </form>
+
+    <!-- 댓글 출력 창 -->
+    <div class="card mt-2" th:each="replyDto : ${replyDto}" style="width: 66%; margin: 0 auto;">
+        <div class="card-header p-2">
+
+            <table>
+
+                <tbody>
+                <tr class="align-middle">
+                    <td class="m1" th:text="${replyDto.name}"> <!--이름--></td>
+                </tr>
+
+                <tr>
+                    <td><!--날짜-->
+                        <font size="2" th:text="${#temporals.format(replyDto.createDate, 'yy-MM-dd HH:mm:ss')}"></font>
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <div class="card-body">
+            <p class="card-text" th:utext="${replyDto.replycontents}"></p> <!-- 댓글내용 -->
+            <span th:if="${session.loginuser.no == replyDto.no}" class="badge badge-dark" style="cursor: pointer; color: black; padding: 0;">
+                <a style="margin-right: 15px;">수정</a>
+                <a>삭제</a>
+            </span>
+        </div>
+
     </div>
-    <div class="card-body">
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                <button type="button" class="btn btn-dark mt-3" onClick="javascript:addReply();">post reply</button>
-            </li>
-        </ul>
-    </div>
-</div>
 
 </div>
 

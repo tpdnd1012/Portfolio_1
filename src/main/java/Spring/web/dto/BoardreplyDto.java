@@ -22,12 +22,13 @@ public class BoardreplyDto {
 
     // 생성자
     @Builder
-    public BoardreplyDto(Long id, Long boardid, Long no, String replycontents, String name) {
+    public BoardreplyDto(Long id, Long boardid, Long no, String replycontents, String name, LocalDateTime createDate) {
         this.id = id;
         this.boardid = boardid;
         this.no = no;
         this.replycontents = replycontents;
         this.name = name;
+        this.createDate = createDate;
     }
 
     // DTO --> Entity 이동
