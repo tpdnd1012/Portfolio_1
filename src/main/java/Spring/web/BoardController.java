@@ -30,6 +30,7 @@ public class BoardController {
     private final BoardreplyService boardreplyService;
     private final BoardreplyRepository boardreplyRepository;
 
+    // 게시판 페이지 요청[페이징]
     @GetMapping("/board")
     public String board(Model model, @RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage) {
 

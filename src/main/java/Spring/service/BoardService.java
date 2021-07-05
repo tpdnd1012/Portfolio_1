@@ -85,7 +85,7 @@ public class BoardService {
         Map<String, Object> resultMap = new HashMap<String, Object>();
 
         // 엔티티값 --> Dto
-        List<BoardEntity> boardEntityList = boardRepository.findAll();
+        List<BoardEntity> boardEntityList = boardRepository.findBylist();
 
         List<BoardDto> boardDtos = new ArrayList<>();
 

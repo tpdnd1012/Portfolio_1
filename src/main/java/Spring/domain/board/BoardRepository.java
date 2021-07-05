@@ -5,6 +5,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
+
 public interface BoardRepository extends JpaRepository<BoardEntity, Long> {
 
     // 타이틀 검색
@@ -26,5 +28,8 @@ public interface BoardRepository extends JpaRepository<BoardEntity, Long> {
     @Query(value = "select p from Board p where p.id = :search",
             countQuery = "select count(p.id) from Board p where p.id = :search")
     Page<BoardEntity> findAllid(Long search, Pageable pageable);
+
+    @Query(value = "select p from Board p where p.id between " + 1 +" and " + 5, nativeQuery = true)
+    List<BoardEntity> findBylist();
 
 }
