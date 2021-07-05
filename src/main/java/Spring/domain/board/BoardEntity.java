@@ -5,11 +5,13 @@ import Spring.web.dto.BoardupdateDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity(name = "Board")
 @Getter
+@Setter
 @NoArgsConstructor
 public class BoardEntity extends BaseTime {
 
@@ -61,5 +63,5 @@ public class BoardEntity extends BaseTime {
         this.count++;
 
     }
-    
+
 }

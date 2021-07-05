@@ -1,6 +1,8 @@
 package Spring.web;
 
 import Spring.domain.board.BoardEntity;
+import Spring.domain.boardreply.BoardreplyEntity;
+import Spring.domain.boardreply.BoardreplyRepository;
 import Spring.service.BoardService;
 import Spring.service.BoardreplyService;
 import Spring.web.dto.BoardDto;
@@ -16,7 +18,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -24,8 +28,27 @@ public class BoardController {
 
     private final BoardService boardService;
     private final BoardreplyService boardreplyService;
+    private final BoardreplyRepository boardreplyRepository;
 
-    // 게시판 페이지 요청[페이징처리o]
+    @GetMapping("/board")
+    public String board(Model model, @RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage) {
+
+        Map<String, Object> map = boardService.boardlist(currentPage);
+
+        model.addAttribute("boardDtos", map.get("list"));
+        model.addAttribute("currentPage", map.get("currentPage"));
+        model.addAttribute("lastPage", map.get("lastPage"));
+        model.addAttribute("startPageNum", map.get("startPageNum"));
+        model.addAttribute("lastPageNum", map.get("lastPageNum"));
+
+        System.out.println(currentPage);
+        System.out.println(map.get("currentPage"));
+
+        return "board";
+
+    }
+
+    /*// 게시판 페이지 요청[페이징처리o]
     @GetMapping("/board")
     public String board(Model model, @PageableDefault Pageable pageable, HttpServletRequest request) {
 
@@ -38,7 +61,7 @@ public class BoardController {
 
         return "board";
 
-    }
+    }*/
 
     // 게시판 페이지 요청[페이징처리x]
    /* @GetMapping("/board")
@@ -137,7 +160,7 @@ public class BoardController {
     }
 
     // 게시물 검색 처리
-    @PostMapping("/boardsearch")
+    /*@PostMapping("/boardsearch")
     public String boardsearch_c(HttpServletRequest request, @PageableDefault Pageable pageable, Model model) {
 
         String keyword = request.getParameter("keyword");
@@ -156,6 +179,6 @@ public class BoardController {
 
         return "board";
 
-    }
+    }*/
 
 }

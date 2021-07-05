@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "Boardreply")
 @Getter
 @NoArgsConstructor
 public class BoardreplyEntity extends BaseTime {
@@ -44,4 +44,5 @@ public class BoardreplyEntity extends BaseTime {
         this.replycontents = replycontents;
 
     }
+
 }

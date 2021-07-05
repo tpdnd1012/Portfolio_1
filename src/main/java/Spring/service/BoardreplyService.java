@@ -9,12 +9,15 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class BoardreplyService {
 
     private final BoardreplyRepository boardreplyRepository;
+
+    private final BoardService boardService;
 
     // 게시판 댓글 저장
     @Transactional
