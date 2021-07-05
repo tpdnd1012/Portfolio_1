@@ -35,20 +35,20 @@ public class BoardService {
     // 모든 게시물 출력(페이징)
     public Map<String, Object> boardlist(int currentPage) {
 
-        // 페이지에 보여줄 행의 개수 ROW_PER_PAGE = 10으로 고정
+        // 페이지에 보여줄 행의 개수 ROW_PER_PAGE = 5로 고정
         final int ROW_PER_PAGE = 5;
 
         // 페이지에 보여줄 첫번째 페이지 번호는 1로 초기화
         int startPageNum = 1;
 
-        // 처음 보여줄 마지막 페이지 번호는 10
+        // 처음 보여줄 마지막 페이지 번호는 5
         int lastPageNum = ROW_PER_PAGE;
 
         // 현재 페이지가 ROW_PER_PAGE / 2 보다 클 경우
         if(currentPage > (ROW_PER_PAGE / 2)) {
 
             // 보여지는 페이지 첫번째 페이지 번호는 현재페이지 - ((마지막 페이지 번호 / 2) - 1)
-            // 만약 현재 페이지가ㅏ 6이라면 첫번째 페이지번호는 2
+            // 만약 현재 페이지가 6이라면 첫번째 페이지번호는 2
             startPageNum = currentPage - ((lastPageNum / 2) - 1);
 
             // 보여지는 마지막 페이지 번호는 현재 페이지 번호 + 현재 페이지 번호 - 1
@@ -68,7 +68,7 @@ public class BoardService {
         map.put("rowPerPage", ROW_PER_PAGE);
 
         // DB 행의 총 개수를 구하는 getBoardAllCount() 메서드를 호출하여 double Date Type의 boardCount 변수에 대입
-        Long boardCount = boardRepository.count();
+        double boardCount = boardRepository.count();
 
         // 마지막 페이지번호를 구하기 위해 총 개수 / 페이지당 보여지는 행의 개수 -> 올림처리 -> lastPage 변수에 대입
         int lastPage = (int) (Math.ceil(boardCount / ROW_PER_PAGE));
@@ -85,7 +85,7 @@ public class BoardService {
         Map<String, Object> resultMap = new HashMap<String, Object>();
 
         // 엔티티값 --> Dto
-        List<BoardEntity> boardEntityList = boardRepository.findBylist();
+        List<BoardEntity> boardEntityList = boardRepository.findAll();
 
         List<BoardDto> boardDtos = new ArrayList<>();
 

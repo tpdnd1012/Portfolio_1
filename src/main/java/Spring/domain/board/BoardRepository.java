@@ -29,7 +29,7 @@ public interface BoardRepository extends JpaRepository<BoardEntity, Long> {
             countQuery = "select count(p.id) from Board p where p.id = :search")
     Page<BoardEntity> findAllid(Long search, Pageable pageable);
 
-    @Query(value = "select p from Board p where p.id between " + 1 +" and " + 5, nativeQuery = true)
+    @Query(value = "select p from Board p where p.id between" + 1 + " and " + 5, nativeQuery = true)
     List<BoardEntity> findBylist();
 
 }
