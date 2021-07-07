@@ -22,4 +22,12 @@ public class AdminController {
 
     }
 
+    // 제품 추가 페이지
+    @GetMapping("/bookadd")
+    public String bookadd() {
+
+        return "/bookadd";
+
+    }
+
 }
