@@ -68,7 +68,7 @@ public class BoardService {
         map.put("rowPerPage", ROW_PER_PAGE);
 
         // DB 행의 총 개수를 구하는 getBoardAllCount() 메서드를 호출하여 double Date Type의 boardCount 변수에 대입
-        double boardCount = boardRepository.count();
+        Long boardCount = boardRepository.count();
 
         // 마지막 페이지번호를 구하기 위해 총 개수 / 페이지당 보여지는 행의 개수 -> 올림처리 -> lastPage 변수에 대입
         int lastPage = (int) (Math.ceil(boardCount / ROW_PER_PAGE));
@@ -85,7 +85,7 @@ public class BoardService {
         Map<String, Object> resultMap = new HashMap<String, Object>();
 
         // 엔티티값 --> Dto
-        List<BoardEntity> boardEntityList = boardRepository.findAll();
+        List<BoardEntity> boardEntityList = boardRepository.findBylist(startRow + 1, startRow + ROW_PER_PAGE);
 
         List<BoardDto> boardDtos = new ArrayList<>();
 
@@ -98,7 +98,9 @@ public class BoardService {
                     .contents(temp.getContents())
                     .count(temp.getCount())
                     .createDate(temp.getCreateDate()).build();
+
             boardDtos.add(boardDto);
+
         }
         ////////////////
         List<BoardreplyEntity> boardreplyEntities = boardreplyRepository.findAll();
