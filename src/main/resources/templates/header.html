@@ -51,12 +51,39 @@
       </ul>
 
       <ul class="navbar-nav ms-auto py-4 py-lg-0" th:if="${session.loginuser!=null}"> <!-- 로그인 했을경우 -->
-        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{/}">BOOK LIST</a></li>
-        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{/board}">Bulletin Board</a></li>
-        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{/}">Shopping cart</a></li>
-        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" th:text="|${session.loginuser.name}님 환영합니다|"></a></li>
-        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{/info}">Info</a></li>
-        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{/logout}">Logout</a></li>
+
+        <li class="nav-item">
+          <a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{/}">BOOK LIST</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{/board}">Bulletin Board</a>
+        </li>
+
+        <li class="nav-item"> <!--관리자면 안보이게-->
+          <a class="nav-link px-lg-3 py-3 py-lg-4" th:if="${session.loginuser.member_id != 'admin'}" th:href="@{/}">Shopping cart</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-lg-3 py-3 py-lg-4" th:if="${session.loginuser.member_id != 'admin'}" th:text="|${session.loginuser.name}님 환영합니다|"></a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-lg-3 py-3 py-lg-4" th:if="${session.loginuser.member_id == 'admin'}" th:text="|관리자님 환영합니다|"></a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-lg-3 py-3 py-lg-4" th:if="${session.loginuser.member_id == 'admin'}" th:href="@{/admin}">Admin</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{/info}">Info</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{/logout}">Logout</a>
+        </li>
+
       </ul>
 
     </div>
