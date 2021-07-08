@@ -1,5 +1,7 @@
 package Spring.web.dto;
 
+import Spring.domain.book.BookEntity;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,5 +24,34 @@ public class BookDto {
     private int reservation; // 대여 여부(0, 1)
     private int money; // 대여금액
     private LocalDateTime createDate; // 도서 등록 일자
+
+    @Builder
+    public BookDto(Long id, String images, String name, String author, String genre, String publisher, String publishing, int reservation, int money, LocalDateTime createDate) {
+        this.id = id;
+        this.images = images;
+        this.name = name;
+        this.author = author;
+        this.genre = genre;
+        this.publisher = publisher;
+        this.publishing = publishing;
+        this.reservation = reservation;
+        this.money = money;
+        this.createDate = createDate;
+    }
+
+    // Dto ---> Entity 이동
+    public BookEntity toEntity() {
+
+        return BookEntity.builder()
+                .images(images)
+                .name(name)
+                .author(author)
+                .genre(genre)
+                .publisher(publisher)
+                .publishing(publishing)
+                .reservation(reservation)
+                .money(money).build();
+
+    }
 
 }
