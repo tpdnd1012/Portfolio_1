@@ -9,17 +9,30 @@
 
 <div class="container">
 
-  <div th:each="bookDto : ${bookDto}" class="row" style="--bs-gutter-x: 1rem;">
+  <div class="row" style="--bs-gutter-x: 1rem;">
 
-    <div class="col-sm-6 col-md-4 p-2">
+    <div th:each="bookDto : ${bookDto}" class="col-sm-6 col-md-4 p-2">
+
       <div class="card">
-        <img th:src="@{../static/bookimages/} + ${bookDto.images}" style="width: 270px; margin: 10px auto;">
+        <img th:src="@{/static/bookimages/} + ${bookDto.images}" style="width: 200px; margin: 10px auto; height: 270px;">
         <div class="card-body">
+
           <h4 th:text="${bookDto.name}" class="card-title"></h4>
-          <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-          <a href="#" class="btn btn-primary">More</a>
+
+          <span style="font-size: 14px;">
+            <a th:text="${bookDto.author}"></a>
+            <a id="a1" th:text="${bookDto.genre}"></a>
+          </span>
+
+          <p th:text="${bookDto.publisher}" style="margin: 10px auto;"></p>
+
+          <p th:text="|${#numbers.formatInteger(bookDto.money, 3, 'COMMA')} 원|" style="margin: 15px auto;"></p>
+
+          <a href="#" class="btn btn-primary">대여하기</a>
+
         </div>
       </div>
+
     </div>
 
   </div>
