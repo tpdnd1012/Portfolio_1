@@ -42,11 +42,6 @@ public class BoardController {
         model.addAttribute("startPageNum", map.get("startPageNum"));
         model.addAttribute("lastPageNum", map.get("lastPageNum"));
 
-        System.out.println(map.get("startPageNum"));
-        System.out.println(map.get("lastPage"));
-        System.out.println(map.get("lastPageNum"));
-
-
         return "board";
 
     }
