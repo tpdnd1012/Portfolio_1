@@ -4,6 +4,7 @@ import Spring.service.AdminService;
 import Spring.web.dto.BookDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -29,7 +31,11 @@ public class AdminController {
 
     // 제품관리 페이지
     @GetMapping("/bookmanagement")
-    public String bookmanagement() {
+    public String bookmanagement(Model model) {
+
+        List<BookDto> bookDtos = adminService.booklist();
+
+        model.addAttribute("bookDtos", bookDtos);
 
         return "bookmanagement";
 

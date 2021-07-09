@@ -60,7 +60,7 @@ public class BoardService {
         // HashMap() 생성자 메서드로 새로운 객체를 생성, 생성된 객체의 주소값을 객체 참조 변수에 할당
         Map<String, Integer> map = new HashMap<String, Integer>();
 
-        // 한 페이지에 보여지는 첫번째 행은 (현재페이지 - 1) * 10
+        // 한 페이지에 보여지는 첫번째 행은 (현재페이지 - 1) * 5
         int startRow = (currentPage - 1) * ROW_PER_PAGE;
 
         // 값을 map에 던져줌

@@ -15,6 +15,7 @@
     <tr>
       <th>이미지</th>
       <th>도서명</th>
+      <th>지은이</th>
       <th>장르</th>
       <th>출판사</th>
       <th>출판일</th>
@@ -23,18 +24,44 @@
       <th>비고</th>
     </tr>
 
-    <tr>
-      <td>이미지</td>
-      <td>도서명</td>
-      <td>장르</td>
-      <td>출판사</td>
-      <td>출판일</td>
-      <td>대여여부</td>
-      <td>대여금액</td>
+    <tr th:each="bookDtos : ${bookDtos}">
+
       <td>
-        <a th:href="@{/}" style="text-decoration:none; color:#A19F9F; font-size:18px;">수정</a>
-        <a th:href="@{/}" id="a1" style="text-decoration:none; color:#A19F9F; font-size:18px;">삭제</a>
+        <img th:src="@{/static/bookimages/} + ${bookDtos.images}" style="height: 80px;">
       </td>
+
+      <td th:text="${bookDtos.name}" style="vertical-align: middle;"></td>
+
+      <td th:text="${bookDtos.author}" style="vertical-align: middle;"></td>
+
+      <td th:text="${bookDtos.genre}" style="vertical-align: middle;"></td>
+
+      <td th:text="${bookDtos.publisher}" style="vertical-align: middle;"></td>
+
+      <td th:text="${bookDtos.publishing}" style="vertical-align: middle;"></td>
+
+      <td th:if="${bookDtos.reservation == 0}" style="vertical-align: middle;">
+        <span>대여가능</span>
+      </td>
+
+      <td th:if="${bookDtos.reservation == 1}" style="vertical-align: middle;">
+        <span>대여중</span>
+      </td>
+
+      <td th:text="|${#numbers.formatInteger(bookDtos.money, 3, 'COMMA')} 원|" style="vertical-align: middle;">대여금액</td>
+
+      <td style="vertical-align: middle;">
+
+        <a th:onclick="if(!(confirm('책 정보를 수정하시겠습니까?'))) return false"
+            th:href="@{'/bookmodify/' + ${bookDtos.id}}"
+              style="text-decoration:none; color:#A19F9F; font-size:18px;">수정</a>
+
+        <a th:onclick="if(!(confirm('관리자 권한으로 삭제하시겠습니까?'))) return false"
+            th:href="@{'/bookdelete/' + ${bookDtos.id}}"
+              id="a1" style="text-decoration:none; color:#A19F9F; font-size:18px;">삭제</a>
+
+      </td>
+
     </tr>
 
   </table>
