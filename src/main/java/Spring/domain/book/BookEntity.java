@@ -1,6 +1,7 @@
 package Spring.domain.book;
 
 import Spring.domain.BaseTime;
+import Spring.web.dto.BookDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -42,6 +43,7 @@ public class BookEntity extends BaseTime {
     @Column
     private int money; // 대여금액
 
+    // 생성자
     @Builder
     public BookEntity(Long id, String images, String name, String author, String genre, String publisher, String publishing, int reservation, int money) {
         this.id = id;
@@ -54,4 +56,21 @@ public class BookEntity extends BaseTime {
         this.reservation = reservation;
         this.money = money;
     }
+
+    // 업데이트 메소드
+    public BookEntity modify(BookDto modifyDto) {
+
+        this.images = modifyDto.getImages();
+        this.name = modifyDto.getName();
+        this.author = modifyDto.getAuthor();
+        this.genre = modifyDto.getGenre();
+        this.publisher = modifyDto.getPublisher();
+        this.publishing = modifyDto.getPublishing();
+        this.reservation = modifyDto.getReservation();
+        this.money = modifyDto.getMoney();
+
+        return this;
+
+    }
+
 }

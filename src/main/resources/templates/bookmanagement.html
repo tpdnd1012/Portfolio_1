@@ -50,15 +50,23 @@
 
       <td th:text="|${#numbers.formatInteger(bookDtos.money, 3, 'COMMA')} 원|" style="vertical-align: middle;">대여금액</td>
 
-      <td style="vertical-align: middle;">
+      <td th:if="${bookDtos.reservation == 0}" style="vertical-align: middle;">
 
-        <a th:onclick="if(!(confirm('책 정보를 수정하시겠습니까?'))) return false"
+        <a th:onclick="if(!(confirm('관리자 권한으로 책 정보를 수정하시겠습니까?'))) return false"
             th:href="@{'/bookmodify/' + ${bookDtos.id}}"
               style="text-decoration:none; color:#A19F9F; font-size:18px;">수정</a>
 
         <a th:onclick="if(!(confirm('관리자 권한으로 삭제하시겠습니까?'))) return false"
             th:href="@{'/bookdelete/' + ${bookDtos.id}}"
               id="a1" style="text-decoration:none; color:#A19F9F; font-size:18px;">삭제</a>
+
+      </td>
+
+      <td th:if="${bookDtos.reservation == 1}" style="vertical-align: middle;">
+
+        <a th:onclick="if(!(confirm('관리자 권한으로 책 정보를 수정하시겠습니까?'))) return false"
+           th:href="@{'/bookmodify/' + ${bookDtos.id}}"
+           style="text-decoration:none; color:#A19F9F; font-size:18px;">수정</a>
 
       </td>
 
