@@ -58,7 +58,7 @@ public class BookEntity extends BaseTime {
     }
 
     // 업데이트 메소드
-    public BookEntity modify(BookDto modifyDto) {
+    public void modify(BookDto modifyDto) {
 
         this.images = modifyDto.getImages();
         this.name = modifyDto.getName();
@@ -68,8 +68,6 @@ public class BookEntity extends BaseTime {
         this.publishing = modifyDto.getPublishing();
         this.reservation = modifyDto.getReservation();
         this.money = modifyDto.getMoney();
-
-        return this;
 
     }
 

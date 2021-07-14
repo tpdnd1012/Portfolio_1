@@ -35,8 +35,9 @@
 
             <div class="input-group">
               <p style="margin: 0; font-size: 15px;">
-                기존 파일 : <label name="images2" th:value="${bookDto.images}" th:text="${bookDto.images}"></label>
+                기존 파일 : <span th:text="${bookDto.images}"></span>
               </p>
+              <input type="hidden" name="images2" th:value="${bookDto.images}">
             </div>
 
           </div>

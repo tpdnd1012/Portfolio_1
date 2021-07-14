@@ -8,11 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.MultipartRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Controller
@@ -113,10 +113,9 @@ public class AdminController {
     @RequestMapping(value = "/bookmodify", method = RequestMethod.POST)
     public String bookmodify_c(
             @RequestParam("images") MultipartFile file,
-            MultipartFile modifyimg, HttpServletRequest request) {
+            HttpServletRequest request, MultipartHttpServletRequest request2) {
 
-
-        String file2 = request.getParameter("images2");
+        String file2 = request2.getParameter("images2");
 
         System.out.println(file2);
 
@@ -130,34 +129,34 @@ public class AdminController {
         // 업로드 : 파일경로 해당하는 파일은 객체화
         try{
 
-            if(file == null) {
-
-                fileupload = upload + "/" + file2;
-
-            } else {
+            if(file != null) {
 
                 fileupload = upload + "/" + file.getOriginalFilename();
 
+            } else {
+                fileupload = upload + "/" + file2;
+                System.out.println(fileupload);
+
             }
 
-            modifyimg.transferTo(new File(fileupload));
+            file.transferTo(new File(fileupload));
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        /*BookDto bookDto = BookDto.builder()
+        BookDto bookDto = BookDto.builder()
                 .id(Long.parseLong(request.getParameter("id")))
-                .images(modifyimg.getOriginalFilename())
+                .images(file.getOriginalFilename())
                 .name(request.getParameter("name"))
                 .author(request.getParameter("author"))
                 .genre(request.getParameter("genre"))
                 .publisher(request.getParameter("publisher"))
                 .publishing(request.getParameter("publishing"))
                 .reservation(Integer.parseInt(request.getParameter("reservation")))
-                .money(Integer.parseInt(request.getParameter("money"))).build();*/
+                .money(Integer.parseInt(request.getParameter("money"))).build();
 
-        /*adminService.bookmodify(bookDto);*/
+        adminService.bookmodify(bookDto);
 
         return "redirect:/bookmanagement";
 
