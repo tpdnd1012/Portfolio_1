@@ -36,38 +36,40 @@
 
   <hr>
 
-  <div class="row" style="--bs-gutter-x: 1rem;">
+  <form id="form">
+    <div class="row" style="--bs-gutter-x: 1rem;">
 
-    <div th:each="bookDto : ${bookDto}" class="col-sm-6 col-md-3 p-2">
 
-      <div class="card">
-        <img th:src="@{/static/bookimages/} + ${bookDto.images}" style="width: 170px; margin: 10px auto; height: 230px;">
-        <div class="card-body">
+      <div th:each="bookDto : ${bookDto}" class="col-sm-6 col-md-3 p-2">
 
-          <h4 th:text="${bookDto.name}" class="card-title"></h4>
+        <div class="card">
+          <img th:src="@{/static/bookimages/} + ${bookDto.images}" style="width: 170px; margin: 10px auto; height: 230px;">
+          <div class="card-body">
 
-          <span style="font-size: 14px;">
-            <a th:text="${bookDto.author}"></a>
-            <a id="a1" th:text="${bookDto.genre}"></a>
-          </span>
+            <h4 th:text="${bookDto.name}" class="card-title"></h4>
 
-          <p th:text="${bookDto.publisher}" style="margin: 10px auto;"></p>
+            <span style="font-size: 14px;">
+              <a th:text="${bookDto.author}"></a>
+              <a id="a1" th:text="${bookDto.genre}"></a>
+            </span>
 
-          <p th:text="|${#numbers.formatInteger(bookDto.money, 3, 'COMMA')} 원|" style="margin: 15px auto;"></p>
+            <p th:text="${bookDto.publisher}" style="margin: 10px auto;"></p>
 
-          <a href="#" class="btn btn-primary">대여하기</a>
-          <a href="#" class="btn btn-primary">장바구니</a>
+            <p th:text="|${#numbers.formatInteger(bookDto.money, 3, 'COMMA')} 원|" style="margin: 15px auto;"></p>
 
+            <a href="#" class="btn btn-primary">대여하기</a>
+            <a onclick="formsubmit();" class="btn btn-primary">장바구니</a>
+
+          </div>
         </div>
+
       </div>
-
     </div>
-
+  </form>
   </div>
 
   <hr>
 
-</div>
 <div th:replace="footer :: footer"></div>
 </body>
 </html>

@@ -248,3 +248,22 @@ function boardwrite_check() {
     }
 
 }
+
+function formsubmit() {
+
+    $.ajax({
+        url : "cartadd",
+        type : 'POST',
+        dataType : 'text',
+        data : $("#form").serialize(),
+        success: function() {
+        var result = confirm("OK or cancel?");
+        if(result) {
+            // User clicked OK
+        }
+        else {
+            // User clicked cancel
+                }
+    })
+
+}

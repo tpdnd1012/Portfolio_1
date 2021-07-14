@@ -13,6 +13,9 @@ public class BookorderEntity {
     private Long member; // 도서 대여 아이디
 
     @Column
+    private Long no; // 도서 아이디
+
+    @Column
     private String startdate; // 도서대여시작
 
     @Column
