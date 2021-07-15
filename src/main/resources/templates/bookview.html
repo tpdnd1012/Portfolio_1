@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="header :: header_h">
+  <meta charset="UTF-8">
+  <title>Login</title>
+</head>
+<body>
+<div th:replace="header :: header"></div>
+
+<div class="container">
+
+  <div class="col-12">
+    <div class="card">
+      <div class="row no-gutters">
+        <div class="col-4" style="text-align: center;">
+          <img th:src="@{/static/bookimages/} + ${bookDto.images}" style="box-shadow: 5px 5px 5px 5px #c3c1c1; width: 200px; margin-top: 45px;" class="card-img">
+        </div>
+        <div class="col-8">
+          <div class="card-body">
+            <p>
+            <a th:text="${bookDto.name}"></a>
+            <a id="a1" th:text="${bookDto.author}"></a>
+            </p>
+            <p class="card-text" th:text="${bookDto.genre}"></p>
+            <p class="card-text" th:text="${bookDto.publisher}"></p>
+            <p class="card-text" th:text="${bookDto.publishing}"></p>
+            <p class="card-text" th:text="|${#numbers.formatInteger(bookDto.money, 3, 'COMMA')} 원|"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+<div th:replace="footer :: footer"></div>
+</body>
+</html>

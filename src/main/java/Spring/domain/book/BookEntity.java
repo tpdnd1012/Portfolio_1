@@ -43,9 +43,12 @@ public class BookEntity extends BaseTime {
     @Column
     private int money; // 대여금액
 
+    @Column
+    private String contents; // 책소개
+
     // 생성자
     @Builder
-    public BookEntity(Long id, String images, String name, String author, String genre, String publisher, String publishing, int reservation, int money) {
+    public BookEntity(Long id, String images, String name, String author, String genre, String publisher, String publishing, int reservation, int money, String contents) {
         this.id = id;
         this.images = images;
         this.name = name;
@@ -55,6 +58,7 @@ public class BookEntity extends BaseTime {
         this.publishing = publishing;
         this.reservation = reservation;
         this.money = money;
+        this.contents = contents;
     }
 
     // 업데이트 메소드
@@ -68,6 +72,7 @@ public class BookEntity extends BaseTime {
         this.publishing = modifyDto.getPublishing();
         this.reservation = modifyDto.getReservation();
         this.money = modifyDto.getMoney();
+        this.contents = modifyDto.getContents();
 
     }
 

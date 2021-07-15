@@ -53,6 +53,8 @@ public class AdminController {
     @PostMapping("/bookadd")
     public String bookadd(@RequestParam("images") MultipartFile file, HttpServletRequest request) {
 
+        String contents = request.getParameter("contents");
+
         // 이미지 저장 [ 업로드 ]
         String upload = "/Users/kimse-ung/IdeaProjects/Portfolio_1/src/main/resources/static/bookimages";
         // : / : 제어문 (\n, \t)
@@ -77,7 +79,8 @@ public class AdminController {
                 .publisher(request.getParameter("publisher"))
                 .publishing(request.getParameter("publishing"))
                 .reservation(Integer.parseInt(request.getParameter("reservation")))
-                .money(Integer.parseInt(request.getParameter("money"))).build();
+                .money(Integer.parseInt(request.getParameter("money")))
+                .contents(contents.replace("\r\n", "<br>")).build();
 
         adminService.booksave(bookDto);
 
@@ -102,6 +105,10 @@ public class AdminController {
         // Dto에 수정할 개별 도서 데이터 담기
         BookDto bookDto = adminService.bookget(id);
 
+        String contents = bookDto.getContents().replace("<br", "\r\n");
+
+        bookDto.setContents(contents);
+
         // Model로 넘겨주기
         model.addAttribute("bookDto", bookDto);
 
@@ -111,50 +118,44 @@ public class AdminController {
 
     // 관리자 제품 수정 처리
     @RequestMapping(value = "/bookmodify", method = RequestMethod.POST)
-    public String bookmodify_c(
-            @RequestParam("images") MultipartFile file,
-            HttpServletRequest request, MultipartHttpServletRequest request2) {
+    public String bookmodify_c(@RequestParam("images") MultipartFile file, HttpServletRequest request) {
 
-        String file2 = request2.getParameter("images2");
-
-        System.out.println(file2);
-
-        // 이미지 저장 [ 업로드 ]
-        String upload = "/Users/kimse-ung/IdeaProjects/Portfolio_1/src/main/resources/static/bookimages";
-        // : / : 제어문 (\n, \t)
-        // : \\ : 경로
-
-        String fileupload = "";
-
-        // 업로드 : 파일경로 해당하는 파일은 객체화
-        try{
-
-            if(file != null) {
-
-                fileupload = upload + "/" + file.getOriginalFilename();
-
-            } else {
-                fileupload = upload + "/" + file2;
-                System.out.println(fileupload);
-
-            }
-
-            file.transferTo(new File(fileupload));
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        String file2 = request.getParameter("images2");
 
         BookDto bookDto = BookDto.builder()
                 .id(Long.parseLong(request.getParameter("id")))
-                .images(file.getOriginalFilename())
+                .images(file2)
                 .name(request.getParameter("name"))
                 .author(request.getParameter("author"))
                 .genre(request.getParameter("genre"))
                 .publisher(request.getParameter("publisher"))
                 .publishing(request.getParameter("publishing"))
                 .reservation(Integer.parseInt(request.getParameter("reservation")))
-                .money(Integer.parseInt(request.getParameter("money"))).build();
+                .money(Integer.parseInt(request.getParameter("money")))
+                .contents(request.getParameter("contents")).build();
+
+        if (file != null) {
+
+            try {
+
+                // 이미지 저장 [ 업로드 ]
+                String upload = "/Users/kimse-ung/IdeaProjects/Portfolio_1/src/main/resources/static/bookimages";
+                // : / : 제어문 (\n, \t)
+                // : \\ : 경로
+
+                String fileupload = upload + "/" + file.getOriginalFilename();
+
+                file.transferTo(new File(fileupload));
+
+                bookDto.setImages(file.getOriginalFilename());
+
+            } catch (IOException e) {
+
+
+
+            }
+
+        }
 
         adminService.bookmodify(bookDto);
 

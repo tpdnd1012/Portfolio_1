@@ -23,10 +23,11 @@ public class BookDto {
     private String publishing; // 출판일
     private int reservation; // 대여 여부(0, 1)
     private int money; // 대여금액
+    private String contents; // 책소개
     private LocalDateTime createDate; // 도서 등록 일자
 
     @Builder
-    public BookDto(Long id, String images, String name, String author, String genre, String publisher, String publishing, int reservation, int money, LocalDateTime createDate) {
+    public BookDto(Long id, String images, String name, String author, String genre, String publisher, String publishing, int reservation, int money, String contents, LocalDateTime createDate) {
         this.id = id;
         this.images = images;
         this.name = name;
@@ -36,6 +37,7 @@ public class BookDto {
         this.publishing = publishing;
         this.reservation = reservation;
         this.money = money;
+        this.contents = contents;
         this.createDate = createDate;
     }
 
@@ -50,7 +52,8 @@ public class BookDto {
                 .publisher(publisher)
                 .publishing(publishing)
                 .reservation(reservation)
-                .money(money).build();
+                .money(money)
+                .contents(contents).build();
 
     }
 

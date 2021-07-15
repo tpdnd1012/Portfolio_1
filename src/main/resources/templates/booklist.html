@@ -1,74 +1,80 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="header :: header_h">
-  <meta charset="UTF-8">
-  <title>Login</title>
+    <meta charset="UTF-8">
+    <title>Login</title>
 </head>
 <body>
 <div th:replace="header :: header"></div>
 
 <div class="container">
 
-  <div class="row">
+    <div class="row">
 
-    <div class="col-xs-6 col-md-3">
-      <span><h3>Book List</h3></span>
-    </div>
-
-
-
-    <div class="col-xs-6 col-md-9" style="text-align: end;">
-      <form method="post" action="/boardsearch" class="justify-content-end">
-
-        <select class="form-select" name="keyword" style="width:100px; display:inline-block;">
-          <option value="id">제목</option>
-          <option value="title">지은이</option>
-          <option value="contents">출판사</option>
-        </select>
-
-        <input type="text" class="form-control" name="search" placeholder="Search" style="width: 25%; display:inline-block;">
-        <button type="submit" class="btn btn-default" style="padding: 0 0 5px 5px;">Search</button>
-
-      </form>
-
-    </div>
-  </div>
-
-  <hr>
-
-  <form id="form">
-    <div class="row" style="--bs-gutter-x: 1rem;">
-
-
-      <div th:each="bookDto : ${bookDto}" class="col-sm-6 col-md-3 p-2">
-
-        <div class="card">
-          <img th:src="@{/static/bookimages/} + ${bookDto.images}" style="width: 170px; margin: 10px auto; height: 230px;">
-          <div class="card-body">
-
-            <h4 th:text="${bookDto.name}" class="card-title"></h4>
-
-            <span style="font-size: 14px;">
-              <a th:text="${bookDto.author}"></a>
-              <a id="a1" th:text="${bookDto.genre}"></a>
-            </span>
-
-            <p th:text="${bookDto.publisher}" style="margin: 10px auto;"></p>
-
-            <p th:text="|${#numbers.formatInteger(bookDto.money, 3, 'COMMA')} 원|" style="margin: 15px auto;"></p>
-
-            <a href="#" class="btn btn-primary">대여하기</a>
-            <a onclick="formsubmit();" class="btn btn-primary">장바구니</a>
-
-          </div>
+        <div class="col-xs-6 col-md-3">
+            <span><h3>Book List</h3></span>
         </div>
 
-      </div>
-    </div>
-  </form>
-  </div>
 
-  <hr>
+        <div class="col-xs-6 col-md-9" style="text-align: end;">
+            <form method="post" action="/boardsearch" class="justify-content-end">
+
+                <select class="form-select" name="keyword" style="width:100px; display:inline-block;">
+                    <option value="id">제목</option>
+                    <option value="title">지은이</option>
+                    <option value="contents">출판사</option>
+                </select>
+
+                <input type="text" class="form-control" name="search" placeholder="Search"
+                       style="width: 25%; display:inline-block;">
+                <button type="submit" class="btn btn-default" style="padding: 0 0 5px 5px;">Search</button>
+
+            </form>
+
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row" style="--bs-gutter-x: 1rem;">
+
+        <div th:each="bookDto : ${bookDto}" class="col-sm-6 col-md-3 p-2">
+
+            <form name="cartform" method="post" action="/cartadd">
+
+                <input type="hidden" name="no" th:value="${session.loginuser.no}">
+                <input type="hidden" name="id" th:value="${bookDto.id}">
+                <input type="hidden" name="name" th:value="${bookDto.name}">
+                <input type="hidden" name="images" th:value="${bookDto.images}">
+                <input type="hidden" name="money" th:value="${bookDto.money}">
+
+                <div class="card">
+                    <img th:src="@{/static/bookimages/} + ${bookDto.images}" style="width: 170px; margin: 10px auto; height: 230px;">
+                    <div class="card-body">
+
+                      <h4 th:text="${bookDto.name}" name="name2" th:value="${bookDto.name}" class="card-title"></h4>
+
+                      <span style="font-size: 14px;">
+                        <a th:text="${bookDto.author}"></a>
+                        <a id="a1" th:text="${bookDto.genre}"></a>
+                      </span>
+
+                        <p th:text="${bookDto.publisher}" style="margin: 10px auto;"></p>
+
+                        <p th:text="|${#numbers.formatInteger(bookDto.money, 3, 'COMMA')} 원|" style="margin: 15px auto;"></p>
+
+                        <a th:href="@{'/bookview/' + ${bookDto.id}}" class="btn btn-primary">대여하기</a>
+                        <button type="submit" onclick="formsubmit()" class="btn btn-primary">장바구니</button>
+
+                    </div>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+    <hr>
+</div>
 
 <div th:replace="footer :: footer"></div>
 </body>
