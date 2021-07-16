@@ -87,6 +87,7 @@ public class AdminService {
                 .publishing(bookEntity.getPublishing())
                 .reservation(bookEntity.getReservation())
                 .money(bookEntity.getMoney())
+                .contents(bookEntity.getContents())
                 .createDate(bookEntity.getCreateDate()).build();
 
     }

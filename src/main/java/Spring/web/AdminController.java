@@ -105,7 +105,7 @@ public class AdminController {
         // Dto에 수정할 개별 도서 데이터 담기
         BookDto bookDto = adminService.bookget(id);
 
-        String contents = bookDto.getContents().replace("<br", "\r\n");
+        String contents = bookDto.getContents().replace("<br>", "\r\n");
 
         bookDto.setContents(contents);
 
@@ -122,6 +122,8 @@ public class AdminController {
 
         String file2 = request.getParameter("images2");
 
+        String contents = request.getParameter("contents");
+
         BookDto bookDto = BookDto.builder()
                 .id(Long.parseLong(request.getParameter("id")))
                 .images(file2)
@@ -132,7 +134,7 @@ public class AdminController {
                 .publishing(request.getParameter("publishing"))
                 .reservation(Integer.parseInt(request.getParameter("reservation")))
                 .money(Integer.parseInt(request.getParameter("money")))
-                .contents(request.getParameter("contents")).build();
+                .contents(contents.replace("\r\n", "<br>")).build();
 
         if (file != null) {
 
