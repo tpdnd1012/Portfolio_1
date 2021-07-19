@@ -19,9 +19,9 @@ public class MemberService {
 
     // 회원가입 저장
     @Transactional
-    public Long membersave(MemberDto memberDto) {
+    public void membersave(MemberDto memberDto) {
 
-        return memberRepository.save(memberDto.toEntity()).getNo();
+        memberRepository.save(memberDto.toEntity());
 
     }
 

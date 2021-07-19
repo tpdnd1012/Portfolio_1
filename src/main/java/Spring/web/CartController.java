@@ -1,15 +1,23 @@
 package Spring.web;
 
 import Spring.web.dto.CartDto;
+import lombok.RequiredArgsConstructor;
+import org.h2.engine.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 @Controller
+@RequiredArgsConstructor
 public class CartController {
+
+    private final HttpSession session;
 
     @GetMapping("/cart")
     public String cart() {
@@ -18,16 +26,23 @@ public class CartController {
 
     }
 
+    // 장바구니 담기
     @RequestMapping(value = "/cartadd", method = RequestMethod.POST)
     public String cartadd(CartDto cartDto) {
 
-        System.out.println("회원번호 : " + cartDto.getNo());
-        System.out.println("도서번호 : " + cartDto.getId());
-        System.out.println("도서이름 : " + cartDto.getName());
-        System.out.println("도서이미지 : " + cartDto.getImages());
-        System.out.println("대여금액 : " + cartDto.getMoney());
+        ArrayList<CartDto> list = (ArrayList<CartDto>) session.getAttribute("list");
 
-        return "redirect:booklist";
+        if(list == null) {
+
+            list = new ArrayList<>();
+
+        }
+
+        list.add(cartDto);
+
+        session.setAttribute("list", list);
+
+        return "cart";
 
     }
 
