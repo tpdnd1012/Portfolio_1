@@ -17,33 +17,34 @@ public class BookEntity extends BaseTime {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id; // 도서 번호
 
-    @Column
+    @Column(name = "images")
     private String images; // 도서 이미지
 
-    @Column
+    @Column(name = "name")
     private String name; // 도서명
 
-    @Column
+    @Column(name = "author")
     private String author; // 지은이
 
-    @Column
+    @Column(name = "genre")
     private String genre; // 도서 장르
 
-    @Column
+    @Column(name = "publisher")
     private String publisher; // 출판사
 
-    @Column
+    @Column(name = "publishing")
     private String publishing; // 출판일
 
-    @Column
+    @Column(name = "reservation")
     private int reservation; // 대여 여부(0, 1)
 
-    @Column
+    @Column(name = "money")
     private int money; // 대여금액
 
-    @Column
+    @Column(name = "contents")
     private String contents; // 책소개
 
     // 생성자

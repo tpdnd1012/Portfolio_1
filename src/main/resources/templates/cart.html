@@ -19,6 +19,7 @@
     </tr>
 
     <tr th:each="list : ${session.list}">
+
       <td>
         <img th:src="@{/static/bookimages/} + ${list.images}" style="height: 80px;">
       </td>
@@ -28,7 +29,7 @@
       <td th:text="${list.money}" style="vertical-align: middle;"></td>
 
       <td style="vertical-align: middle;">
-        <a>삭제</a>
+        <a th:href="@{/cartdelete/{id}(id = ${list.id})}">삭제</a>
       </td>
 
     </tr>

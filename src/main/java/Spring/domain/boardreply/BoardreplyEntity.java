@@ -14,18 +14,19 @@ public class BoardreplyEntity extends BaseTime {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 들어오는 값이 NULL일 경우 자동번호 부여
+    @Column(name = "id")
     private Long id; // 기본키
 
-    @Column
+    @Column(name = "boardid")
     private Long boardid; // 게시물 번호
 
-    @Column
+    @Column(name = "no")
     private Long no; // 회원식별용
 
-    @Column
+    @Column(name = "replycontents")
     private String replycontents; // 댓글내용
 
-    @Column
+    @Column(name = "name")
     private String name; // 댓글 작성자
 
     // 생성자
