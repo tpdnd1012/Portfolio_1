@@ -16,6 +16,5 @@ public class CartDto {
     private String name; // 도서 이름
     private String images; // 도서 이미지
     private int money; // 대여금액
-    private int total; //총 금액
 
 }

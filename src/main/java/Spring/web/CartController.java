@@ -4,6 +4,7 @@ import Spring.web.dto.CartDto;
 import lombok.RequiredArgsConstructor;
 import org.h2.engine.Session;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +19,25 @@ public class CartController {
 
     // 장바구니 이동 페이지
     @GetMapping("/cart")
-    public String cart() {
+    public String cart(Model model) {
+
+        ArrayList<CartDto> list = (ArrayList<CartDto>) session.getAttribute("list");
+
+        if(list == null) {
+
+            list = new ArrayList<>();
+
+        }
+
+        int total = 0;
+
+        for(int i = 0; i < list.size(); i++) {
+
+            total += list.get(i).getMoney();
+
+        }
+
+        model.addAttribute("total", total);
 
         return "cart";
 
@@ -26,7 +45,7 @@ public class CartController {
 
     // 장바구니 담기
     @RequestMapping(value = "/cartadd", method = RequestMethod.POST)
-    public String cartadd(CartDto cartDto) {
+    public String cartadd(CartDto cartDto, Model model) {
 
         ArrayList<CartDto> list = (ArrayList<CartDto>) session.getAttribute("list");
 
@@ -39,6 +58,16 @@ public class CartController {
         list.add(cartDto);
 
         session.setAttribute("list", list);
+
+        /*int total = 0;
+
+        for(int i = 0; i < list.size(); i++) {
+
+            total += list.get(i).getMoney();
+
+        }
+
+        session.setAttribute("total", total);*/
 
         return "redirect:/booklist";
 
