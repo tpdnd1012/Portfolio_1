@@ -40,7 +40,7 @@ public class CartController {
 
         session.setAttribute("list", list);
 
-        return "cart";
+        return "redirect:/booklist";
 
     }
 

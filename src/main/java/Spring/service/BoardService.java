@@ -2,15 +2,10 @@ package Spring.service;
 
 import Spring.domain.board.BoardEntity;
 import Spring.domain.board.BoardRepository;
-import Spring.domain.boardreply.BoardreplyEntity;
 import Spring.domain.boardreply.BoardreplyRepository;
 import Spring.web.dto.BoardDto;
 import Spring.web.dto.BoardupdateDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -33,99 +28,36 @@ public class BoardService {
     }
 
     // 모든 게시물 출력(페이징)
-    public Map<String, Object> boardlist(int currentPage) {
+    /*public Map<String, Object> boardlist(int currentPage) {
 
-        // 페이지에 보여줄 행의 개수 ROW_PER_PAGE = 5로 고정
-        final int ROW_PER_PAGE = 5;
+        // 총 데이터 개수
+        int totalCount = boardRepository.findBylist();
 
-        // 페이지에 보여줄 첫번째 페이지 번호는 1로 초기화
-        int startPageNum = 1;
+        // 한 페이지에 출력될 게시물 수
+        int countList = 10;
 
-        // 처음 보여줄 마지막 페이지 번호는 5
-        int lastPageNum = ROW_PER_PAGE;
+        int totalPage = totalCount / countList;
 
-        // 현재 페이지가 ROW_PER_PAGE / 2 보다 클 경우
-        if(currentPage > (ROW_PER_PAGE / 2)) {
+        if(totalCount % countList > 0) {
 
-            // 보여지는 페이지 첫번째 페이지 번호는 현재페이지 - ((마지막 페이지 번호 / 2) - 1)
-            // 만약 현재 페이지가 6이라면 첫번째 페이지번호는 2
-            startPageNum = currentPage - ((lastPageNum / 2) - 1);
-
-            // 보여지는 마지막 페이지 번호는 현재 페이지 번호 + 현재 페이지 번호 - 1
-            lastPageNum += (startPageNum - 1);
+            totalPage++;
 
         }
 
-        // Map Data Type 객체 참조 변수 map 선언
-        // HashMap() 생성자 메서드로 새로운 객체를 생성, 생성된 객체의 주소값을 객체 참조 변수에 할당
-        Map<String, Integer> map = new HashMap<String, Integer>();
+        int page = 5;
 
-        // 한 페이지에 보여지는 첫번째 행은 (현재페이지 - 1) * 5
-        int startRow = (currentPage - 1) * ROW_PER_PAGE;
+        int countPage = 5;
 
-        // 값을 map에 던져줌
-        map.put("startRow", startRow);
-        map.put("rowPerPage", ROW_PER_PAGE);
+        int startPage = ((page - 1) / 10) * 10 + 1;
+        int endPage = startPage + countPage - 1;
 
-        // DB 행의 총 개수를 구하는 getBoardAllCount() 메서드를 호출하여 double Date Type의 boardCount 변수에 대입
-        Long boardCount = boardRepository.count();
+        if(endPage > totalPage) {
 
-        // 마지막 페이지번호를 구하기 위해 총 개수 / 페이지당 보여지는 행의 개수 -> 올림처리 -> lastPage 변수에 대입
-        int lastPage = (int) (Math.ceil(boardCount / ROW_PER_PAGE));
-
-        // 현재 페이지가(마지막 페이지 - 4) 보다 같거나 클 경우
-        if(currentPage >= (lastPage - 4)) {
-
-            // 마지막 페이지 번호는 lastPage
-            lastPageNum = lastPage;
+            endPage
 
         }
 
-        // 구성한 값들을 Map Data Type 의 resultMap 객체 참조 변수에 던져주고 return
-        Map<String, Object> resultMap = new HashMap<String, Object>();
-
-        // 엔티티값 --> Dto
-        List<BoardEntity> boardEntityList = boardRepository.findBylist(startRow + 1, startRow + ROW_PER_PAGE);
-
-        List<BoardDto> boardDtos = new ArrayList<>();
-
-        for(BoardEntity temp : boardEntityList) {
-
-            BoardDto boardDto = BoardDto.builder()
-                    .id(temp.getId())
-                    .title(temp.getTitle())
-                    .name(temp.getName())
-                    .contents(temp.getContents())
-                    .count(temp.getCount())
-                    .createDate(temp.getCreateDate()).build();
-
-            boardDtos.add(boardDto);
-
-        }
-        ////////////////
-        List<BoardreplyEntity> boardreplyEntities = boardreplyRepository.findAll();
-
-        for(BoardDto temp : boardDtos) {
-            for(BoardreplyEntity temp2 : boardreplyEntities) {
-
-                if(temp.getId() == temp2.getBoardid()) {
-
-                    temp.rcountup();
-
-                }
-
-            }
-        }
-
-        resultMap.put("list", boardDtos);
-        resultMap.put("currentPage", currentPage);
-        resultMap.put("lastPage", lastPage);
-        resultMap.put("startPageNum", startPageNum);
-        resultMap.put("lastPageNum", lastPageNum);
-
-        return resultMap;
-
-    }
+    }*/
 
     /*// 모든 게시물 출력(페이징처리o)
     public Page<BoardEntity> boardlist(Pageable pageable, String keyword, String search) {

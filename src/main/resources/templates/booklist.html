@@ -86,13 +86,7 @@
 
             document.cartform.submit();
 
-            if(confirm('장바구니에 제품을 담았습니다. 장바구니 페이지로 이동하시겠습니까?')) {
-
-                location.href='cart.html';
-
-            } else {
-                return false;
-            }
+            history.back();
 
         } else {
             return false;

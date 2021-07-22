@@ -34,13 +34,7 @@ public class BoardController {
     @GetMapping("/board")
     public String board(Model model, @RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage) {
 
-        Map<String, Object> map = boardService.boardlist(currentPage);
 
-        model.addAttribute("boardDtos", map.get("list"));
-        model.addAttribute("currentPage", map.get("currentPage"));
-        model.addAttribute("lastPage", map.get("lastPage"));
-        model.addAttribute("startPageNum", map.get("startPageNum"));
-        model.addAttribute("lastPageNum", map.get("lastPageNum"));
 
         return "board";
 
