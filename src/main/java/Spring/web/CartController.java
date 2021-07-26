@@ -59,16 +59,6 @@ public class CartController {
 
         session.setAttribute("list", list);
 
-        /*int total = 0;
-
-        for(int i = 0; i < list.size(); i++) {
-
-            total += list.get(i).getMoney();
-
-        }
-
-        session.setAttribute("total", total);*/
-
         return "redirect:/booklist";
 
     }

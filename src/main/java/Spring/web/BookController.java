@@ -2,12 +2,15 @@ package Spring.web;
 
 import Spring.service.BookService;
 import Spring.web.dto.BookDto;
+import Spring.web.dto.CartDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -15,6 +18,7 @@ import java.util.List;
 public class BookController {
 
     private final BookService bookService;
+    private final HttpSession session;
 
     // 제품 리스트 이동
     @GetMapping("/booklist")
@@ -38,6 +42,27 @@ public class BookController {
 
         return "bookview";
 
+    }
+
+    // 제품 상세페이지 장바구니
+    @RequestMapping(value = "/bookviewcart", method = RequestMethod.POST)
+    public String bookviewcart(CartDto cartDto, HttpServletRequest request, Model model) {
+
+        Long id = Long.parseLong(request.getParameter("id"));
+
+        ArrayList<CartDto> list = (ArrayList<CartDto>) session.getAttribute("list");
+
+        if(list == null) {
+
+            list = new ArrayList<>();
+
+        }
+
+        list.add(cartDto);
+
+        session.setAttribute("list", list);
+
+        return "redirect:/bookview/" + id;
     }
 
 }

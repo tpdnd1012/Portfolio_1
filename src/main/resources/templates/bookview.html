@@ -21,8 +21,15 @@
   </div>
 
   <section class="py-5">
+    <form name="bookview" method="post" action="/bookviewcart" onsubmit="return bookview_check()">
     <div class="container px-4 px-lg-5 my-5">
       <div class="row gx-4 gx-lg-5 align-items-center">
+
+          <input type="hidden" name="no" th:value="${session.loginuser.no}">
+          <input type="hidden" name="id" th:value="${bookDto.id}">
+          <input type="hidden" name="name" th:value="${bookDto.name}">
+          <input type="hidden" name="images" th:value="${bookDto.images}">
+          <input type="hidden" name="money" th:value="${bookDto.money}">
 
         <div class="col-md-6" style="text-align: center;">
           <img class="card-img-top mb-5 mb-md-0" th:src="@{/static/bookimages/} + ${bookDto.images}"
@@ -44,18 +51,19 @@
 
           <div class="d-flex" style="margin-top: 94px;">
 
-            <button class="btn btn-outline-dark flex-shrink-0" type="button">
+            <a class="btn btn-outline-dark flex-shrink-0">
               <i class="bi-cart-fill me-1"></i>
               대여하기
-            </button>
+            </a>
 
-            <button class="btn btn-outline-dark flex-shrink-0" type="button">
+            <button type="submit" class="btn btn-outline-dark flex-shrink-0">
               <i class="bi-cart-fill me-1"></i>
               장바구니
             </button>
 
           </div>
         </div>
+        </form>
       </div>
     </div>
   </section>
@@ -65,4 +73,24 @@
 </div>
 <div th:replace="footer :: footer"></div>
 </body>
+
+<script>
+
+  function bookview_check() {
+
+    if(confirm('장바구니에 제품을 추가하시겠습니까?')) {
+
+        document.bookview.submit();
+
+    } else {
+
+        return false;
+
+    }
+
+
+}
+
+</script>
+
 </html>
