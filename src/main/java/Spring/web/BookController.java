@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -33,8 +34,8 @@ public class BookController {
     }
 
     // 제품 개별 상세페이지 이동
-    @GetMapping("/bookview/{id}")
-    public String bookview(@PathVariable Long id, Model model) {
+    @RequestMapping(value = "/bookview")
+    public String bookview(Model model, @RequestParam("id") Long id) {
 
         BookDto bookDto = bookService.bookget(id);
 
@@ -46,13 +47,11 @@ public class BookController {
 
     // 제품 상세페이지 장바구니
     @RequestMapping(value = "/bookviewcart", method = RequestMethod.POST)
-    public String bookviewcart(CartDto cartDto, HttpServletRequest request, Model model) {
-
-        Long id = Long.parseLong(request.getParameter("id"));
+    public String bookviewcart(CartDto cartDto, @RequestParam("id") Long id, RedirectAttributes re) {
 
         ArrayList<CartDto> list = (ArrayList<CartDto>) session.getAttribute("list");
 
-        if(list == null) {
+        if (list == null) {
 
             list = new ArrayList<>();
 
@@ -62,7 +61,9 @@ public class BookController {
 
         session.setAttribute("list", list);
 
-        return "redirect:/bookview/" + id;
+        re.addAttribute("id", id);
+
+        return "redirect:/bookview";
     }
 
 }

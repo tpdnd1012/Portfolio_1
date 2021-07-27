@@ -6,6 +6,10 @@ import Spring.domain.boardreply.BoardreplyRepository;
 import Spring.web.dto.BoardDto;
 import Spring.web.dto.BoardupdateDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -27,39 +31,7 @@ public class BoardService {
 
     }
 
-    // 모든 게시물 출력(페이징)
-    /*public Map<String, Object> boardlist(int currentPage) {
-
-        // 총 데이터 개수
-        int totalCount = boardRepository.findBylist();
-
-        // 한 페이지에 출력될 게시물 수
-        int countList = 10;
-
-        int totalPage = totalCount / countList;
-
-        if(totalCount % countList > 0) {
-
-            totalPage++;
-
-        }
-
-        int page = 5;
-
-        int countPage = 5;
-
-        int startPage = ((page - 1) / 10) * 10 + 1;
-        int endPage = startPage + countPage - 1;
-
-        if(endPage > totalPage) {
-
-            endPage
-
-        }
-
-    }*/
-
-    /*// 모든 게시물 출력(페이징처리o)
+    // 모든 게시물 출력(페이징처리o)
     public Page<BoardEntity> boardlist(Pageable pageable, String keyword, String search) {
 
         // 현재 페이지
@@ -93,7 +65,7 @@ public class BoardService {
 
         return boardRepository.findAll(pageable);
 
-    }*/
+    }
 
     // 모든 게시물 출력(페이징처리x)
     /*public List<BoardDto> list() {

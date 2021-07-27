@@ -63,7 +63,7 @@
 
                         <p th:text="|${#numbers.formatInteger(bookDto.money, 3, 'COMMA')} 원|" style="margin: 15px auto;"></p>
 
-                        <a th:href="@{'/bookview/' + ${bookDto.id}}" class="btn btn-primary">대여하기</a>
+                        <a th:href="@{/bookview(id=${bookDto.id})}" class="btn btn-primary">대여하기</a>
                         <button type="submit" class="btn btn-primary">장바구니</button>
 
                     </div>

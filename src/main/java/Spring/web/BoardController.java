@@ -1,7 +1,6 @@
 package Spring.web;
 
 import Spring.domain.board.BoardEntity;
-import Spring.domain.boardreply.BoardreplyEntity;
 import Spring.domain.boardreply.BoardreplyRepository;
 import Spring.service.BoardService;
 import Spring.service.BoardreplyService;
@@ -18,9 +17,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
+import javax.servlet.http.HttpSession;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -29,34 +27,38 @@ public class BoardController {
     private final BoardService boardService;
     private final BoardreplyService boardreplyService;
     private final BoardreplyRepository boardreplyRepository;
+    private final HttpSession session;
 
-    // 게시판 페이지 요청[페이징]
-    @GetMapping("/board")
-    public String board(Model model, @RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage) {
-
-
-
-        return "board";
-
-    }
-
-    /*// 게시판 페이지 요청[페이징처리o]
+    // 게시판 페이지 요청[페이징처리o]
     @GetMapping("/board")
     public String board(Model model, @PageableDefault Pageable pageable, HttpServletRequest request) {
 
         String keyword = request.getParameter("keyword");
         String search = request.getParameter("search");
 
+        if(search != null) {
+
+            session.setAttribute("se", search);
+            session.setAttribute("se2", keyword);
+
+        } else {
+
+            session.setAttribute("se", search);
+            session.setAttribute("se2", keyword);
+
+        }
+
         Page<BoardEntity> boardEntities = boardService.boardlist(pageable, keyword, search);
+
 
         model.addAttribute("boardDtos", boardEntities);
 
         return "board";
 
-    }*/
+    }
 
     // 게시판 페이지 요청[페이징처리x]
-   /* @GetMapping("/board")
+    /*@GetMapping("/board")
     public String board(Model model) {
 
         List<BoardDto> boardDtos = boardService.list();
@@ -110,6 +112,7 @@ public class BoardController {
 
     }
 
+    // 게시글 삭제
     @GetMapping("/boarddelete/{id}")
     public String boarddelete(@PathVariable Long id) {
 
@@ -152,7 +155,7 @@ public class BoardController {
     }
 
     // 게시물 검색 처리
-    /*@PostMapping("/boardsearch")
+    @PostMapping("/boardsearch")
     public String boardsearch_c(HttpServletRequest request, @PageableDefault Pageable pageable, Model model) {
 
         String keyword = request.getParameter("keyword");
@@ -171,6 +174,6 @@ public class BoardController {
 
         return "board";
 
-    }*/
+    }
 
 }

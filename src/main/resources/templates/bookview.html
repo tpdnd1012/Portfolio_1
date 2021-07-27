@@ -21,7 +21,7 @@
   </div>
 
   <section class="py-5">
-    <form name="bookview" method="post" action="/bookviewcart" onsubmit="return bookview_check()">
+    <form name="bookview" method="post" th:action="@{/bookviewcart(id=${bookDto.id})}" onsubmit="return bookview_check()">
     <div class="container px-4 px-lg-5 my-5">
       <div class="row gx-4 gx-lg-5 align-items-center">
 

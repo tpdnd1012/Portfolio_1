@@ -8,7 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 @Controller
@@ -22,12 +25,6 @@ public class CartController {
     public String cart(Model model) {
 
         ArrayList<CartDto> list = (ArrayList<CartDto>) session.getAttribute("list");
-
-        if(list == null) {
-
-            list = new ArrayList<>();
-
-        }
 
         int total = 0;
 
@@ -45,7 +42,7 @@ public class CartController {
 
     // 장바구니 담기
     @RequestMapping(value = "/cartadd", method = RequestMethod.POST)
-    public String cartadd(CartDto cartDto, Model model) {
+    public String cartadd(CartDto cartDto, Model model, HttpServletResponse response) {
 
         ArrayList<CartDto> list = (ArrayList<CartDto>) session.getAttribute("list");
 
@@ -53,6 +50,35 @@ public class CartController {
 
             list = new ArrayList<>();
 
+
+        } else {
+
+            for (int i = 0; i < list.size(); i++) {
+
+                if (list.get(i).getId() == cartDto.getId()) {
+
+                    response.setContentType("text/html; charset=UTF-8");
+
+                    PrintWriter out = null;
+
+                    try {
+
+                        out = response.getWriter();
+
+                    } catch (IOException e) {
+
+                        e.printStackTrace();
+
+                    }
+
+                    out.println("<script>alert('이미 등록된 제품입니다.'); location.href='booklist';</script>");
+
+                    out.flush();
+
+                    return "redirect:/booklist";
+
+                }
+            }
         }
 
         list.add(cartDto);
