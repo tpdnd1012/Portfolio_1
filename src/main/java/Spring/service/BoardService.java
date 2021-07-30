@@ -2,6 +2,7 @@ package Spring.service;
 
 import Spring.domain.board.BoardEntity;
 import Spring.domain.board.BoardRepository;
+import Spring.domain.boardreply.BoardreplyEntity;
 import Spring.domain.boardreply.BoardreplyRepository;
 import Spring.web.dto.BoardDto;
 import Spring.web.dto.BoardupdateDto;
@@ -107,6 +108,7 @@ public class BoardService {
                 .name(temp.getName())
                 .contents(temp.getContents())
                 .count(temp.getCount())
+                .rcount(temp.getRcount())
                 .createDate(temp.getCreateDate()).build();
 
     }
@@ -126,18 +128,40 @@ public class BoardService {
 
     }
 
+    // 게시물 댓글 작성시 rcountup
+    public void rcountup(Long id) {
+
+        // 엔티티 찾기
+        Optional<BoardEntity> optionalBoardEntity = boardRepository.findById(id);
+
+        // 찾은 엔티티 가져오기
+        BoardEntity boardEntity = optionalBoardEntity.get();
+
+        // 댓글 카운트 증가
+        boardEntity.rcountup();
+
+    }
+
+    // 게시물 댓글 작성시 rcountdownå
+    public void rcountdown(Long id) {
+
+        // 엔티티 찾기
+        Optional<BoardEntity> optionalBoardEntity = boardRepository.findById(id);
+
+        // 찾은 엔티티 가져오기
+        BoardEntity boardEntity = optionalBoardEntity.get();
+
+        // 댓글 카운트 증가
+        boardEntity.rcountdown();
+
+    }
+
     // 게시물 삭제 처리
     @Transactional
     public void boarddelete(Long id) {
 
-        // 1. 엔티티 찾기
-        Optional<BoardEntity> optionalBoardEntity = boardRepository.findById(id);
-
-        // 2. 찾은 엔티티 가져오기
-        BoardEntity boardEntity = optionalBoardEntity.get();
-
-        // 3. 삭제처리
-        boardRepository.delete(boardEntity);
+        // 삭제처리
+        boardRepository.deleteById(id);
 
     }
 
@@ -151,6 +175,7 @@ public class BoardService {
         // 2. 엔티티 가져오기
         BoardEntity boardEntity = optionalBoardEntity.get();
 
+        // 3. 수정처리
         boardEntity.modify(modifyDto);
 
     }

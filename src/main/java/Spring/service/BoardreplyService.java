@@ -1,5 +1,6 @@
 package Spring.service;
 
+import Spring.domain.board.BoardEntity;
 import Spring.domain.boardreply.BoardreplyEntity;
 import Spring.domain.boardreply.BoardreplyRepository;
 import Spring.web.dto.BoardreplyDto;
@@ -25,6 +26,20 @@ public class BoardreplyService {
 
         // Repository.save 메소드로 DTO --> 만들어 놓은 toEntity로 저장
         boardreplyRepository.save(boardreplyDto.toEntity());
+
+    }
+
+    // 게시판 댓글 삭제
+    @Transactional
+    public void replydelete(Long id) {
+
+        // 엔티티 찾기
+        Optional<BoardreplyEntity> optionalBoardreplyEntity = boardreplyRepository.findById(id);
+
+        // 엔티티 가져오기
+        BoardreplyEntity boardreplyEntity = optionalBoardreplyEntity.get();
+
+        boardreplyRepository.delete(boardreplyEntity);
 
     }
 

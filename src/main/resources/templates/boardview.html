@@ -53,7 +53,7 @@
         수정
       </a>
 
-      <a th:onclick="if(!(confirm('정말 삭제하시겠습니까?'))) return false" th:if="${session.loginuser.no == boardDto.no}" th:href="@{'/boarddelete/' + ${boardDto.id}}" class="btn btn-light boardviewbtn">
+      <a th:onclick="if(!(confirm('정말 삭제하시겠습니까?'))) return false" th:if="${session.loginuser.no == boardDto.no}" th:href="@{/boarddelete(id=${boardDto.id})}" class="btn btn-light boardviewbtn">
         삭제
       </a>
 
@@ -66,6 +66,7 @@
 
         <!-- 게시물 번호, 댓글 작성자, 댓글 수정 / 삭제 식별용 회원 NO 같이 넘기기 -->
         <input type="hidden" name="boardid" th:value="${boardDto.id}">
+        <input type="hidden" name="rcount" th:value="${boardDto.rcount}">
         <input type="hidden" name="name" th:value="${session.loginuser.name}">
         <input type="hidden" name="no" th:value="${session.loginuser.no}">
 
@@ -110,7 +111,7 @@
             <p class="card-text" th:utext="${replyDto.replycontents}"></p> <!-- 댓글내용 -->
             <span th:if="${session.loginuser.no == replyDto.no}" class="badge badge-dark" style="cursor: pointer; color: black; padding: 0;">
                 <a style="margin-right: 15px;">수정</a>
-                <a>삭제</a>
+                <a th:href="@{/replydelete(id=${replyDto.id}, boardid=${replyDto.boardid}, rcount=${boardDto.rcount})}" th:onclick="return confirm('댓글을 삭제하시겠습니까?');">삭제</a>
             </span>
         </div>
 

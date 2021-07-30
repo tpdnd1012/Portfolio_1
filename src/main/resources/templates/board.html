@@ -25,7 +25,7 @@
 
     <tr th:each="boardDtos : ${boardDtos}">
 
-      <td th:text="${boardDtos.id}"></td>
+      <td th:text="${boardDtos.id}"></td> <!-- 게시글 번호 -->
 
       <td th:if="${boardDtos.rcount == 0}"> <!-- 댓글이 없는경우  Title만 출력 -->
         <a th:href="@{/boardview(no=${boardDtos.no}, id=${boardDtos.id},count=${boardDtos.count})}">

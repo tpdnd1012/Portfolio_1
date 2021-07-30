@@ -26,6 +26,12 @@ public class CartController {
 
         ArrayList<CartDto> list = (ArrayList<CartDto>) session.getAttribute("list");
 
+        if(list == null) {
+
+            list = new ArrayList<>();
+
+        }
+
         int total = 0;
 
         for(int i = 0; i < list.size(); i++) {

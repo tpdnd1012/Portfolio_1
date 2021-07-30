@@ -35,15 +35,19 @@ public class BoardEntity extends BaseTime {
     @Column(name = "count")
     private int count; // 게시물 조회수
 
+    @Column(name = "rcount")
+    private int rcount; // 게시물 댓글 개수
+
     // 생성자
     @Builder
-    public BoardEntity(Long id, Long no, String title, String name, String contents, int count) {
+    public BoardEntity(Long id, Long no, String title, String name, String contents, int count, int rcount) {
         this.id = id;
         this.no = no;
         this.title = title;
         this.name = name;
         this.contents = contents;
         this.count = count;
+        this.rcount = rcount;
     }
 
     // 게시판 수정 메소드
@@ -61,6 +65,20 @@ public class BoardEntity extends BaseTime {
     public void countup() {
 
         this.count++;
+
+    }
+
+    // 댓글 증가 메소드
+    public void rcountup() {
+
+        this.rcount++;
+
+    }
+
+    // 댓글 삭제 감소 메소드
+    public void rcountdown() {
+
+        this.rcount--;
 
     }
 
