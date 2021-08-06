@@ -43,4 +43,11 @@ public class BoardreplyDto {
 
     }
 
+    // 댓글 수정 메소드
+    public BoardreplyDto(BoardreplyEntity boardreplyEntity) {
+
+        this.replycontents = boardreplyEntity.getReplycontents();
+
+    }
+
 }

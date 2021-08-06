@@ -1,6 +1,7 @@
 package Spring.domain.boardreply;
 
 import Spring.domain.BaseTime;
+import Spring.web.dto.BoardreplyDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -40,9 +41,11 @@ public class BoardreplyEntity extends BaseTime {
     }
 
     // 댓글내용 수정 메소드
-    public void replymodify(String replycontents) {
+    public BoardreplyEntity replymodify(BoardreplyDto boardreplyDto) {
 
-        this.replycontents = replycontents;
+        this.replycontents = boardreplyDto.getReplycontents();
+
+        return this;
 
     }
 

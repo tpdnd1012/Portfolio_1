@@ -1,5 +1,7 @@
 package Spring.web;
 
+import Spring.service.BookService;
+import Spring.web.dto.BookDto;
 import Spring.web.dto.CartDto;
 import lombok.RequiredArgsConstructor;
 import org.h2.engine.Session;
@@ -13,12 +15,14 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
 public class CartController {
 
     private final HttpSession session;
+    private final BookService bookService;
 
     // 장바구니 이동 페이지
     @GetMapping("/cart")
@@ -52,12 +56,30 @@ public class CartController {
 
         ArrayList<CartDto> list = (ArrayList<CartDto>) session.getAttribute("list");
 
-        if(list == null) {
+        if(list == null) { // 장바구니 세션이 비었을 경우 새로운 ArrayList 생성 후 제품 담기
 
             list = new ArrayList<>();
 
+            response.setContentType("text/html; charset=UTF-8");
 
-        } else {
+            PrintWriter out = null;
+
+            try {
+
+                out = response.getWriter();
+
+            } catch (IOException e1) {
+
+                e1.printStackTrace();
+
+            }
+
+            out.println("<script>alert('장바구니에 제품을 담았습니다.'); location.href='booklist';</script>");
+
+            out.flush();
+
+
+        } else { // 장바구니 세션에 똑같은 제품이 있을 경우 ArrayList x
 
             for (int i = 0; i < list.size(); i++) {
 
@@ -71,9 +93,9 @@ public class CartController {
 
                         out = response.getWriter();
 
-                    } catch (IOException e) {
+                    } catch (IOException e2) {
 
-                        e.printStackTrace();
+                        e2.printStackTrace();
 
                     }
 
@@ -87,6 +109,24 @@ public class CartController {
             }
         }
 
+        response.setContentType("text/html; charset=UTF-8");
+
+        PrintWriter out = null;
+
+        try {
+
+            out = response.getWriter();
+
+        } catch (IOException e1) {
+
+            e1.printStackTrace();
+
+        }
+
+        out.println("<script>alert('장바구니에 제품을 담았습니다.'); location.href='booklist';</script>");
+
+        out.flush();
+
         list.add(cartDto);
 
         session.setAttribute("list", list);
@@ -97,7 +137,7 @@ public class CartController {
 
     // 장바구니 삭제
     @RequestMapping("/cartdelete/{id}")
-    public String cartdelete(@PathVariable Long id) {
+    public String cartdelete(@PathVariable Long id, HttpServletResponse response) {
 
         ArrayList<CartDto> list = (ArrayList<CartDto>) session.getAttribute("list");
 
@@ -113,6 +153,29 @@ public class CartController {
 
         }
         return "redirect:/cart";
+    }
+
+    // 장바구니에서 대여하기 페이지 이동
+    @GetMapping("/rental")
+    public String rental(Model model) {
+
+        ArrayList<CartDto> list = (ArrayList<CartDto>) session.getAttribute("list");
+
+        int total = 0; // 총 금액
+        int number = 0;
+
+        for(int i = 0; i < list.size(); i++) {
+
+            total += list.get(i).getMoney();
+            number++;
+
+        }
+
+        model.addAttribute("total", total);
+        model.addAttribute("number", number);
+
+        return "rental";
+
     }
 
 }

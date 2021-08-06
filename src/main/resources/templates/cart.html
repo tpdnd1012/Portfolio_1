@@ -9,6 +9,22 @@
 
 <div class="container">
 
+  <div class="row" style="margin: 25px 0;">
+
+    <div class="col-xs-6 col-md-6" style="padding: 0; padding-top: 15px;">
+      <h1>Shopping Cart!</h1>
+    </div>
+
+    <div class="col-xs-6 col-md-6" style="padding: 0; padding-top: 24px; text-align: right;">
+      <span><b>장바구니</b></span>&nbsp;&nbsp;>&nbsp;&nbsp;
+      <span>주문서 작성</span>&nbsp;&nbsp;>&nbsp;&nbsp;
+      <span>주문완료</span>
+    </div>
+
+  </div>
+
+  <br><br>
+
   <table class="table table-responsive" style="text-align: center;">
 
     <tr>
@@ -29,7 +45,7 @@
       <td th:text="|${#numbers.formatInteger(list.money, 3, 'COMMA')} 원|" style="vertical-align: middle;"></td>
 
       <td style="vertical-align: middle;">
-        <a th:href="@{/cartdelete/{id}(id = ${list.id})}">삭제</a>
+        <a th:onclick="if(!(confirm('선택된 제품을 삭제하시겠습니까?')))return false" th:href="@{/cartdelete/{id}(id = ${list.id})}">삭제</a>
       </td>
 
     </tr>
@@ -43,13 +59,19 @@
   </table>
 
   <div class="row" style="margin: 25px 0;" th:if="${total != 0}"> <!-- 장바구니에 등록된 물품이 하나 이상일때 -->
-    <div class="col-xs-6 col-md-12" style="text-align: right; padding: 0;">
+
+    <div class="col-xs-6 col-md-6" style="padding: 0; padding-top: 15px;">
       <span>합계 : <b th:text="|${#numbers.formatInteger(total, 3, 'COMMA')} 원|"></b></span>
     </div>
+
+    <div class="col-xs-6 col-md-6" style="text-align: right; padding: 0;">
+      <a class="btn btn-primary" th:onclick="if(!(confirm('대여하기 페이지로 이동합니다.')))return false" th:href="@{/rental}">대여하기</a>
+    </div>
+
   </div>
 
   <div class="row" style="margin: 25px 0;" th:if="${total == 0}"> <!-- 장바구니에 등록된 물품이 없을때 -->
-    <div class="col-xs-6 col-md-12" style="text-align: right; padding: 0;">
+    <div class="col-xs-6 col-md-6" style="padding: 0;">
       <span>합계 : <b>0 원</b></span>
     </div>
   </div>

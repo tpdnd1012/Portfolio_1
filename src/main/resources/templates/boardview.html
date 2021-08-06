@@ -65,7 +65,7 @@
     <form method="post" action="/replywrite">
 
         <!-- 게시물 번호, 댓글 작성자, 댓글 수정 / 삭제 식별용 회원 NO 같이 넘기기 -->
-        <input type="hidden" name="boardid" th:value="${boardDto.id}">
+        <input type="hidden" id="boardid" name="boardid" th:value="${boardDto.id}">
         <input type="hidden" name="rcount" th:value="${boardDto.rcount}">
         <input type="hidden" name="name" th:value="${session.loginuser.name}">
         <input type="hidden" name="no" th:value="${session.loginuser.no}">
@@ -78,7 +78,7 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
                         <textarea class="form-control" name="replycontents" id="exampleFormControlTextarea1" rows="3"></textarea>
-                        <button type="submit" class="btn btn-dark mt-3" onClick="javascript:addReply();">post reply</button>
+                        <button type="submit" class="btn btn-dark mt-3" onClick="javascript:addReply();">POST REPLY</button>
                     </li>
                 </ul>
             </div>
@@ -87,32 +87,55 @@
 
     <!-- 댓글 출력 창 -->
     <div class="card mt-2" th:each="replyDto : ${replyDto}" style="width: 66%; margin: 0 auto;">
+
+        <input type="hidden" id="replyid" th:value="${replyDto.id}">
+
         <div class="card-header p-2">
 
             <table>
 
                 <tbody>
-                <tr class="align-middle">
-                    <td class="m1" th:text="${replyDto.name}"> <!--이름--></td>
-                </tr>
+                    <tr class="align-middle">
+                        <td class="m1" th:text="${replyDto.name}"> <!--이름--></td>
+                    </tr>
 
-                <tr>
-                    <td><!--날짜-->
-                        <font size="2" th:text="${#temporals.format(replyDto.createDate, 'yy-MM-dd HH:mm:ss')}"></font>
-                    </td>
-                </tr>
+                    <tr>
+                        <td><!--날짜-->
+                            <font size="2" th:text="${#temporals.format(replyDto.createDate, 'yy-MM-dd HH:mm:ss')}"></font>
+                        </td>
+                    </tr>
                 </tbody>
 
             </table>
 
         </div>
 
-        <div class="card-body">
-            <p class="card-text" th:utext="${replyDto.replycontents}"></p> <!-- 댓글내용 -->
+        <!--<div class="card-body" id="reply_modify_div">
+            <textarea class="form-control" name="replycontents" id="modify_text" rows="3"></textarea>
             <span th:if="${session.loginuser.no == replyDto.no}" class="badge badge-dark" style="cursor: pointer; color: black; padding: 0;">
-                <a style="margin-right: 15px;">수정</a>
+                <a id="modify_commit" style="margin-right: 15px;">수정완료</a>
+                <a id="modify_back">취소</a>
+            </span>
+        </div>-->
+
+        <div class="card-body" id="modify_div">
+
+            <textarea class="form-control" name="replycontents" id="modify_text" rows="3"></textarea>
+            <span th:if="${session.loginuser.no == replyDto.no}" id="modify_span" class="badge badge-dark" style="cursor: pointer; color: black; padding: 0;">
+                    <a id="modify_commit" style="margin-right: 15px;">수정완료</a>
+                    <a id="modify_back">취소</a>
+            </span>
+
+        </div>
+
+        <div class="card-body" id="reply_div">
+
+            <p class="card-text" id="reply_text" th:utext="${replyDto.replycontents}"></p> <!-- 댓글내용 -->
+            <span th:if="${session.loginuser.no == replyDto.no}" id="reply_span" class="badge badge-dark" style="cursor: pointer; color: black; padding: 0;">
+                <a id="reply_modify" style="margin-right: 15px;">수정</a>
                 <a th:href="@{/replydelete(id=${replyDto.id}, boardid=${replyDto.boardid}, rcount=${boardDto.rcount})}" th:onclick="return confirm('댓글을 삭제하시겠습니까?');">삭제</a>
             </span>
+
         </div>
 
     </div>
@@ -123,4 +146,56 @@
 
 <div th:replace="footer :: footer"></div>
 </body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+
+        var replyid = $("#replyid").val();
+
+        $("#modify_div").hide();
+        $("#modify_div #modify_text").hide();
+        $("#modify_div #modify_span").hide();
+
+
+        $("#reply_div #reply_modify").click(function(){
+
+            if(confirm('댓글을 수정하시겠습니까?')) {
+
+                $("#reply_div").hide();
+                $("#reply_text").hide();
+                $("#reply_span").hide();
+
+                $("#modify_div").show();
+                $("#modify_text").show();
+                $("#modify_span").show();
+
+                const toreply = $("#reply_text").text();
+                $("#modify_text").val(toreply);
+
+            }
+
+        });
+
+        $("#modify_back").click(function(){
+
+            if(confirm('댓글 수정을 취소하시겠습니까?')) {
+
+                $("#reply_text").show();
+                $("#reply_span").show();
+
+                $("#modify_text").hide();
+                $("#modify_span").hide();
+
+            }
+
+        });
+
+
+    });
+
+</script>
+
 </html>

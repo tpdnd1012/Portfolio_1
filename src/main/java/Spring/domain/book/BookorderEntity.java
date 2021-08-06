@@ -28,6 +28,9 @@ public class BookorderEntity {
     private int money; // 최종 결제금액
 
     @Column
+    private String payment; // 결제방법
+
+    @Column
     private int unpaid; // 미납금액
 
 }
