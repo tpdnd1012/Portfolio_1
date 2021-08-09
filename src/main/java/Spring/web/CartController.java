@@ -155,27 +155,4 @@ public class CartController {
         return "redirect:/cart";
     }
 
-    // 장바구니에서 대여하기 페이지 이동
-    @GetMapping("/rental")
-    public String rental(Model model) {
-
-        ArrayList<CartDto> list = (ArrayList<CartDto>) session.getAttribute("list");
-
-        int total = 0; // 총 금액
-        int number = 0;
-
-        for(int i = 0; i < list.size(); i++) {
-
-            total += list.get(i).getMoney();
-            number++;
-
-        }
-
-        model.addAttribute("total", total);
-        model.addAttribute("number", number);
-
-        return "rental";
-
-    }
-
 }
