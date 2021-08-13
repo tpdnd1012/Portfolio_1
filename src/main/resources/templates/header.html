@@ -27,6 +27,58 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
+
+  <style>
+
+
+  /* 주문페이지 */
+  .order_box { position:relative; }
+
+  .order_left_box > div { border-bottom:3px solid #111; margin-bottom:60px; padding-bottom:60px; }
+  .order_guest label { width:100px; margin-right:70px; padding-top: 5px; }
+  .order_guest label span { margin-left:5px; color: red;}
+  .order_guest .order_phone input { width:90px; display:inline-block; text-align:center; }
+  .order_guest .order_phone span { display:inline-block; margin: 0 10px; }
+  .order_guest input { border: none; border-bottom: solid 1px #E2E1E1; height:35px;}
+  .order_guest .order_email .order_input_box { width:500px; }
+  .order_guest .order_email select { width:115px; display:inline-block; height:35px; font-size:13px; border: 1px solid #ced4da; border-top-right-radius: 5px; border-bottom-right-radius: 5px;}
+  .order_guest .order_point strong { font-size:1rem; margin-left:10px; }
+
+
+  .order_right_box { position:absolute; top:0; left:0; right:0; z-index:100; width:100%; max-width:1300px; margin:0 auto; }
+  .order_right_box > div { width:300px; position:absolute; top:0; right:0; }
+  .order_fixed { position:fixed; top:20px; }
+
+  @media(max-width:1300px){
+  .order_right_box { position:static; padding-left:0; margin-top:25px; }
+  .order_right_box > div { width:100%; position:static; top:0; right:0; }
+  .order_fixed { position:static; top:20px; }
+  }
+
+  @media(max-width:800px){
+  .order_box .order_left_box { width:100%!important; }
+  }
+
+  @media(max-width:700px){
+   .order_guest label { margin-right:20px; width:95px; letter-spacing:-1px; }
+   .order_guest .order_email .order_input_box { width:350px; }
+   .order_guest .order_email .order_input_box input { width:175px!important;}
+  }
+
+  @media(max-width:500px){
+   .order_guest label { margin-bottom:2px; }
+   .order_guest .order_name .order_input_box,.order_guest .order_name input { width:100%!important; }
+   .order_guest .order_phone .order_input_box input { width:28%!important;}
+   .order_guest .order_phone .order_input_box span { width:3%!important; margin:0 auto; }
+   .order_guest .order_email .order_input_box input { width:165px!important; }
+   .order_guest .order_point .order_input_box { width:100%; }
+   .order_guest .order_point .order_input_box > input { width:70%!important; }
+   .order_guest .order_point .order_input_box > button { width:26%; }
+   .order_guest .order_point strong { display:block; width:100%;  }
+   .order_etc_info ul li { font-size:1.1rem; }
+  }
+
+  </style>
 </head>
 
 <body th:fragment="header">

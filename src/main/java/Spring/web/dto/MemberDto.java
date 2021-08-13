@@ -22,10 +22,11 @@ public class MemberDto {
     private String phone; // 회원 휴대폰 번호
     private String email; // 회원 이메일
     private String address; // 회원 주소
+    private int point;
 
     // 생성자
     @Builder
-    public MemberDto(Long no, String member_id, String member_pw, String name, String gender, String birth, String phone, String email, String address) {
+    public MemberDto(Long no, String member_id, String member_pw, String name, String gender, String birth, String phone, String email, String address, int point) {
         this.no = no;
         this.member_id = member_id;
         this.member_pw = member_pw;
@@ -35,6 +36,7 @@ public class MemberDto {
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.point = point;
     }
 
     // 멤버 수정 메소드
@@ -61,7 +63,8 @@ public class MemberDto {
                 .birth(birth)
                 .phone(phone)
                 .email(email)
-                .address(address).build();
+                .address(address)
+                .point(point).build();
 
     }
 

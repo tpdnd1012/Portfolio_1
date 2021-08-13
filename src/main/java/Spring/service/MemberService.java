@@ -48,7 +48,8 @@ public class MemberService {
                         .birth(temp.getBirth())
                         .phone(temp.getPhone())
                         .email(temp.getEmail())
-                        .address(temp.getAddress()).build();
+                        .address(temp.getAddress())
+                        .point(temp.getPoint()).build();
 
                 return memberDto;
 

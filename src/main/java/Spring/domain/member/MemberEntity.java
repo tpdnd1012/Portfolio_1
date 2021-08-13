@@ -42,9 +42,12 @@ public class MemberEntity extends BaseTime {
     @Column(name = "address")
     private String address; // 회원 주소
 
+    @Column(name = "point")
+    private int point; // 회원 포인트
+
     // 생성자
     @Builder
-    public MemberEntity(Long no, String member_id, String member_pw, String name, String gender, String birth, String phone, String email, String address) {
+    public MemberEntity(Long no, String member_id, String member_pw, String name, String gender, String birth, String phone, String email, String address, int point) {
         this.no = no;
         this.member_id = member_id;
         this.member_pw = member_pw;
@@ -54,6 +57,7 @@ public class MemberEntity extends BaseTime {
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.point = point;
     }
 
     // 회원 수정 메소드

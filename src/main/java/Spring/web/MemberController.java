@@ -68,6 +68,7 @@ public class MemberController {
         memberDto.setPhone(phone);
         memberDto.setEmail(email);
         memberDto.setAddress(address);
+        memberDto.setPoint(1000);
 
         memberService.membersave(memberDto);
 
