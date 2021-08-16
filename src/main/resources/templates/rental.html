@@ -273,17 +273,4 @@
 <div th:replace="footer :: footer"></div>
 
 </body>
-
-<script>
-$(function(){
-  $(window).scroll(function(){
-       var num = $(this).scrollTop();
-       if( num > 1100 ){
-          $(".order_right_box").addClass("order_fixed");
-       }else{
-           $(".order_right_box").removeClass("order_fixed");
-       }
-  });
-});
-</script>
 </html>

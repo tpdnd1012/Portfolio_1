@@ -5,7 +5,8 @@
     For .omb_spanOr use @body-bg instead of white.
 */
 
-@media (min-width: 768px) {
+
+/*@media (min-width: 768px) {
     .omb_row-sm-offset-3 div:first-child[class*="col-"] {
         margin-left: 25%;
     }
@@ -70,6 +71,8 @@
  	}
 }
 
+
+
 #a1::before {
     content:"\3163";
     width: 5px;
@@ -104,4 +107,4 @@
     border-radius:10px;
     border:none;
 
-}
+}*/
