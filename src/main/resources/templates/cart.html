@@ -25,24 +25,46 @@
 
   <br><br>
 
-  <table class="table table-responsive" style="text-align: center;">
+  <table class="table table-responsive" id="carttable" style="text-align: center;">
 
     <tr>
       <th>이미지</th>
       <th>도서명</th>
       <th>대여금액</th>
+      <th>대여일</th>
       <th>비고</th>
     </tr>
 
-    <tr th:each="list : ${session.list}"> <!-- 장바구니에 등록된 제품이 있을경우 -->
+    <tr th:each="list : ${session.list}" id="cartlist"> <!-- 장바구니에 등록된 제품이 있을경우 -->
+
+      <input type="text" id="sid" th:value="${list.id}">
+      <input type="text" id="money" th:value="${list.money}">
 
       <td>
         <img th:src="@{/static/bookimages/} + ${list.images}" style="height: 80px;">
       </td>
 
-      <td th:text="${list.name}" style="vertical-align: middle;"></td>
+      <td style="vertical-align: middle;">
+        <span th:text="${list.name}"></span>
+      </td>
 
-      <td th:text="|${#numbers.formatInteger(list.money, 3, 'COMMA')} 원|" style="vertical-align: middle;"></td>
+      <td style="vertical-align: middle;">
+        <span id="rentalmoney" th:text="|${#numbers.formatInteger(list.money, 3, 'COMMA')} 원|"></span>
+      </td>
+
+      <td style="vertical-align: middle; text-align: center;">
+
+        <select class="selectpicker" name="period" id="rentalselect" onchange="rentalchange()"
+                style="display:inline-block; height:35px; font-size:13px;
+                          border: 1px solid #ced4da; border-radius: 5px; width: 70px;">
+
+          <option value="7">7일</option>
+          <option value="14">14일</option>
+          <option value="30" selected>30일</option>
+
+        </select>
+
+      </td>
 
       <td style="vertical-align: middle;">
         <a th:onclick="if(!(confirm('선택된 제품을 삭제하시겠습니까?')))return false" th:href="@{/cartdelete/{id}(id = ${list.id})}">삭제</a>
@@ -51,7 +73,7 @@
     </tr>
 
     <tr th:if="${session.list == null}"> <!-- 장바구니에 등록된 제품이 없을경우 -->
-      <td colspan="4" style="text-align: center; padding: 30px 0;">
+      <td colspan="5" style="text-align: center; padding: 30px 0;">
         <b>장바구니에 등록된 제품이 없습니다.</b>
       </td>
     </tr>
@@ -79,4 +101,13 @@
 </div>
 <div th:replace="footer :: footer"></div>
 </body>
+
+<script th:inline="javascript">
+function rentalchange(sid) {
+
+    alert(sid);
+
+}
+</script>
+
 </html>

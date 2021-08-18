@@ -28,7 +28,7 @@
 
   <span>주문상품<span th:text="|(${number})|"></span></span>
 
-  <form method="post" action="/rental">
+  <form name="rentalform" method="post" action="/rental">
 
     <table class="table table-responsive" style="margin-top: 30px;">
 
@@ -57,7 +57,9 @@
 
         </td>
 
-        <td th:text="|${#numbers.formatInteger(list.money, 3, 'COMMA')} 원|" style="vertical-align: middle; text-align: center;"></td>
+        <td style="vertical-align: middle; text-align: center;">
+          <span th:text="|${#numbers.formatInteger(list.money, 3, 'COMMA')} 원|"></span>
+        </td>
 
         <td style="vertical-align: middle; text-align: center;">
 
