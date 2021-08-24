@@ -35,7 +35,9 @@
       <th>비고</th>
     </tr>
 
-    <tr th:each="list : ${session.list}" id="cartlist"> <!-- 장바구니에 등록된 제품이 있을경우 -->
+    <tr th:each="list, num : ${session.list}" id="cartlist"> <!-- 장바구니에 등록된 제품이 있을경우 -->
+
+      <td id="idx">[[${num.index}]]</td>
 
       <input type="text" id="sid" th:value="${list.id}">
       <input type="text" id="money" th:value="${list.money}">
@@ -101,13 +103,4 @@
 </div>
 <div th:replace="footer :: footer"></div>
 </body>
-
-<script th:inline="javascript">
-function rentalchange(sid) {
-
-    alert(sid);
-
-}
-</script>
-
 </html>

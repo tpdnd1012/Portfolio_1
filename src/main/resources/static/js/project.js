@@ -303,30 +303,27 @@ $(function(){
 });
 
 /* cart 대여일 선택시 금액 변경 jq */
-/*$(document).ready(function(){
+$(document).ready(function(){
 
-    var money = $("#money").val();
+    var money = $("#cartlist #money").val();
 
-    var sid[] = $("#id").val();
-
-    $("#rentalselect").change(function(){
+    $("#cartlist #rentalselect").change(function(){
 
         var value = $(this).val();
 
-            if(value == 3) {
+            if(value == "7") {
                 $("#money").val(5000);
             }
 
     });
 
-});*/
+});
 
-/*
-<script th:inline="javascript">
-function rentalchange(sid) {
+/*function rentalchange() {
 
-    var ssid = document.getElementById("sid").value;
-    alert(ssid);
+    var idx = document.getElementById("idx").innerHTML;
 
-}
-</script>*/
+    alert(idx);
+
+
+}*/
