@@ -37,10 +37,8 @@
 
     <tr th:each="list, num : ${session.list}" id="cartlist"> <!-- 장바구니에 등록된 제품이 있을경우 -->
 
-      <td id="idx">[[${num.index}]]</td>
-
       <input type="text" id="sid" th:value="${list.id}">
-      <input type="text" id="money" th:value="${list.money}">
+      <input type="text" name="money" th:value="${list.money}">
 
       <td>
         <img th:src="@{/static/bookimages/} + ${list.images}" style="height: 80px;">
@@ -56,13 +54,13 @@
 
       <td style="vertical-align: middle; text-align: center;">
 
-        <select class="selectpicker" name="period" id="rentalselect" onchange="rentalchange()"
+        <select class="selectpicker" name="period" id="rentalselect" th:onchange="rentalchange([[${num.index}]])"
                 style="display:inline-block; height:35px; font-size:13px;
                           border: 1px solid #ced4da; border-radius: 5px; width: 70px;">
 
-          <option value="7">7일</option>
-          <option value="14">14일</option>
-          <option value="30" selected>30일</option>
+          <option value=7>7일</option>
+          <option value=14>14일</option>
+          <option value=30 selected>30일</option>
 
         </select>
 

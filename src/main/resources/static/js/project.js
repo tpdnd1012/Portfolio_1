@@ -112,9 +112,9 @@ function login_check() {
     }
 
     if(!loginform.member_pw.value) {
-            alert('패스워드를 입력해주세요.');
-            loginform.member_pw.focus();
-            return false;
+        alert('패스워드를 입력해주세요.');
+        loginform.member_pw.focus();
+        return false;
     }
 }
 
@@ -218,30 +218,27 @@ function boardwrite_check() {
 
 }
 
-/* boardview js */
+/* boardview js 댓글 수정*/
 $(document).ready(function(){
 
-    var replyid = $("#replyid").val();
+    $("#allreply #modify_div").hide();
 
-    $("#modify_div").hide();
-    $("#modify_div #modify_text").hide();
-    $("#modify_div #modify_span").hide();
-
-
-    $("#reply_div #reply_modify").click(function(){
+    $("a[id=reply_modify]").click(function(){
 
         if(confirm('댓글을 수정하시겠습니까?')) {
 
-            $("#reply_div").hide();
-            $("#reply_text").hide();
-            $("#reply_span").hide();
+            var idxid = $(this).attr("idxid");
 
-            $("#modify_div").show();
-            $("#modify_text").show();
-            $("#modify_span").show();
+            $("#reply_div").eq(idxid).hide();
+            $("#reply_text").eq(idxid).hide();
+            $("#reply_span").eq(idxid).hide();
 
-            const toreply = $("#reply_text").text();
-            $("#modify_text").val(toreply);
+            $("#modify_div").eq(idxid).show();
+            $("#modify_text").eq(idxid).show();
+            $("#modify_span").eq(idxid).show();
+
+            const toreply = $("#reply_text").eq(idxid).text();
+            $("#modify_text").eq(idxid).val(toreply);
 
         }
 
@@ -303,27 +300,30 @@ $(function(){
 });
 
 /* cart 대여일 선택시 금액 변경 jq */
-$(document).ready(function(){
+/*$(document).ready(function(){
 
-    var money = $("#cartlist #money").val();
+    $("#cartlist #rentalselect").change(function(i){
 
-    $("#cartlist #rentalselect").change(function(){
+    var money = $("#cartlist #money")[i].val();
 
         var value = $(this).val();
 
             if(value == "7") {
-                $("#money").val(5000);
+                $("#money")[i].val(5000);
             }
 
     });
 
-});
+});*/
 
-/*function rentalchange() {
+function rentalchange(i) {
 
-    var idx = document.getElementById("idx").innerHTML;
+    var money = document.getElementsByName("money")[i].value;
 
-    alert(idx);
+    var s_val = document.getElementsByName("period")[i].value;
 
+    if(s_val == 7) {
+        document.getElementsByName("money")[i].value = money * 0.5;
+    }
 
-}*/
+}
