@@ -28,7 +28,7 @@ public class CartController {
     @GetMapping("/cart")
     public String cart(Model model) {
 
-        ArrayList<CartDto> list = (ArrayList<CartDto>) session.getAttribute("list");
+        /*ArrayList<CartDto> list = (ArrayList<CartDto>) session.getAttribute("list");
 
         if(list == null) {
 
@@ -44,7 +44,7 @@ public class CartController {
 
         }
 
-        model.addAttribute("total", total);
+        model.addAttribute("total", total);*/
 
         return "cart";
 

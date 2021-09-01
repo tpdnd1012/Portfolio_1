@@ -316,14 +316,51 @@ $(function(){
 
 });*/
 
+$(document).ready(function(){
+
+    var money3 = 0;
+
+    var moneyarr = $("input[name=money]").length;
+
+    /*var moneyarr2 = new Array(moneyarr);*/
+
+    for(var i = 0; i < moneyarr; i++) {
+        /*moneyarr2[i] = $("input[name=money]").eq(i).val();*/
+        money3 += parseInt($("input[name=money]").eq(i).val());
+    }
+
+    $("#final").text(money3.toLocaleString() + " 원");
+
+});
+
 function rentalchange(i) {
 
     var money = document.getElementsByName("money")[i].value;
 
+    /* i번 select 값 */
     var s_val = document.getElementsByName("period")[i].value;
 
     if(s_val == 7) {
-        document.getElementsByName("money")[i].value = money * 0.5;
+
+        /*document.getElementsByName("money")[i].value = money * 0.5;*/
+        document.getElementsByName("rentalmoney")[i].innerHTML = (money * 0.5).toLocaleString() + " 원";
+
+
+    }
+
+    if(s_val == 14) {
+
+        /*document.getElementsByName("money")[i].value = money * 0.3;*/
+        document.getElementsByName("rentalmoney")[i].innerHTML = (money * 0.7).toLocaleString() + " 원";
+
+
+    }
+
+    if(s_val == 30) {
+
+            /*document.getElementsByName("money")[i].value = money;*/
+            document.getElementsByName("rentalmoney")[i].innerHTML = (money).toLocaleString() + " 원";
+
     }
 
 }

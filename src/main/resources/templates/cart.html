@@ -49,7 +49,7 @@
       </td>
 
       <td style="vertical-align: middle;">
-        <span id="rentalmoney" th:text="|${#numbers.formatInteger(list.money, 3, 'COMMA')} 원|"></span>
+        <span name="rentalmoney" th:text="|${#numbers.formatInteger(list.money, 3, 'COMMA')} 원|"></span>
       </td>
 
       <td style="vertical-align: middle; text-align: center;">
@@ -83,7 +83,7 @@
   <div class="row" style="margin: 25px 0;" th:if="${total != 0}"> <!-- 장바구니에 등록된 물품이 하나 이상일때 -->
 
     <div class="col-xs-6 col-md-6" style="padding: 0; padding-top: 15px;">
-      <span>합계 : <b th:text="|${#numbers.formatInteger(total, 3, 'COMMA')} 원|"></b></span>
+      <span>합계 : <b id="final"></b></span>
     </div>
 
     <div class="col-xs-6 col-md-6" style="text-align: right; padding: 0;">
