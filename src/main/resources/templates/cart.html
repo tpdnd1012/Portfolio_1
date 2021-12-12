@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="header :: header_h">
+  <meta charset="UTF-8">
+  <title>Login</title>
+</head>
+<body>
+<div th:replace="header :: header"></div>
+
+<div class="container">
+
+  <div class="row" style="margin: 25px 0;">
+
+    <div class="col-xs-6 col-md-6" style="padding: 0; padding-top: 15px;">
+      <h1>Shopping Cart!</h1>
+    </div>
+
+    <div class="col-xs-6 col-md-6" style="padding: 0; padding-top: 24px; text-align: right;">
+      <span><b>장바구니</b></span>&nbsp;&nbsp;>&nbsp;&nbsp;
+      <span>주문서 작성</span>&nbsp;&nbsp;>&nbsp;&nbsp;
+      <span>주문완료</span>
+    </div>
+
+  </div>
+
+  <br><br>
+
+  <table class="table table-responsive" id="carttable" style="text-align: center;">
+
+    <tr>
+      <th>이미지</th>
+      <th>도서명</th>
+      <th>대여금액</th>
+      <th>대여일</th>
+      <th>비고</th>
+    </tr>
+
+    <tr th:each="list, num : ${session.list}" id="cartlist"> <!-- 장바구니에 등록된 제품이 있을경우 -->
+
+      <input type="text" id="sid" th:value="${list.id}">
+      <input type="text" name="money" th:value="${list.money}">
+
+      <td>
+        <img th:src="@{/static/bookimages/} + ${list.images}" style="height: 80px;">
+      </td>
+
+      <td style="vertical-align: middle;">
+        <span th:text="${list.name}"></span>
+      </td>
+
+      <td style="vertical-align: middle;">
+        <span name="rentalmoney" th:text="|${#numbers.formatInteger(list.money, 3, 'COMMA')} 원|"></span>
+      </td>
+
+      <td style="vertical-align: middle; text-align: center;">
+
+        <select class="selectpicker" name="period" id="rentalselect" th:onchange="rentalchange([[${num.index}]])"
+                style="display:inline-block; height:35px; font-size:13px;
+                          border: 1px solid #ced4da; border-radius: 5px; width: 70px;">
+
+          <option value=7>7일</option>
+          <option value=14>14일</option>
+          <option value=30 selected>30일</option>
+
+        </select>
+
+      </td>
+
+      <td style="vertical-align: middle;">
+        <a th:onclick="if(!(confirm('선택된 제품을 삭제하시겠습니까?')))return false" th:href="@{/cartdelete/{id}(id = ${list.id})}">삭제</a>
+      </td>
+
+    </tr>
+
+    <tr th:if="${session.list == null}"> <!-- 장바구니에 등록된 제품이 없을경우 -->
+      <td colspan="5" style="text-align: center; padding: 30px 0;">
+        <b>장바구니에 등록된 제품이 없습니다.</b>
+      </td>
+    </tr>
+
+  </table>
+
+  <div class="row" style="margin: 25px 0;" th:if="${total != 0}"> <!-- 장바구니에 등록된 물품이 하나 이상일때 -->
+
+    <div class="col-xs-6 col-md-6" style="padding: 0; padding-top: 15px;">
+      <span>합계 : <b id="final"></b></span>
+    </div>
+
+    <div class="col-xs-6 col-md-6" style="text-align: right; padding: 0;">
+      <a class="btn btn-primary" th:onclick="if(!(confirm('대여하기 페이지로 이동합니다.')))return false" th:href="@{/rental}">대여하기</a>
+    </div>
+
+  </div>
+
+  <div class="row" style="margin: 25px 0;" th:if="${total == 0}"> <!-- 장바구니에 등록된 물품이 없을때 -->
+    <div class="col-xs-6 col-md-6" style="padding: 0;">
+      <span>합계 : <b>0 원</b></span>
+    </div>
+  </div>
+
+</div>
+<div th:replace="footer :: footer"></div>
+</body>
+</html>

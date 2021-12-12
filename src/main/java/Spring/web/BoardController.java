@@ -1,8 +1,11 @@
 package Spring.web;
 
 import Spring.domain.board.BoardEntity;
+import Spring.domain.boardreply.BoardreplyRepository;
 import Spring.service.BoardService;
+import Spring.service.BoardreplyService;
 import Spring.web.dto.BoardDto;
+import Spring.web.dto.BoardreplyDto;
 import Spring.web.dto.BoardupdateDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -11,8 +14,10 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -20,6 +25,9 @@ import java.util.List;
 public class BoardController {
 
     private final BoardService boardService;
+    private final BoardreplyService boardreplyService;
+    private final BoardreplyRepository boardreplyRepository;
+    private final HttpSession session;
 
     // 게시판 페이지 요청[페이징처리o]
     @GetMapping("/board")
@@ -28,7 +36,20 @@ public class BoardController {
         String keyword = request.getParameter("keyword");
         String search = request.getParameter("search");
 
+        if(search != null) {
+
+            session.setAttribute("se", search);
+            session.setAttribute("se2", keyword);
+
+        } else {
+
+            session.setAttribute("se", search);
+            session.setAttribute("se2", keyword);
+
+        }
+
         Page<BoardEntity> boardEntities = boardService.boardlist(pageable, keyword, search);
+
 
         model.addAttribute("boardDtos", boardEntities);
 
@@ -37,7 +58,7 @@ public class BoardController {
     }
 
     // 게시판 페이지 요청[페이징처리x]
-   /* @GetMapping("/board")
+    /*@GetMapping("/board")
     public String board(Model model) {
 
         List<BoardDto> boardDtos = boardService.list();
@@ -58,7 +79,11 @@ public class BoardController {
 
     // 게시물 등록 처리
     @PostMapping("/boardwrite")
-    public String boardwrite_c(BoardDto boardDto) {
+    public String boardwrite_c(BoardDto boardDto, HttpServletRequest request) {
+
+        String contents = request.getParameter("contents");
+
+        boardDto.setContents(contents.replace("\r\n", "<br>"));
 
         boardService.boardsave(boardDto);
 
@@ -79,12 +104,17 @@ public class BoardController {
         BoardDto boardDto = boardService.boardget(id);
         model.addAttribute("boardDto", boardDto);
 
+        // 댓글 출력하기
+        List<BoardreplyDto> boardreplyDtos = boardreplyService.boardreplyDtoList(boardDto.getId());
+        model.addAttribute("replyDto", boardreplyDtos);
+
         return "boardview";
 
     }
 
-    @GetMapping("/boarddelete/{id}")
-    public String boarddelete(@PathVariable Long id) {
+    // 게시글 삭제
+    @RequestMapping(value = "/boarddelete")
+    public String boarddelete(@RequestParam("id") Long id) {
 
         boardService.boarddelete(id);
 
@@ -98,6 +128,10 @@ public class BoardController {
 
         BoardDto boardDto = boardService.boardget(id);
 
+        String contents = boardDto.getContents().replace("<br>", "\r\n");
+
+        boardDto.setContents(contents);
+
         model.addAttribute("boardDto", boardDto);
 
         return "boardmodify";
@@ -105,11 +139,18 @@ public class BoardController {
 
     // 게시글 수정 처리
     @PostMapping("/boardmodify")
-    public String boardmodify_c(BoardupdateDto modifyDto) {
+    public String boardmodify_c(BoardupdateDto modifyDto, HttpServletRequest request, RedirectAttributes re) {
+
+        String contents = request.getParameter("contents");
+
+        modifyDto.setContents(contents.replace("\r\n", "<br>"));
 
         boardService.boardmodify(modifyDto);
 
-        return "redirect:/board";
+        re.addAttribute("id", modifyDto.getId());
+        re.addAttribute("count", -1);
+
+        return "redirect:/boardview";
 
     }
 

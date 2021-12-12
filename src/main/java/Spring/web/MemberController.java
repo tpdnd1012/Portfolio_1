@@ -68,6 +68,7 @@ public class MemberController {
         memberDto.setPhone(phone);
         memberDto.setEmail(email);
         memberDto.setAddress(address);
+        memberDto.setPoint(1000);
 
         memberService.membersave(memberDto);
 
@@ -179,14 +180,26 @@ public class MemberController {
     @PostMapping("/info")
     public String memberinfo(HttpServletRequest request, Model model) {
 
-        String member_id = request.getParameter("member_id");
+        Long no = Long.parseLong(request.getParameter("no"));
         String member_pw = request.getParameter("member_pw");
 
-        MemberEntity infouser = memberService.memberinfo(member_id, member_pw);
+        MemberEntity infouser = memberService.memberinfo(no, member_pw);
 
-        model.addAttribute("infouser", infouser);
+        String c = "0";
 
-        return "memberinfo";
+        if(infouser != null) {
+
+            model.addAttribute("infouser", infouser);
+
+            return "memberinfo";
+
+        } else {
+
+            model.addAttribute("c", "1");
+
+            return "info";
+
+        }
 
     }
 

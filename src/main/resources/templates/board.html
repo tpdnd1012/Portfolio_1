@@ -15,20 +15,36 @@
 
   <table class="table table-hover table-striped" style="text-align:center;">
 
-    <tr class="thead-strong">
-      <th style="width:150px;">번호</th>
-      <th style="width:350px;">제목</th>
-      <th style="width:200px;">작성자</th>
-      <th style="width:200px;">작성일</th>
-      <th style="width:150px;">조회수</th>
+    <tr>
+      <th>번호</th>
+      <th>제목</th>
+      <th>작성자</th>
+      <th>작성일</th>
+      <th>조회수</th>
     </tr>
 
     <tr th:each="boardDtos : ${boardDtos}">
-      <td th:text="${boardDtos.id}"></td>
-      <td><a th:href="@{/boardview(no=${boardDtos.no}, id=${boardDtos.id},count=${boardDtos.count})}"><span th:text="${boardDtos.title}"></span></a></td>
+
+      <td th:text="${boardDtos.id}"></td> <!-- 게시글 번호 -->
+
+      <td th:if="${boardDtos.rcount == 0}"> <!-- 댓글이 없는경우  Title만 출력 -->
+        <a th:href="@{/boardview(no=${boardDtos.no}, id=${boardDtos.id},count=${boardDtos.count})}">
+          <span th:text="${boardDtos.title}"></span>
+        </a>
+      </td>
+
+      <td th:if="${boardDtos.rcount != 0}"> <!-- 댓글이 하나 이상일 경우 Title[댓글개수] 출력 -->
+        <a th:href="@{/boardview(no=${boardDtos.no}, id=${boardDtos.id},count=${boardDtos.count})}">
+          <span th:text="|${boardDtos.title}[&nbsp;${boardDtos.rcount}&nbsp;]|"></span>
+        </a>
+      </td>
+
       <td th:text="${boardDtos.name}"></td>
-      <td th:text="${#temporals.format(boardDtos.createDate, 'yyyy-MM-dd')}"></td>
+
+      <td th:text="${#temporals.format(boardDtos.createDate, 'yy-MM-dd')}"></td>
+
       <td th:text="${boardDtos.count}"></td>
+
     </tr>
 
   </table>
@@ -37,7 +53,7 @@
   <div th:if="${session.loginuser == null}" style="text-align:center; color:red; margin-bottom:10px;">로그인 후 등록 가능합니다.</div>
 
   <!-- 페이징 처리 -->
-  <div id="pag" style="text-align:center;">
+  <div th:if="${session.se == null}" id="pag" style="text-align:center;">
     <!--시작페이지 , 끝페이지 설정-->
       <!-- 타임리프 변수 정의 : th:with= -->
         <!-- 첫페이지번호 :  ( 현재페이지/10 ) * 10 + 1 -->
@@ -80,15 +96,15 @@
   <div class="row-fluid" style="text-align:center;">
   <form method="post" action="/boardsearch">
 
-    <select class="form-select" name="keyword" style="width:12%; display:inline-block;">
-      <option value="id">게시물번호</option>
+    <select class="form-select" name="keyword" style="width:100px; display:inline-block;">
+      <option value="id">번호</option>
       <option value="title">제목</option>
       <option value="contents">내용</option>
       <option value="name">작성자</option>
     </select>
 
     <input type="text" class="form-control" name="search" placeholder="Search" style="width: 25%; display:inline-block;">
-    <button type="submit" class="btn btn-default" style="padding: 16px 20px;">Search</button>
+    <button type="submit" class="btn btn-default" style="padding: 0 0 5px 5px;">Search</button>
 
   </form>
   </div>

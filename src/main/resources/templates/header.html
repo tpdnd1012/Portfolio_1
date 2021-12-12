@@ -18,9 +18,7 @@
   <!-- Core theme CSS (includes Bootstrap)-->
   <link th:href="@{../static/css/styles.css}" rel="stylesheet" />
 
-  <link rel="stylesheet" th:href="@{../static/css/login.css}">
-  <link rel="stylesheet" th:href="@{../static/css/signup.css}">
-  <link rel="stylesheet" th:href="@{../static/css/boardview.css}">
+  <link th:href="@{../static/css/project.css}" rel="stylesheet" />
 
   <!-- 카카오 주소 -->
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -34,7 +32,7 @@
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
   <div class="container px-4 px-lg-5">
-    <a class="navbar-brand" th:href="@{/}">The Beginning of a Book</a>
+    <a class="navbar-brand" th:href="@{/}" style="color: black;">The Beginning of a Book</a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       Menu
@@ -44,19 +42,50 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
 
       <ul class="navbar-nav ms-auto py-4 py-lg-0" th:if="${session.loginuser==null}"> <!-- 로그인이 없는 경우 -->
-        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{/login}">Login</a></li>
-        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{/signup}">Sign Up</a></li>
-        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{/}">BOOK LIST</a></li>
-        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{/board}">Bulletin Board</a></li>
+        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{/login}" style="color: black;">Login</a></li>
+        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{/signup}" style="color: black;">Sign Up</a></li>
+        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{/booklist}" style="color: black;">BOOK LIST</a></li>
+        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{/board}" style="color: black;">Bulletin Board</a></li>
       </ul>
 
       <ul class="navbar-nav ms-auto py-4 py-lg-0" th:if="${session.loginuser!=null}"> <!-- 로그인 했을경우 -->
-        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{/}">BOOK LIST</a></li>
-        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{/board}">Bulletin Board</a></li>
-        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{/}">Shopping cart</a></li>
-        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" th:text="|${session.loginuser.name}님 환영합니다|"></a></li>
-        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{/info}">Info</a></li>
-        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{/logout}">Logout</a></li>
+
+        <li class="nav-item">
+          <a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{booklist}" style="color: black;">BOOK LIST</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{/board}" style="color: black;">Bulletin Board</a>
+        </li>
+
+        <li class="nav-item"> <!--관리자면 안보이게-->
+          <a class="nav-link px-lg-3 py-3 py-lg-4" style="color: black;" th:if="${session.loginuser.member_id != 'admin'}" th:href="@{/cart}">Shopping cart</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-lg-3 py-3 py-lg-4" style="color: black;" th:if="${session.loginuser.member_id != 'admin'}" th:text="|${session.loginuser.name}님 환영합니다|"></a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-lg-3 py-3 py-lg-4" style="color: black;" th:if="${session.loginuser.member_id == 'admin'}" th:text="|관리자님 환영합니다|"></a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-lg-3 py-3 py-lg-4" style="color: black;" th:if="${session.loginuser.member_id == 'admin'}" th:href="@{/admin}">Admin</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-lg-3 py-3 py-lg-4" style="color: black;" th:href="@{/}">Return</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-lg-3 py-3 py-lg-4" style="color: black;" th:href="@{/info}">Info</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-lg-3 py-3 py-lg-4" style="color: black;" th:href="@{/logout}">Logout</a>
+        </li>
+
       </ul>
 
     </div>
@@ -64,23 +93,56 @@
 </nav>
 
 <!-- Page Header-->
-<header class="masthead" style="background-image: url('../static/images/home-bg.jpg')">
-  <div class="container position-relative px-4 px-lg-5">
-    <div class="row gx-4 gx-lg-5 justify-content-center">
-      <div class="col-md-10 col-lg-8 col-xl-7">
-        <div class="site-heading">
-          <h1>Clean Book</h1>
-          <span class="subheading">세상 모든 책을 모아봤어요!</span>
+<!--<header class="masthead">-->
+<header class="masthead" style="padding: 0;">
+
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img th:src="@{/static/images/slide1.jpg}" class="d-block w-100" style="height: 600px;">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>First slide label</h5>
+          <p>Some representative placeholder content for the first slide.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img th:src="@{/static/images/slide2.jpg}" class="d-block w-100" style="height: 600px;">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Second slide label</h5>
+          <p>Some representative placeholder content for the second slide.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img th:src="@{/static/images/slide3.jpg}" class="d-block w-100" style="height: 600px;">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Third slide label</h5>
+          <p>Some representative placeholder content for the third slide.</p>
         </div>
       </div>
     </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
+
 </header>
 
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
 <script th:src="@{../static/js/scripts.js}"></script>
+
+<script th:src="@{../static/js/project.js}"></script>
 
 </body>
 </html>

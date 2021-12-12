@@ -15,36 +15,39 @@ public class MemberEntity extends BaseTime {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 들어오는 값이 NULL일 경우 자동번호 부여
-    @Column
+    @Column(name = "no")
     private Long no; // 회원번호
 
-    @Column
+    @Column(name = "member_id")
     private String member_id; // 회원 아이디
 
-    @Column
+    @Column(name = "member_pw")
     private String member_pw; // 회원 비밀번호
 
-    @Column
+    @Column(name = "name")
     private String name; // 회원 이름
 
-    @Column
+    @Column(name = "gender")
     private String gender; // 회원 성별
 
-    @Column
+    @Column(name = "birth")
     private String birth; // 회원 생년월일
 
-    @Column
+    @Column(name = "phone")
     private String phone; // 회원 휴대폰 번호
 
-    @Column
+    @Column(name = "email")
     private String email; // 회원 이메일
 
-    @Column
+    @Column(name = "address")
     private String address; // 회원 주소
+
+    @Column(name = "point")
+    private int point; // 회원 포인트
 
     // 생성자
     @Builder
-    public MemberEntity(Long no, String member_id, String member_pw, String name, String gender, String birth, String phone, String email, String address) {
+    public MemberEntity(Long no, String member_id, String member_pw, String name, String gender, String birth, String phone, String email, String address, int point) {
         this.no = no;
         this.member_id = member_id;
         this.member_pw = member_pw;
@@ -54,6 +57,7 @@ public class MemberEntity extends BaseTime {
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.point = point;
     }
 
     // 회원 수정 메소드

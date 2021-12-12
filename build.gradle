@@ -40,8 +40,10 @@ dependencies {
     compile('com.h2database:h2')
     // 롬복 : 생성자 , get , set , 필드 등
     compile('org.projectlombok:lombok')
+    // MYSQL
+    compile('mysql:mysql-connector-java')
     // Maria DB
-    compile('org.mariadb.jdbc:mariadb-java-client')
+    //compile('org.mariadb.jdbc:mariadb-java-client')
     // devtools : 자동빌더
     //compile('org.springframework.boot:spring-boot-devtools')
     // 설정 :  파일 => 설정 = > 빌드 => 컴파일러 => 자동빌더

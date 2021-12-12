@@ -19,17 +19,19 @@ public class BoardDto {
     private String name; // 게시물 작성자
     private String contents; // 게시물 내용
     private int count; // 게시물 조회수
+    private int rcount; // 게시물 댓글 개수
     private LocalDateTime createDate; // 게시물 생성일
 
     // 생성자
     @Builder
-    public BoardDto(Long id, Long no, String title, String name, String contents, int count, LocalDateTime createDate) {
+    public BoardDto(Long id, Long no, String title, String name, String contents, int count, int rcount, LocalDateTime createDate) {
         this.id = id;
         this.no = no;
         this.title = title;
         this.name = name;
         this.contents = contents;
         this.count = count;
+        this.rcount = rcount;
         this.createDate = createDate;
     }
 
@@ -43,6 +45,11 @@ public class BoardDto {
                 .contents(contents)
                 .count(count).build();
 
+    }
+
+    public void rcountup() {
+
+        this.rcount++;
     }
     
 }

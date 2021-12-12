@@ -19,9 +19,9 @@ public class MemberService {
 
     // 회원가입 저장
     @Transactional
-    public Long membersave(MemberDto memberDto) {
+    public void membersave(MemberDto memberDto) {
 
-        return memberRepository.save(memberDto.toEntity()).getNo();
+        memberRepository.save(memberDto.toEntity());
 
     }
 
@@ -48,7 +48,8 @@ public class MemberService {
                         .birth(temp.getBirth())
                         .phone(temp.getPhone())
                         .email(temp.getEmail())
-                        .address(temp.getAddress()).build();
+                        .address(temp.getAddress())
+                        .point(temp.getPoint()).build();
 
                 return memberDto;
 
@@ -66,7 +67,9 @@ public class MemberService {
 
         for( MemberEntity temp :  memberEntityList) {
 
-            if( temp.getMember_id().equals(id)){return 1;};
+            if( temp.getMember_id().equals(id)){
+                return 1;
+            }
         }
         return 0;
 
@@ -74,14 +77,22 @@ public class MemberService {
 
     // 회원 수정 전 인증
     @Transactional
-    public MemberEntity memberinfo(String member_id, String member_pw) {
+    public MemberEntity memberinfo(Long no, String member_pw) {
 
         // 1. 회원 가져오기
-        Optional<MemberEntity> optionalMemberEntity = memberRepository.findByinfo(member_id, member_pw);
+        Optional<MemberEntity> optionalMemberEntity = memberRepository.findByinfo(no, member_pw);
 
-        MemberEntity temp = optionalMemberEntity.get();
+        if(optionalMemberEntity.isPresent()) { //.isPresent() 값이 있는지 없는지 확인할수있음.
 
-        return temp;
+            MemberEntity temp = optionalMemberEntity.get();
+
+            return temp;
+
+        } else {
+
+            return null;
+
+        }
 
     }
 
