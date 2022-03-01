@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/main-layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>Rental</title>
+</head>
+<body>
+<div layout:fragment="content">
+
+  <div class="container">
+
+    <div class="row" style="margin: 25px 0;">
+
+      <div class="col-xs-6 col-md-6" style="padding: 0; padding-top: 15px;">
+        <h1>RENTAL</h1>
+      </div>
+
+      <div class="col-xs-6 col-md-6" style="padding: 0; padding-top: 24px; text-align: right;">
+        <span>장바구니</span>&nbsp;&nbsp;>&nbsp;&nbsp;
+        <span><b>주문서 작성</b></span>&nbsp;&nbsp;>&nbsp;&nbsp;
+        <span>주문완료</span>
+      </div>
+
+    </div>
+
+    <hr style="height: 2px; background-color: black; border-radius: 10px; margin-bottom: 40px;">
+
+    <span>주문상품<span th:text="|(${number})|"></span></span>
+
+    <form name="rentalform" method="post" action="/rental">
+
+      <table class="table table-responsive" style="margin-top: 30px;">
+
+        <tr>
+          <th style="width: 700px; padding: 8px 0;">상품정보</th>
+          <th style="text-align: center; padding: 8px 0;">대여금액</th>
+          <th style="text-align: center; padding: 8px 0; padding-left: 45px;">대여기간</th>
+        </tr>
+
+        <tr th:each="list : ${session.list}">
+
+          <td>
+
+            <div style="float: left; padding: 20px;">
+              <img th:src="@{/static/bookimages/} + ${list.images}" style="height: 80px;">
+            </div>
+
+            <div style="display: inline-block; padding: 15px;">
+              <span th:text="${list.name}" style="font-size: 15px;"></span><br>
+
+              <span th:text="${list.author}" style="font-size: 15px; color: #A6A1A1"></span>
+              <span id="a1" style="font-size: 15px; color: #A6A1A1" th:text="${list.genre}"></span><br>
+
+              <span th:text="${list.publisher}" style="font-size: 15px; color: #A6A1A1"></span>
+            </div>
+
+          </td>
+
+          <td style="vertical-align: middle; text-align: center;">
+            <span th:text="|${#numbers.formatInteger(list.money, 3, 'COMMA')} 원|"></span>
+          </td>
+
+          <td style="vertical-align: middle; text-align: center;">
+
+            <select class="selectpicker" name="period"
+                    style="display:inline-block; height:35px; font-size:13px;
+                            border: 1px solid #ced4da; border-radius: 5px; margin-left: 48px;">
+
+              <option value="">선택해주세요</option>
+              <option value=3>3일</option>
+              <option value=7>7일</option>
+              <option value=30 selected>30일</option>
+
+            </select>
+
+          </td>
+
+        </tr>
+
+      </table>
+
+      <div style="background-color: #F6F6F6; text-align: center; padding: 20px 0; margin: 30px 0;">
+
+        <span>주문상품 금액 : <b th:text="|${#numbers.formatInteger(total, 3, 'COMMA')} 원|"></b></span>
+
+          <b style="margin: 0 15px">&#45;</b> <!-- + -->
+
+        <span>포인트 할인금액 : <b>0원</b></span>
+
+        <b style="margin: 0 15px">&#61;</b> <!-- = -->
+
+        <span><b th:text="|${#numbers.formatInteger(total, 3, 'COMMA')} 원|"></b></span>
+
+      </div>
+
+      <div class="order_box" style="margin: 25px 0;">
+
+        <div class="col-xs-6 col-md-9 order_left_box" style="padding: 0; border-top: solid 3px;">
+
+          <input type="hidden" name="no" th:value="${rentalDto.no}">
+
+          <div class="order_guest">
+
+            <div class="form-group" style="margin: 35px 0 60px 0;"><b>주문고객정보</b></div>
+
+            <!-- 주문자 이름 -->
+            <div class="input-group order_name" style="margin-bottom: 60px;">
+              <label>주문고객<span>*</span></label>
+              <div class="order_input_box">
+                <input style="width:250px;" type="text" name="name" class="form-control" placeholder="Name" th:value="${rentalDto.name}">
+              </div>
+            </div>
+
+            <!-- 휴대폰 번호 -->
+            <div class="input-group order_phone" style="margin-bottom: 60px;">
+              <label>휴대폰<span>*</span></label>
+              <div class="order_input_box">
+                <input type="text" name="phone1" class="form-control col-md-10" placeholder="010" th:value="${rentalDto.phone1}" maxlength="3">
+                <span>-</span>
+                <input name="phone2" class="form-control col-md-10" th:value="${rentalDto.phone2}" maxlength="4">
+                <span>-</span>
+                <input type="text" name="phone3" class="form-control col-md-10" th:value="${rentalDto.phone3}" maxlength="4">
+              </div>
+            </div>
+
+            <!-- 이메일 입력 -->
+            <div class="input-group order_email" style="margin-bottom: 60px;">
+              <label>이메일<span>*</span></label>
+              <div class="order_input_box">
+                <input style="width:250px;display:inline-block;position:relative; top:1px; right:-1px;" class="form-control" type="text" name="email1" th:value="${rentalDto.email1}">
+                <strong class="input-group-prepend" style="display:inline-block; margin-left:3px; width:40px; position:relative; top:2px; right:-6px;">
+                  <span class="input-group-text" style="border-top-left-radius: 5px; border-bottom-left-radius: 5px; height: 35px;">@</span>
+                </strong>
+                <select class="selectpicker" name="email2">
+                  <option value="">선택해주세요</option>
+                  <option value="naver.com" th:selected="${rentalDto.email2}=='naver.com'">naver.com</option>
+                  <option value="kakao.com" th:selected="${rentalDto.email2}=='kakao.com'">kakao.com</option>
+                  <option value="google.com" th:selected="${rentalDto.email2}=='google.com'">google.com</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- 포인트 -->
+            <div class="input-group order_point">
+              <label>포인트 사용</label>
+              <div class="order_input_box">
+                <input style="width:150px; text-align: end; display:inline-block;" type="text" class="form-control">
+                <button class="btn btn-outline-secondary" type="button" style="padding: 6px;">전액사용</button>
+                <strong>( 보유포인트 : <span th:text="|${#numbers.formatInteger(point, 3, 'COMMA')} P|"></span> )</strong>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="order_payment">
+
+            <!-- 결제방식 -->
+            <div class="form-group" style="margin: 35px 0 60px 0;"><b>결제수단선택</b></div>
+
+            <div class="btn-group pay_box" role="group">
+
+              <label style="padding-top: 15px;">결제방식&nbsp;<span style="color: red;">*</span>&nbsp;</label>
+
+              <input type="radio" name="radio-Btn-Group" class="btn-check" id="radioBtn1">
+              <label class="btn btn-outline-danger" for="radioBtn1" style="margin-left: 49px;">카드</label>
+
+              <input type="radio" name="radio-Btn-Group" class="btn-check" id="radioBtn2">
+              <label class="btn btn-outline-danger" for="radioBtn2">무통장입금</label>
+
+            </div>
+
+          </div>
+
+          <div class="order_etc_info">
+            <div class="form-group" style="margin: 35px 0 30px 0;"><b>신용카드 이용안내</b></div>
+            <img th:src="@{/static/images/paycard.jpg}" alt="" style="max-width:100%;">
+
+            <div class="form-group" style="margin: 60px 0 30px 0;"><b>주문 전 확인하세요!</b></div>
+
+            <ul>
+              <li> 실제 결제 금액에 따라 적립포인트는 변경될 수 있습니다.</li>
+              <li> 포인트와 쿠폰 사용 시 유효기간을 꼭 확인해주세요. (유효기간 지난 경우 무통장입금 불가)</li>
+              <li>오프랑인 매장과 동시 판매되고 있어 결제완료/입고확정 이후에도 품절이나 발송지연이 있을 수 있습니다.</li>
+              <li>품질 발생 시 문자로 결제취소 또는 재결제에 대해 추가 안내 드리고, 품절취소 고객보상 기준에 따라 보상해 드립니다.</li>
+            </ul>
+
+          </div>
+
+        </div>
+
+        <!-- 우측 결제정보 -->
+        <div class="col-xs-6 col-md-3 order_right_box" style="padding: 0; padding-left: 15px;">
+
+          <div style="border: solid 1px gray; background:#fff;">
+
+            <div style="padding: 0 20px;">
+              <p style="font-size: 25px; margin: 25px 0;">결제정보</p>
+            </div>
+
+
+            <div style="display: flex; justify-content: space-between; padding: 0 20px;">
+
+              <div>
+                <span style="font-size: 15px;">주문상품금액</span>
+              </div>
+
+              <div>
+                <span th:text="|${#numbers.formatInteger(total, 3, 'COMMA')} 원|" style="font-size: 15px;"></span>
+              </div>
+
+            </div>
+
+
+            <div style="display: flex; justify-content: space-between; padding: 0 20px;">
+
+              <div style="margin: 15px 0;">
+                <span style="font-size: 15px;">총 프로모션 할인금액</span>
+              </div>
+
+              <div style="margin: 15px 0;">
+                <span style="font-size: 15px;">- 0원</span>
+              </div>
+
+            </div>
+
+            <div style="display: flex; justify-content: space-between; padding: 0 20px;">
+
+              <div>
+                <span style="font-size: 15px;">총 쿠폰 할인금액</span>
+              </div>
+
+              <div>
+                <span style="font-size: 15px;">- 0원</span>
+              </div>
+
+            </div>
+
+              <hr style="margin: 25px 20px;">
+
+            <div style="text-align: right; padding: 0 20px;">
+              <p style="margin: 0; font-size: 15px;">총 결제예정금액</p>
+              <span th:text="|${#numbers.formatInteger(total, 3, 'COMMA')} |" style="color: red; font-size: 30px;"></span>
+                <span style="font-size: 30px;">원</span>
+            </div>
+
+            <div style="background-color: #F1F0F0; padding: 15px 10px; margin-top: 15px;">
+              <p style="margin: 0; font-size: 17px;">주문동의</p>
+              <span style="font-size: 12px; color: lightslategray;">
+                주문할 상품의 상품명, 상품가격정보를 확인하였으며, 구매에 동의하시겠습니까?<br>(전자상거래법 제8조 2항)<br>
+                주문자 변심의 경우 기간내에 교환/반납이 불가능 하다는 내용을 확인하였으며 이에 동의합니다.
+              </span>
+
+              <div class="custom-control custom-checkbox" style="text-align: center; margin-top: 5px;">
+                <label class="custom-control-label">
+                  <input class="custom-control-input" type="checkbox">
+                  <span style="font-size: 15px; vertical-align: text-bottom;">동의합니다.</span>
+                </label>
+              </div>
+
+            </div>
+
+            <div class="d-grid gap-2">
+              <button type="button" class="btn btn-danger btn-primary">결제하기</button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </form>
+  </div>
+
+</div>
+</body>
+</html>

@@ -53,7 +53,7 @@ public class BoardController {
 
         model.addAttribute("boardDtos", boardEntities);
 
-        return "board";
+        return "board/board";
 
     }
 
@@ -73,7 +73,7 @@ public class BoardController {
     @GetMapping("/boardwrite")
     public String boardwrite() {
 
-        return "boardwrite";
+        return "board/boardwrite";
 
     }
 
@@ -108,7 +108,7 @@ public class BoardController {
         List<BoardreplyDto> boardreplyDtos = boardreplyService.boardreplyDtoList(boardDto.getId());
         model.addAttribute("replyDto", boardreplyDtos);
 
-        return "boardview";
+        return "board/boardview";
 
     }
 
@@ -134,7 +134,7 @@ public class BoardController {
 
         model.addAttribute("boardDto", boardDto);
 
-        return "boardmodify";
+        return "board/boardmodify";
     }
 
     // 게시글 수정 처리
@@ -172,7 +172,7 @@ public class BoardController {
 
         model.addAttribute("boardDtos", boardEntities);
 
-        return "board";
+        return "board/board";
 
     }
 

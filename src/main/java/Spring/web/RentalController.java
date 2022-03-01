@@ -70,7 +70,7 @@ public class RentalController {
         model.addAttribute("number", number);
         model.addAttribute("point", point);
 
-        return "rental";
+        return "payment/rental";
 
     }
 

@@ -46,7 +46,7 @@ public class CartController {
 
         model.addAttribute("total", total);*/
 
-        return "cart";
+        return "member/cart";
 
     }
 

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/main-layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>Book-Add</title>
+</head>
+<body>
+<div layout:fragment="content">
+
+  <div class="container">
+
+    <div class="omb_login">
+      <h3 class="omb_authTitle">Admin Page</h3>
+      <div class="row omb_row-sm-offset-3 omb_socialButtons">
+      </div>
+
+      <ul class="nav justify-content-center">
+
+        <li class="nav-item" style="margin: 0 35px;"><!-- 제품현황 -->
+          <a class="nav-link active" style="color: #E1DEDE" th:href="@{/admin}">Product Status</a>
+        </li>
+
+        <li class="nav-item" style="margin: 0 35px;"><!-- 제품관리 -->
+          <a class="nav-link" style="color: #E1DEDE" th:href="@{/bookmanagement}">Product Management</a>
+        </li>
+
+        <li class="nav-item" style="margin: 0 35px;"><!-- 게시판관리 -->
+          <a class="nav-link" style="color: #E1DEDE" th:href="@{/admin}">Manage bulletin boards</a>
+        </li>
+
+        <li class="nav-item" style="margin: 0 35px;"><!-- 회원관리 -->
+          <a class="nav-link" style="color: #E1DEDE" th:href="@{/admin}">Member management</a>
+        </li>
+
+      </ul>
+
+      <hr>
+
+    </div>
+
+    <div class="omb_login">
+      <h3 class="omb_authTitle">Add Books</h3>
+      <div class="row omb_row-sm-offset-3 omb_socialButtons">
+      </div>
+
+      <div class="row omb_row-sm-offset-3 omb_loginOr">
+        <div class="col-xs-12 col-sm-6">
+          <hr class="omb_hrOr">
+          <span class="omb_spanOr"></span>
+        </div>
+      </div>
+
+      <div class="row omb_row-sm-offset-3">
+        <div class="col-xs-12 col-sm-6">
+          <form method="post" action="/bookadd" name="form" onsubmit="return bookadd_check()" enctype="multipart/form-data">
+
+
+            <div class="form-group"><label>도서 이미지</label></div>
+            <div class="input-group" style="margin-bottom: 30px;">
+              <input type="file" class="form-control" name="images">
+            </div>
+
+            <div class="form-group"><label>도서명</label></div>
+            <div class="input-group" style="margin-bottom: 30px;">
+              <input type="text" name="name" class="form-control" placeholder="Book name">
+            </div>
+
+            <div class="form-group"><label>지은이</label></div>
+            <div class="input-group" style="margin-bottom: 30px;">
+              <input type="text" name="author" class="form-control" placeholder="author">
+            </div>
+
+            <div class="form-group"><label>장르</label></div>
+            <div class="input-group" style="margin-bottom: 30px;">
+              <select class="form-select" name="genre" style="width:160px; display:inline-block; height:35px; font-size:13px;">
+                <option value="">선택해주세요</option>
+                <option value="소설">소설</option>
+                <option value="가정/생활/요리">가정/생활/요리</option>
+                <option value="건강">건강</option>
+                <option value="취미/레저">취미/레저</option>
+                <option value="경제/경영">경제/경영</option>
+                <option value="자기계발">자기계발</option>
+                <option value="예술/대중문화">예술/대중문화</option>
+                <option value="과학/공학">과학/공학</option>
+                <option value="취업/수험서">취업/수험서</option>
+                <option value="컴퓨터/IT">컴퓨터/IT</option>
+                <option value="만화">만화</option>
+                <option value="해외도서">해외도서</option>
+                <option value="기타">기타</option>
+              </select>
+            </div>
+
+            <div class="form-group"><label>출판사</label></div>
+            <div class="input-group" style="margin-bottom: 30px;">
+              <input type="text" name="publisher" class="form-control" placeholder="Publisher">
+            </div>
+
+            <div class="form-group"><label>출판일</label></div>
+            <div class="input-group" style="margin-bottom: 30px;">
+              <input type="date" name="publishing" class="form-control">
+            </div>
+
+            <div class="form-group" style="margin-bottom: 30px;">
+              <label style="margin-right: 30px;">대여 여부</label>
+              <label class="custom-control-label">
+                <input type="radio" class="custom-control-input" name="reservation" value="0">대여가능
+              </label>
+              &nbsp;&nbsp;&nbsp;
+              <label class="custom-control-label">
+                <input type="radio" class="custom-control-input" name="reservation" value="1">대여불가
+              </label>
+            </div>
+
+            <div class="form-group"><label>대여 금액</label></div>
+            <div class="input-group" style="margin-bottom: 30px;">
+              <input type="text" name="money" class="form-control" PLACEHOLDER="Loan Amount">
+            </div>
+
+            <div class="form-group"><label>책소개</label></div>
+            <div class="input-group" style="margin-bottom: 30px;">
+              <textarea name="contents" class="form-control" rows="7"></textarea>
+            </div>
+
+            <button class="btn btn-lg btn-primary btn-block" id="login-btn1" type="submit" onclick="bookadd_check()">도서추가</button>
+            <br>
+            <button type="button" class="btn btn-lg btn-primary btn-block" id="login-btn2" onclick="history.back()">취소</button>
+
+          </form>
+
+        </div>
+      </div>
+
+      <div class="row omb_row-sm-offset-3 omb_loginOr">
+        <div class="col-xs-12 col-sm-6">
+          <hr class="omb_hrOr">
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<br><br><br>
+</body>
+</html>

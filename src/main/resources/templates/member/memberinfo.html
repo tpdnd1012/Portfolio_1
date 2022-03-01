@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/main-layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>Member-Information</title>
+</head>
+<body>
+  <div layout:fragment="content">
+
+  <div class="container" style="margin-top:90px;">
+
+
+    <div class="omb_login">
+      <h3 class="omb_authTitle">Info</h3>
+      <div class="row omb_row-sm-offset-3 omb_socialButtons">
+      </div>
+
+      <div class="row omb_row-sm-offset-3 omb_loginOr">
+        <div class="col-xs-12 col-sm-6">
+          <hr class="omb_hrOr">
+          <span class="omb_spanOr"></span>
+        </div>
+      </div>
+
+      <div class="row omb_row-sm-offset-3">
+        <div class="col-xs-12 col-sm-6">
+          <form action="/updateinfo" name="infoform" method="post">
+
+            <input type="hidden" name="no" th:value="${infouser.no}">
+            <input type="hidden" name="member_pw" th:value="${infouser.member_pw}">
+
+            <div class="form-group"><label>ID</label></div>
+            <div class="input-group" style="margin-bottom: 30px;">
+              <input type="text" class="form-control" name="member_id" th:value="${infouser.member_id}" readonly="readonly">
+            </div>
+
+            <div class="form-group"><label>Name</label></div>
+            <div class="input-group" style="margin-bottom: 30px;">
+              <input type="text" name="name" class="form-control" th:value="${infouser.name}" readonly="readonly">
+            </div>
+
+            <div class="form-group"><label>Gender</label></div>
+            <div class="input-group" style="margin-bottom: 30px;">
+              <input type="text" name="gender" class="form-control" th:value="${infouser.gender}" readonly="readonly">
+            </div>
+
+            <div class="form-group"><label>Birth</label></div>
+            <div class="input-group" style="margin-bottom: 30px;">
+              <input type="text" name="birth" class="form-control" th:value="${infouser.birth}" readonly="readonly">
+            </div>
+
+            <div class="form-group"><label>Phone</label></div>
+            <div class="input-group" style="margin-bottom: 30px;">
+              <input type="text" name="phone" class="form-control" th:value="${infouser.phone}" readonly="readonly">
+            </div>
+
+            <div class="form-group"><label>Email</label></div>
+            <div class="input-group" style="margin-bottom: 30px;">
+              <input type="text" name="email" class="form-control" th:value="${infouser.email}" readonly="readonly">
+            </div>
+
+            <div class="form-group"><label>Address</label></div>
+            <div class="form-group" style="margin-bottom: 60px;">
+              <input type="text" class="form-control" name="address" th:value="${infouser.address}" readonly="readonly">
+            </div>
+
+            <!--<div id="div2">-->
+
+              <button type="submit" class="btn btn-lg btn-primary btn-block" id="login-btn1">정보변경</button>
+
+              <a th:href="@{'updatepw/' + ${infouser.no}}">
+                <button type="button" class="btn btn-lg btn-primary btn-block" id="login-btn2">비밀번호 변경</button>
+              </a>
+
+              <a th:href="@{memberdelete}">
+                <button type="button" class="btn btn-lg btn-primary btn-block" id="login-btn3" th:onclick="if(!(confirm('정말 탈퇴하시겠습니까?')))return false">회원탈퇴</button>
+              </a>
+
+            <!--</div>-->
+
+          </form>
+
+        </div>
+      </div>
+
+      <div class="row omb_row-sm-offset-3 omb_loginOr">
+        <div class="col-xs-12 col-sm-6">
+          <hr class="omb_hrOr">
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  </div>
+
+  <br><br><br>
+
+  </div>
+
+</div>
+</body>
+</html>
+
+

@@ -31,7 +31,7 @@ repositories {
 dependencies {
 
     //  스프링부트 웹 라이브러리 가져오기 =>  관련된 @ 제공 받을수 있다
-    compile('org.springframework.boot:spring-boot-starter-web')
+    compile ('org.springframework.boot:spring-boot-starter-web')
     // 타임리프 : java <----->  프론트엔드 연결
     compile('org.springframework.boot:spring-boot-starter-thymeleaf')
     // JPA : 관계형 데이터베이스 사용
@@ -42,6 +42,9 @@ dependencies {
     compile('org.projectlombok:lombok')
     // MYSQL
     compile('mysql:mysql-connector-java')
+
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+
     // Maria DB
     //compile('org.mariadb.jdbc:mariadb-java-client')
     // devtools : 자동빌더

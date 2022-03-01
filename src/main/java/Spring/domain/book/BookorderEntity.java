@@ -1,5 +1,7 @@
 package Spring.domain.book;
 
+import Spring.domain.member.MemberEntity;
+
 import javax.persistence.*;
 
 @Entity

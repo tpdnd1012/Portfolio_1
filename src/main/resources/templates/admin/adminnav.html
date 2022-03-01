@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/main-layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin-Nav</title>
+</head>
+<body th:fragment="adminnav">
+
+<div class="container">
+
+  <div class="omb_login">
+    <h3 class="omb_authTitle">Admin Page</h3>
+    <div class="row omb_row-sm-offset-3 omb_socialButtons">
+    </div>
+
+  <ul class="nav justify-content-center">
+
+    <li class="nav-item" style="margin: 0 35px;"><!-- 제품현황 -->
+      <a class="nav-link active" style="color: #E1DEDE" th:href="@{/admin}">Product Status</a>
+    </li>
+
+    <li class="nav-item" style="margin: 0 35px;"><!-- 제품관리 -->
+      <a class="nav-link" style="color: #E1DEDE" th:href="@{/bookmanagement}">Product Management</a>
+    </li>
+
+    <li class="nav-item" style="margin: 0 35px;"><!-- 게시판관리 -->
+      <a class="nav-link" style="color: #E1DEDE" th:href="@{/admin}">Manage bulletin boards</a>
+    </li>
+
+    <li class="nav-item" style="margin: 0 35px;"><!-- 회원관리 -->
+      <a class="nav-link" style="color: #E1DEDE" th:href="@{/admin}">Member management</a>
+    </li>
+
+  </ul>
+
+  <hr>
+
+  </div>
+</div>
+
+</body>
+</html>

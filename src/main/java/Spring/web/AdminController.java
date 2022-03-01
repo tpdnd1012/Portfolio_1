@@ -25,7 +25,7 @@ public class AdminController {
     @GetMapping("/admin")
     public String admin() {
 
-        return "admin";
+        return "admin/admin";
 
     }
 
@@ -37,7 +37,7 @@ public class AdminController {
 
         model.addAttribute("bookDtos", bookDtos);
 
-        return "bookmanagement";
+        return "admin/bookmanagement";
 
     }
 
@@ -45,7 +45,7 @@ public class AdminController {
     @GetMapping("/bookadd")
     public String bookadd() {
 
-        return "/bookadd";
+        return "admin/bookadd";
 
     }
 
@@ -112,7 +112,7 @@ public class AdminController {
         // Model로 넘겨주기
         model.addAttribute("bookDto", bookDto);
 
-        return "bookmodify";
+        return "admin/bookmodify";
 
     }
 

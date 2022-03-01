@@ -20,18 +20,18 @@ public class MemberController {
     private final HttpSession session; // 세션 객체 생성
 
     // 회원가입 페이지 요청
-    @GetMapping("/signup")
+    @GetMapping("signup")
     public String signup() {
 
-        return "signup";
+        return "member/signup";
 
     }
 
     // 로그인 페이지 요청
-    @GetMapping("/login")
+    @GetMapping("login")
     public String login() {
 
-        return "login";
+        return "member/login";
 
     }
 
@@ -72,12 +72,12 @@ public class MemberController {
 
         memberService.membersave(memberDto);
 
-        return "completesignup";
+        return "member/completesignup";
 
     }
 
     // 로그인 처리
-    @PostMapping("/login")
+    @PostMapping("login")
     public String login_c(MemberDto logindto, Model model) {
 
         // 로그인 서비스 연결
@@ -95,7 +95,7 @@ public class MemberController {
         } else {
             // 로그인 실패
             model.addAttribute("c", "1");
-            return "login";
+            return "member/login";
         }
 
     }
@@ -106,7 +106,7 @@ public class MemberController {
 
         session.invalidate(); // 세션 초기화
 
-        return "login";
+        return "member/login";
 
     }
 
@@ -138,14 +138,14 @@ public class MemberController {
     public String dataSend(Model model, MemberDto dto) {
         int result = memberService.memberfind( dto.getMember_id() );
         model.addAttribute("msg", result);
-        return "signup :: #resultDiv";
+        return "member/signup :: #resultDiv";
     }
 
     // 회원수정 전 페이지 요청
-    @GetMapping("/info")
+    @GetMapping("info")
     public String info() {
 
-        return "info";
+        return "member/info";
 
     }
 
@@ -157,7 +157,7 @@ public class MemberController {
 
         model.addAttribute("member",memberEntity);
 
-        return "updatepw";
+        return "member/updatepw";
 
     }
 
@@ -172,12 +172,12 @@ public class MemberController {
 
         session.invalidate();
 
-        return "updatecompletepw";
+        return "member/updatecompletepw";
         
     }
 
     // 회원수정 전 페이지 비밀번호 입력후 수정 전 확인페이지
-    @PostMapping("/info")
+    @PostMapping("info")
     public String memberinfo(HttpServletRequest request, Model model) {
 
         Long no = Long.parseLong(request.getParameter("no"));
@@ -191,13 +191,13 @@ public class MemberController {
 
             model.addAttribute("infouser", infouser);
 
-            return "memberinfo";
+            return "member/memberinfo";
 
         } else {
 
             model.addAttribute("c", "1");
 
-            return "info";
+            return "member/info";
 
         }
 
@@ -230,7 +230,7 @@ public class MemberController {
 
         model.addAttribute("updateuser", updateDto);
 
-        return "updateinfo";
+        return "member/updateinfo";
 
     }
 
@@ -292,23 +292,23 @@ public class MemberController {
     }
 
     // 아이디 찾기 페이지요청
-    @GetMapping("/findid")
+    @GetMapping("findid")
     public String findid() {
 
-        return "findid";
+        return "member/findid";
 
     }
 
     // 비밀번호 찾기 페이지요청
-    @GetMapping("/findpw")
+    @GetMapping("findpw")
     public String findpw() {
 
-        return "findpw";
+        return "member/findpw";
 
     }
 
     // 아이디 찾기
-    @PostMapping("/findid")
+    @PostMapping("findid")
     public String findid_c(HttpServletRequest request, Model model) {
 
         String name = request.getParameter("name");
@@ -326,7 +326,7 @@ public class MemberController {
 
             model.addAttribute("findid", findid);
 
-            return "findidinfo";
+            return "member/findidinfo";
 
         } else {
 
@@ -334,14 +334,14 @@ public class MemberController {
 
             model.addAttribute("result", result);
 
-            return "findid";
+            return "member/findid";
 
         }
 
     }
 
     // 비밀번호 찾기
-    @PostMapping("/findpw")
+    @PostMapping("findpw")
     public String findpw_c(HttpServletRequest request, Model model) {
 
         String member_id = request.getParameter("member_id");
@@ -358,7 +358,7 @@ public class MemberController {
 
             model.addAttribute("findpw", findpw);
 
-            return "modifypw";
+            return "member/modifypw";
 
         } else {
 
@@ -366,7 +366,7 @@ public class MemberController {
 
             model.addAttribute("result", result);
 
-            return "findpw";
+            return "member/findpw";
 
         }
 
@@ -381,7 +381,7 @@ public class MemberController {
 
         memberService.modifypw(no, member_pw);
 
-        return "completepw";
+        return "member/completepw";
 
     }
 

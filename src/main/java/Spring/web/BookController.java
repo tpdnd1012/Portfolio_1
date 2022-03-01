@@ -32,7 +32,7 @@ public class BookController {
 
         model.addAttribute("bookDto", bookDto);
 
-        return "booklist";
+        return "book/booklist";
 
     }
 
@@ -44,7 +44,7 @@ public class BookController {
 
         model.addAttribute("bookDto", bookDto);
 
-        return "bookview";
+        return "book/bookview";
 
     }
 
