@@ -41,9 +41,11 @@
         <th>비고</th>
       </tr>
 
+      <form method="post" action="/rental" name="form" onsubmit="return rental_page()">
+
       <tr th:each="list, num : ${session.list}" id="cartlist" > <!-- 장바구니에 등록된 제품이 있을경우 -->
 
-        <input type="text" id="sid" th:value="${list.id}">
+        <input type="text" id="sid" name="sid" th:value="${list.id}">
         <input type="text" name="money" id="money" th:value="${list.money}">
         <input type="text" name="tmoney" id="tmoney" th:value="${list.money}">
 
@@ -65,9 +67,9 @@
                             border: 1px solid #ced4da; border-radius: 5px; width: 70px;">
           <!--<select class="selectpicker" name="period" id="rentalselect" style="display:inline-block; height:35px; font-size:13px; border: 1px solid #ced4da; border-radius: 5px; width: 70px;">-->
 
-            <option value=7>7일</option>
-            <option value=14>14일</option>
-            <option value=30 selected>30일</option>
+            <option th:value="7">7일</option>
+            <option th:value="14">14일</option>
+            <option th:value="30" selected>30일</option>
 
           </select>
 
@@ -95,7 +97,7 @@
 
       <div class="col-xs-6 col-md-6" style="text-align: right; padding: 0;">
         <!--<a class="btn btn-primary" th:onclick="if(!(confirm('대여하기 페이지로 이동합니다.')))return false" th:href="@{/rental}">대여하기</a>-->
-        <input type="button" value="대여하기" id="rentalbtn">
+        <input type="submit" value="대여하기" id="rentalbtn" class="btn btn-success">
       </div>
 
     </div>
@@ -105,6 +107,8 @@
         <span>합계 : <b>0 원</b></span>
       </div>
     </div>
+
+    </form>
 
   </div>
 

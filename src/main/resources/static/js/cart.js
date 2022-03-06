@@ -116,7 +116,8 @@ function rentalchange(i) {
         tmoney = money;
         document.getElementsByName("tmoney")[i].value = money;
 
-        document.getElementsByName("rentalmoney")[i].innerHTML = (money).toLocaleString() + " 원";
+        money2 = money;
+        document.getElementsByName("rentalmoney")[i].innerHTML = (money2).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") + " 원";
 
         document.getElementsByName("tmoney")[i].value = money2;
 
