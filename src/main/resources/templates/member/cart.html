@@ -45,9 +45,9 @@
 
       <tr th:each="list, num : ${session.list}" id="cartlist" > <!-- 장바구니에 등록된 제품이 있을경우 -->
 
-        <input type="text" id="sid" name="sid" th:value="${list.id}">
-        <input type="text" name="money" id="money" th:value="${list.money}">
-        <input type="text" name="tmoney" id="tmoney" th:value="${list.money}">
+        <input type="hidden" id="sid" name="sid" th:value="${list.id}">
+        <input type="hidden" name="money" id="money" th:value="${list.money}">
+        <input type="hidden" name="tmoney" id="tmoney" th:value="${list.money}">
 
         <td>
           <img th:src="@{/static/bookimages/} + ${list.images}" style="height: 80px;">

@@ -9,68 +9,204 @@
 </head>
 <body>
 <div layout:fragment="content">
-  <!-- Main Content-->
-  <div class="container px-4 px-lg-5">
-    <div class="row gx-4 gx-lg-5 justify-content-center">
-      <div class="col-md-10 col-lg-8 col-xl-7">
-        <!-- Post preview-->
-        <div class="post-preview">
-          <a href="#">
-            <h2 class="post-title">Man must explore, and this is exploration at its greatest</h2>
-            <h3 class="post-subtitle">Problems look mighty small from 150 miles up</h3>
-          </a>
-          <p class="post-meta">
-            Posted by
-            <a href="#!">Start Bootstrap</a>
-            on September 24, 2021
-          </p>
+
+  <!-- Icons Grid-->
+  <section class="features-icons text-center" id="idx-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+            <div class="features-icons-icon d-flex"><i class="fa fa-book m-auto idx-icon"></i></div>
+            <h3>Book</h3>
+          </div>
         </div>
-        <!-- Divider-->
-        <hr class="my-4" />
-        <!-- Post preview-->
-        <div class="post-preview">
-          <a href="#"><h2 class="post-title">I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.</h2></a>
-          <p class="post-meta">
-            Posted by
-            <a href="#!">Start Bootstrap</a>
-            on September 18, 2021
-          </p>
+        <div class="col-lg-4">
+          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+            <div class="features-icons-icon d-flex"><i class="fa fa-coffee m-auto idx-icon"></i></div>
+            <h3>Relaxed</h3>
+          </div>
         </div>
-        <!-- Divider-->
-        <hr class="my-4" />
-        <!-- Post preview-->
-        <div class="post-preview">
-          <a href="#">
-            <h2 class="post-title">Science has not yet mastered prophecy</h2>
-            <h3 class="post-subtitle">We predict too much for the next year and yet far too little for the next ten.</h3>
-          </a>
-          <p class="post-meta">
-            Posted by
-            <a href="#!">Start Bootstrap</a>
-            on August 24, 2021
-          </p>
+        <div class="col-lg-4">
+          <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+            <div class="features-icons-icon d-flex"><i class="fa fa-user m-auto idx-icon"></i></div>
+            <h3>Communication</h3>
+          </div>
         </div>
-        <!-- Divider-->
-        <hr class="my-4" />
-        <!-- Post preview-->
-        <div class="post-preview">
-          <a href="#">
-            <h2 class="post-title">Failure is not an option</h2>
-            <h3 class="post-subtitle">Many say exploration is part of our destiny, but it’s actually our duty to future generations.</h3>
-          </a>
-          <p class="post-meta">
-            Posted by
-            <a href="#!">Start Bootstrap</a>
-            on July 8, 2021
-          </p>
-        </div>
-        <!-- Divider-->
-        <hr class="my-4" />
-        <!-- Pager-->
-        <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <!-- 인기 도서 8개 메인화면 출력 -->
+  <section class="py-5">
+
+    <div class="container px-4 px-lg-5 mt-5">
+      <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+        <div class="col mb-5">
+          <div class="card h-100">
+            <!-- Product image-->
+            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+            <!-- Product details-->
+            <div class="card-body p-4">
+              <div class="text-center">
+                <!-- Product name-->
+                <h5 class="fw-bolder">제목</h5>
+                <!-- Product price-->
+                금액
+              </div>
+            </div>
+            <!-- Product actions-->
+            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+              <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">바로가기</a></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col mb-5">
+          <div class="card h-100">
+            <!-- Product image-->
+            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+            <!-- Product details-->
+            <div class="card-body p-4">
+              <div class="text-center">
+                <!-- Product name-->
+                <h5 class="fw-bolder">제목</h5>
+                <!-- Product price-->
+                금액
+              </div>
+            </div>
+            <!-- Product actions-->
+            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+              <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">바로가기</a></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col mb-5">
+          <div class="card h-100">
+            <!-- Product image-->
+            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+            <!-- Product details-->
+            <div class="card-body p-4">
+              <div class="text-center">
+                <!-- Product name-->
+                <h5 class="fw-bolder">제목</h5>
+                <!-- Product price-->
+                금액
+              </div>
+            </div>
+            <!-- Product actions-->
+            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+              <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">바로가기</a></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col mb-5">
+          <div class="card h-100">
+            <!-- Product image-->
+            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+            <!-- Product details-->
+            <div class="card-body p-4">
+              <div class="text-center">
+                <!-- Product name-->
+                <h5 class="fw-bolder">제목</h5>
+                <!-- Product price-->
+                금액
+              </div>
+            </div>
+            <!-- Product actions-->
+            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+              <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">바로가기</a></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col mb-5">
+          <div class="card h-100">
+            <!-- Product image-->
+            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+            <!-- Product details-->
+            <div class="card-body p-4">
+              <div class="text-center">
+                <!-- Product name-->
+                <h5 class="fw-bolder">제목</h5>
+                <!-- Product price-->
+                금액
+              </div>
+            </div>
+            <!-- Product actions-->
+            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+              <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">바로가기</a></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col mb-5">
+          <div class="card h-100">
+            <!-- Product image-->
+            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+            <!-- Product details-->
+            <div class="card-body p-4">
+              <div class="text-center">
+                <!-- Product name-->
+                <h5 class="fw-bolder">제목</h5>
+                <!-- Product price-->
+                금액
+              </div>
+            </div>
+            <!-- Product actions-->
+            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+              <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">바로가기</a></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col mb-5">
+          <div class="card h-100">
+            <!-- Product image-->
+            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+            <!-- Product details-->
+            <div class="card-body p-4">
+              <div class="text-center">
+                <!-- Product name-->
+                <h5 class="fw-bolder">제목</h5>
+                <!-- Product price-->
+                금액
+              </div>
+            </div>
+            <!-- Product actions-->
+            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+              <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">바로가기</a></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col mb-5">
+          <div class="card h-100">
+            <!-- Product image-->
+            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+            <!-- Product details-->
+            <div class="card-body p-4">
+              <div class="text-center">
+                <!-- Product name-->
+                <h5 class="fw-bolder">제목</h5>
+                <!-- Product price-->
+                금액
+              </div>
+            </div>
+            <!-- Product actions-->
+            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+              <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">바로가기</a></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
 </div>
 </body>
 </html>

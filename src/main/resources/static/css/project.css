@@ -236,3 +236,16 @@
    .order_guest .order_point strong { display:block; width:100%;  }
    .order_etc_info ul li { font-size:1.1rem; }
   }
+
+  /* index-section Icons Grid */
+  #idx-section {
+      padding: 80px 0;
+      background-color: #F4F1F1;
+  }
+  .idx-icon{
+      font-size: 4.5rem;
+  }
+
+  #idx-border {
+      border: solid 1px #F3F1F1;
+  }
