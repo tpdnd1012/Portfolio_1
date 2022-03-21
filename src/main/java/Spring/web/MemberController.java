@@ -28,7 +28,7 @@ public class MemberController {
     }
 
     // 로그인 페이지 요청
-    @GetMapping("login")
+    @GetMapping("/login")
     public String login() {
 
         return "member/login";
@@ -77,7 +77,7 @@ public class MemberController {
     }
 
     // 로그인 처리
-    @PostMapping("login")
+    @PostMapping("/login")
     public String login_c(MemberDto logindto, Model model) {
 
         // 로그인 서비스 연결

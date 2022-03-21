@@ -45,9 +45,13 @@ public class MemberEntity extends BaseTime {
     @Column(name = "point")
     private int point; // 회원 포인트
 
+    @Column(name = "role")
+    @Enumerated(EnumType.STRING) // 열거형 String 타입으로 넣기 => 생략시 : 번호로 들어감
+    Role role;
+
     // 생성자
-    @Builder
-    public MemberEntity(Long no, String member_id, String member_pw, String name, String gender, String birth, String phone, String email, String address, int point) {
+    @Builder // 인수 순서 구분x 2. 인수 null 제어   [ 객체 생성하는데 안전성 보장 ]
+    public MemberEntity(Long no, String member_id, String member_pw, String name, String gender, String birth, String phone, String email, String address, int point, Role role) {
         this.no = no;
         this.member_id = member_id;
         this.member_pw = member_pw;
@@ -58,6 +62,7 @@ public class MemberEntity extends BaseTime {
         this.email = email;
         this.address = address;
         this.point = point;
+        this.role = role;
     }
 
     // 회원 수정 메소드
@@ -76,7 +81,24 @@ public class MemberEntity extends BaseTime {
 
     public void update(String member_pw) {
 
+        // 인수값을 현재 필드에 넣기
         this.member_pw = member_pw;
+
+    }
+
+    // Role 키 반환
+    public String getkey() {
+
+        return this.role.getKey();
+
+    }
+
+    // Oauth 이메일 업데이트
+    public MemberEntity oauthupdate(String email) {
+
+        this.email = email;
+
+        return this;
 
     }
 

@@ -1,6 +1,7 @@
 package Spring.web.dto;
 
 import Spring.domain.member.MemberEntity;
+import Spring.domain.member.Role;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,7 +23,8 @@ public class MemberDto {
     private String phone; // 회원 휴대폰 번호
     private String email; // 회원 이메일
     private String address; // 회원 주소
-    private int point;
+    private int point; // 회원 포인트
+    private Role role;
 
     // 생성자
     @Builder
@@ -48,6 +50,7 @@ public class MemberDto {
         this.phone = entity.getPhone();
         this.email = entity.getEmail();
         this.address = entity.getAddress();
+        this.role = entity.getRole();
 
     }
 
@@ -64,7 +67,8 @@ public class MemberDto {
                 .phone(phone)
                 .email(email)
                 .address(address)
-                .point(point).build();
+                .point(point)
+                .role(Role.MEMBER).build();
 
     }
 

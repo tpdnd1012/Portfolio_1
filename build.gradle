@@ -45,6 +45,14 @@ dependencies {
 
     implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
 
+    // OATUH2 : SNS 로그인
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+
+    // 시큐리티 설치 [ 타임리프 ]
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+    // 시큐리티 설치 [ 스프링부트 ]
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
     // Maria DB
     //compile('org.mariadb.jdbc:mariadb-java-client')
     // devtools : 자동빌더
@@ -52,13 +60,5 @@ dependencies {
     // 설정 :  파일 => 설정 = > 빌드 => 컴파일러 => 자동빌더
     // 레스트리 변경 : ctrl+alt+shift+ /  => 레지스트리 => compiler.automake.allow.when.app.running 체크
     // properties 설정 :
-
-    // OATUH2 : SNS 로그인
-    //implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
-    // 시큐리티 설치 [ 타임리프 ]
-    //implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
-    // 시큐리티 설치 [ 스프링부트 ]
-    //implementation 'org.springframework.boot:spring-boot-starter-security'
-
 
 }

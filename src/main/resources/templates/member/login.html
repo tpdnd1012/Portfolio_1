@@ -34,7 +34,7 @@
             </div>
 
             <div class="input-group" style="margin-bottom: 20px;">
-              <input  type="password" class="form-control" name="member_pw" placeholder="비밀번호">
+              <input  type="password" class="form-control" name="member_pw" placeholder="비밀번호" autoComplete="on">
             </div>
 
             <span th:if="${c=='1'}" class="help-block">아이디 혹은 패스워드가 틀립니다.</span> <!-- 아이디 혹은 패스워드 틀렸을때 -->
@@ -68,7 +68,9 @@
         <li class="list-inline-item">
           <a href="#!" style="color: lightgray;">
               <span class="fa-stack fa-lg">
-                <img th:src="@{../static/images/kakao_login.png}" style="width:50px;">
+                <a href="/oauth2/authorization/kakao">
+                  <img th:src="@{../static/images/kakao_login.png}" style="width:50px;">
+                </a>
               </span>
           </a>
         </li>
@@ -76,7 +78,9 @@
         <li class="list-inline-item">
           <a href="#!" style="color: lightgray;">
               <span class="fa-stack fa-lg">
-                <img th:src="@{../static/images/naver_login.png}" style="width:50px;">
+                <a href="/oauth2/authorization/naver">
+                  <img th:src="@{../static/images/naver_login.png}" style="width:50px;">
+                </a>
               </span>
           </a>
         </li>
@@ -84,7 +88,9 @@
         <li class="list-inline-item">
           <a href="#!" style="color: lightgray;">
               <span class="fa-stack fa-lg">
-                <img th:src="@{../static/images/google_login.png}" style="width:50px;">
+                <a href="/oauth2/authorization/google">
+                  <img th:src="@{../static/images/google_login.png}" style="width:50px;">
+                </a>
               </span>
           </a>
         </li>
