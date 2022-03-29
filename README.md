@@ -7,7 +7,7 @@
 Spring을 활용한 도서대여 사이트 구현
 
 ## 개발 언어, 도구
-- Spring
+- Spring Boot
 - HTML, CSS, JavaScript
 - Bootstrap
 - Tomcat
