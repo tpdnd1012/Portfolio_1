@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/main-layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>Book-View</title>
+</head>
+<body>
+<div layout:fragment="content">
+
+  <div class="container px-4 px-lg-5 my-5">
+
+    <div class="container position-relative px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7" style="text-align: center;">
+        <div class="site-heading">
+          <h1 style="color: #A8A4A4">Clean Book</h1>
+          <span class="subheading" style="color: #A8A4A4">세상 모든 책을 모아봤어요!</span>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <section class="py-5">
+      <form name="bookview" method="post" th:action="@{/bookviewcart(id=${bookDto.id})}" onsubmit="return bookview_check()">
+      <div class="container px-4 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+
+            <input type="hidden" name="no" th:value="${session.loginuser.no}">
+            <input type="hidden" name="id" th:value="${bookDto.id}">
+            <input type="hidden" name="name" th:value="${bookDto.name}">
+            <input type="hidden" name="images" th:value="${bookDto.images}">
+            <input type="hidden" name="money" th:value="${bookDto.money}">
+
+          <div class="col-md-6" style="text-align: center;">
+            <img class="card-img-top mb-5 mb-md-0" th:src="@{/static/bookimages/} + ${bookDto.images}"
+                 style="width: 300px; box-shadow: 10px 10px 10px 10px #bebaba;">
+          </div>
+
+          <div class="col-md-6">
+
+            <span class="small mb-1" th:text="${bookDto.publisher}"></span>
+            <span class="small mb-1"id="a1" th:text="${bookDto.genre}"></span> <!-- 출판사 -->
+
+            <h1 class="display-5 fw-bolder" th:text="${bookDto.name}"></h1> <!-- 책 이름 -->
+
+            <div class="fs-5 mb-5">
+              <span th:text="|${#numbers.formatInteger(bookDto.money, 3, 'COMMA')} 원|"></span> <!-- 금액 -->
+            </div>
+
+            <p class="lead" th:utext="${bookDto.contents}"></p>
+
+            <div class="d-flex" style="margin-top: 94px;">
+
+              <a class="btn btn-outline-dark flex-shrink-0">
+                <i class="bi-cart-fill me-1"></i>
+                대여하기
+              </a>
+
+              <button type="submit" class="btn btn-outline-dark flex-shrink-0">
+                <i class="bi-cart-fill me-1"></i>
+                장바구니
+              </button>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+      </form>
+      </section>
+
+    <hr>
+
+  </div>
+
+</div>
+</body>
+</html>

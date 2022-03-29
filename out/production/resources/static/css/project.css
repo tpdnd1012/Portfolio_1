@@ -1,0 +1,251 @@
+@charset "UTF-8";
+
+@media (min-width: 768px) {
+    .omb_row-sm-offset-3 div:first-child[class*="col-"] {
+        margin-left: 25%;
+    }
+}
+
+.omb_login .omb_authTitle {
+    text-align: center;
+	line-height: 300%;
+}
+
+.omb_login .omb_socialButtons a {
+	color: white; // In yourUse @body-bg
+	opacity:0.9;
+}
+.omb_login .omb_socialButtons a:hover {
+    color: white;
+	opacity:1;
+}
+.omb_login .omb_socialButtons .omb_btn-facebook {background: #3b5998;}
+.omb_login .omb_socialButtons .omb_btn-twitter {background: #00aced;}
+.omb_login .omb_socialButtons .omb_btn-google {background: #c32f10;}
+
+
+.omb_login .omb_loginOr {
+	position: relative;
+	font-size: 1.5em;
+	color: #aaa;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+}
+.omb_login .omb_loginOr .omb_hrOr {
+	background-color: #cdcdcd;
+	height: 1px;
+	margin-top: 0px !important;
+	margin-bottom: 0px !important;
+}
+.omb_login .omb_loginOr .omb_spanOr {
+	display: block;
+	position: absolute;
+	left: 50%;
+	top: -0.6em;
+	margin-left: -1.5em;
+	background-color: white;
+	width: 3em;
+	text-align: center;
+}
+
+.omb_login .omb_loginForm .input-group.i {
+	width: 2em;
+}
+.omb_login .omb_loginForm  .help-block {
+    color: red;
+}
+
+
+@media (min-width: 768px) {
+    .omb_login .omb_forgotPwd {
+        text-align: right;
+		margin-top:10px;
+ 	}
+}
+
+#a1::before {
+    content:"\3163";
+    width: 5px;
+    height: 10px;
+    margin: 4px 7px;
+}
+
+#login-btn1 {
+
+    width:100%;
+    background-color:#8A8888;
+    border-radius:10px;
+    border:none;
+    margin-bottom: 10px;
+
+}
+
+#login-btn2 {
+
+    width:100%;
+    background-color:#8A8888;
+    border-radius:10px;
+    border:none;
+    margin-bottom: 10px;
+
+}
+
+#login-btn3 {
+
+    width:100%;
+    background-color:#8A8888;
+    border-radius:10px;
+    border:none;
+
+}
+
+
+
+
+#div1 table {
+    margin:0 auto;
+    font-size: 17px;
+    box-shadow: 0 3px 6px black;
+}
+
+#div1 table th {
+    padding: 15px 5px 15px 10px;
+    width: 130px;
+    border-right: solid 1px #E0DEDE;
+    text-align: center;
+    border-bottom: solid 1px #EFEDED;
+}
+
+#div1 table td {
+    padding: 15px 20px 15px 50px;
+}
+
+#div2 {
+    text-align:center;
+}
+
+#div2 .btn {
+    margin: 27px 20px 0 20px;
+}
+
+#btn1 {
+    font-size: 13px;
+    border-radius: 7px;
+    background-color: white;
+    border: solid 1px lightgray;
+}
+
+	/* 중복아이디 존재하지 않는경우 */
+	.id_input_re_1{
+		color : green;
+		display : none;
+	}
+	/* 중복아이디 존재하는 경우 */
+	.id_input_re_2{
+		color : red;
+		display : none;
+	}
+
+
+
+
+
+.boardviewbtn {
+    border-radius: 15px;
+    padding: 7px 13px;
+}
+
+.boardviewtable{
+    width: 66%;
+    margin-left: 17%;
+    background-color: #f9f9f9;
+    padding: 9px;
+}
+
+.contentsdiv{
+    width: 66%;
+    margin: 0 auto;
+}
+
+.boardviewtabletd5{
+    word-break: break-all;
+    text-align: left;
+}
+
+.boardviewhr1{
+    width: 66%;
+    margin:0 auto;
+    margin-bottom: 20px;
+}
+
+.boardviewhr2{
+    width: 66%;
+    margin:0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+
+
+/* 주문페이지 */
+  .order_box { position:relative; }
+
+  .order_left_box > div { border-bottom:3px solid #111; margin-bottom:60px; padding-bottom:60px; }
+  .order_guest label { width:100px; margin-right:70px; padding-top: 5px; }
+  .order_guest label span { margin-left:5px; color: red;}
+  .order_guest .order_phone input { width:90px; display:inline-block; text-align:center; }
+  .order_guest .order_phone span { display:inline-block; margin: 0 10px; }
+  .order_guest input { border: none; border-bottom: solid 1px #E2E1E1; height:35px;}
+  .order_guest .order_email .order_input_box { width:500px; }
+  .order_guest .order_email select { width:115px; display:inline-block; height:35px; font-size:13px; border: 1px solid #ced4da; border-top-right-radius: 5px; border-bottom-right-radius: 5px;}
+  .order_guest .order_point strong { font-size:1rem; margin-left:10px; }
+
+
+  .order_right_box { position:absolute; top:0; left:0; right:0; z-index:100; width:100%; max-width:1300px; margin:0 auto; }
+  .order_right_box > div { width:300px; position:absolute; top:0; right:0; }
+  .order_fixed { position:fixed; top:20px; }
+
+  @media(max-width:1300px){
+  .order_right_box { position:static; padding-left:0; margin-top:25px; }
+  .order_right_box > div { width:100%; position:static; top:0; right:0; }
+  .order_fixed { position:static; top:20px; }
+  }
+
+  @media(max-width:800px){
+  .order_box .order_left_box { width:100%!important; }
+  }
+
+  @media(max-width:700px){
+   .order_guest label { margin-right:20px; width:95px; letter-spacing:-1px; }
+   .order_guest .order_email .order_input_box { width:350px; }
+   .order_guest .order_email .order_input_box input { width:175px!important;}
+  }
+
+  @media(max-width:500px){
+   .order_guest label { margin-bottom:2px; }
+   .order_guest .order_name .order_input_box,.order_guest .order_name input { width:100%!important; }
+   .order_guest .order_phone .order_input_box input { width:28%!important;}
+   .order_guest .order_phone .order_input_box span { width:3%!important; margin:0 auto; }
+   .order_guest .order_email .order_input_box input { width:165px!important; }
+   .order_guest .order_point .order_input_box { width:100%; }
+   .order_guest .order_point .order_input_box > input { width:70%!important; }
+   .order_guest .order_point .order_input_box > button { width:26%; }
+   .order_guest .order_point strong { display:block; width:100%;  }
+   .order_etc_info ul li { font-size:1.1rem; }
+  }
+
+  /* index-section Icons Grid */
+  #idx-section {
+      padding: 80px 0;
+      background-color: #F4F1F1;
+  }
+  .idx-icon{
+      font-size: 4.5rem;
+  }
+
+  #idx-border {
+      border: solid 1px #F3F1F1;
+  }
