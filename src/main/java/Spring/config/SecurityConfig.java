@@ -41,6 +41,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .ignoringAntMatchers("/signup")
                 .ignoringAntMatchers("/replywrite")
                 .ignoringAntMatchers("/cartadd")
+                .ignoringAntMatchers("/boardmodify")
+                .ignoringAntMatchers("/boardwrite")
 
         .and()
                .oauth2Login() // Oauth2 로그인 설정
