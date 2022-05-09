@@ -34,15 +34,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .and() // 연결 메소드
                 .csrf() // 사이트 간 요청 위조, html 입력에 관련된 페이지는 무시
                 .ignoringAntMatchers("/h2-console/**") // 사이트 간 요청 위조 방지를 제거해서 console 사용
-                .ignoringAntMatchers("/login")
-                .ignoringAntMatchers("/info")
-                .ignoringAntMatchers("/updateinfo")
-                .ignoringAntMatchers("/updatecomplete")
-                .ignoringAntMatchers("/signup")
-                .ignoringAntMatchers("/replywrite")
-                .ignoringAntMatchers("/cartadd")
-                .ignoringAntMatchers("/boardmodify")
-                .ignoringAntMatchers("/boardwrite")
+                //.ignoringAntMatchers("/login")
+                //.ignoringAntMatchers("/info")
+                //.ignoringAntMatchers("/updateinfo")
+                //.ignoringAntMatchers("/updatecomplete")
+                //.ignoringAntMatchers("/signup")
+                //.ignoringAntMatchers("/replywrite")
+                //.ignoringAntMatchers("/cartadd")
+                //.ignoringAntMatchers("/boardmodify")
+                //.ignoringAntMatchers("/boardwrite")
 
         .and()
                .oauth2Login() // Oauth2 로그인 설정

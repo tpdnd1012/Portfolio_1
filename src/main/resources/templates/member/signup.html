@@ -5,6 +5,8 @@
       layout:decorate="~{layout/main-layout}">
 <head>
   <meta charset="UTF-8">
+  <meta name="_csrf" th:content="${_csrf.token}"/>
+  <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
   <title>Login</title>
 </head>
 <!-- <body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload=""> 로그인 후 뒤로가기 막기 -->
@@ -28,7 +30,7 @@
 
       <div class="row omb_row-sm-offset-3">
         <div class="col-xs-12 col-sm-6">
-          <form method="post" action="/signup" name="form" onsubmit="return sign_check()">
+          <form method="post" th:action="@{/signup}" name="form" onsubmit="return sign_check()">
 
 
             <div class="form-group"><label>ID</label></div>

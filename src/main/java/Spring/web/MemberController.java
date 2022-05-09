@@ -134,6 +134,7 @@ public class MemberController {
 //
 //}
     // 회원가입 아이디 중복체크
+
     @RequestMapping(value = "/dataSend", method = RequestMethod.POST)
     public String dataSend(Model model, MemberDto dto) {
         int result = memberService.memberfind( dto.getMember_id() );
