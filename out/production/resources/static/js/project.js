@@ -129,7 +129,8 @@ function id_check() {
 
 	     var signupform = document.form;
          var data = signupform.member_id.value;
-
+         var token = $("meta[name='_csrf']").attr("content");
+         var header = $("meta[name='_csrf_header']").attr("content");
           var MemberDto={
               member_id:data
           };
@@ -137,7 +138,12 @@ function id_check() {
               url: "/dataSend",
               data: MemberDto,
               type:"POST",
-          }).done(function (fragment) {
+              beforeSend : function(xhr)
+                          {   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+              				xhr.setRequestHeader(header, token);
+                          },
+          })
+          .done(function (fragment) {
               $("#resultDiv").replaceWith(fragment);
           });
 }
@@ -228,7 +234,7 @@ $(document).ready(function(){
         if(confirm('댓글을 수정하시겠습니까?')) {
 
             var idxid = $(this).attr("idxid");
-
+            console.log(idxid);
             $("#reply_div").eq(idxid).hide();
             $("#reply_text").eq(idxid).hide();
             $("#reply_span").eq(idxid).hide();

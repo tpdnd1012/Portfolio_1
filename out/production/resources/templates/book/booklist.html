@@ -43,7 +43,7 @@
 
             <div th:each="bookDto : ${bookDto}" class="col-sm-6 col-md-3 p-2">
 
-                <form name="cartform" method="post" action="/cartadd" onsubmit="return cart_check()">
+                <form name="cartform" method="post" th:action="@{/cartadd}" onsubmit="return cart_check()">
 
                     <input type="hidden" name="no" th:value="${session.loginuser.no}">
                     <input type="hidden" name="id" th:value="${bookDto.id}">
