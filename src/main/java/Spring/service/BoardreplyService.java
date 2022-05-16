@@ -30,7 +30,7 @@ public class BoardreplyService {
     }
 
     // 게시판 댓글 삭제
-    @Transactional
+    /*@Transactional
     public void replydelete(Long id) {
 
         // 엔티티 찾기
@@ -40,6 +40,43 @@ public class BoardreplyService {
         BoardreplyEntity boardreplyEntity = optionalBoardreplyEntity.get();
 
         boardreplyRepository.delete(boardreplyEntity);
+
+    }*/
+
+    @Transactional
+    public boolean replydelete(Long id) {
+
+        List<BoardreplyEntity> boardreplyEntityList = boardreplyRepository.findAll();
+
+        for(BoardreplyEntity temp : boardreplyEntityList) {
+
+            if(temp.getId().equals(id)) {
+
+                // 엔티티 찾기
+                Optional<BoardreplyEntity> optionalBoardreplyEntity = boardreplyRepository.findById(id);
+
+                // 엔티티 가져오기
+                BoardreplyEntity boardreplyEntity = optionalBoardreplyEntity.get();
+
+                boardreplyRepository.delete(boardreplyEntity);
+
+
+                /*
+
+                    {
+                        "result" : true,
+                        "message" : "tnwjd dhksfy"
+                    }
+                 */
+
+                return true;
+                /*return "{ \"result\" : true, \"message\":\""}" ;*/
+
+            }
+
+        }
+
+        return false;
 
     }
 

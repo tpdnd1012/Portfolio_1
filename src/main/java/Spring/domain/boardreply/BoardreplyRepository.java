@@ -8,5 +8,4 @@ import java.util.List;
 public interface BoardreplyRepository extends JpaRepository<BoardreplyEntity, Long> {
 
     List<BoardreplyEntity> findByboardid(Long boardid);
-
 }

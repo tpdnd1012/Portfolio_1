@@ -27,9 +27,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         .and()
                 .logout() // 로그아웃 관련 설정
-                .logoutRequestMatcher(new AntPathRequestMatcher("logout")) // 로그아웃 URL 설정
-                .logoutSuccessUrl("/") // 로그아웃 성공시
+                //.logoutRequestMatcher(new AntPathRequestMatcher("logout")) // 로그아웃 URL 설정
+                .logoutUrl("/logout")
                 .invalidateHttpSession(true) // 세션 초기화
+                .logoutSuccessUrl("/") // 로그아웃 성공시
 
         .and() // 연결 메소드
                 .csrf() // 사이트 간 요청 위조, html 입력에 관련된 페이지는 무시

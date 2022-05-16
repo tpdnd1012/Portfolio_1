@@ -106,7 +106,7 @@ public class MemberController {
 
         session.invalidate(); // 세션 초기화
 
-        return "member/login";
+        return "index";
 
     }
 

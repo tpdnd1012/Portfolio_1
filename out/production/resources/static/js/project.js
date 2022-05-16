@@ -148,6 +148,53 @@ function id_check() {
           });
 }
 
+// 게시판 댓글 삭제 ajax
+function reply_delete(a, b, c) {
+
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+
+    var BoardreplyDto = {
+        id : a,
+        boardid : b
+    }
+
+    var BoardDto = {
+        rcount : c
+    }
+
+    if(confirm("댓글을 정말 삭제하시겠습니까?")){
+
+        $.ajax({
+
+            url : "/replydel",
+            data : BoardreplyDto, BoardDto,
+            type : "POST",
+            beforeSend : function(xhr)
+                {   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+                    xhr.setRequestHeader(header, token);
+                },
+
+            success : function(result) {
+                /*alert("삭제되었습니다.");*/
+                alert(result);
+                /*$("#allreply").load(location.href+' #allreply');
+                $("#allreply #replyinfo").load(location.href+' #allreply #replyinfo');
+                $("#allreply #reply_div").load(location.href+' #allreply #reply_div');
+                $("#allreply #modify_div").hide();*/
+                $("#allreply").remove();
+
+            },
+            error : function(result) {
+                alert(result);
+            }
+
+        })
+
+    }
+
+}
+
 // 로그인
 function info_check() {
 
@@ -218,14 +265,14 @@ function boardwrite_check() {
 
             alert("내용이 비어있습니다.");
             boardwriteform.contents.focus();
-            return false;
 
+            return false;
     }
 
 }
 
 /* boardview js 댓글 수정*/
-$(document).ready(function(){
+/*$(document).ready(function(){
 
     $("#allreply #modify_div").hide();
 
@@ -263,7 +310,86 @@ $(document).ready(function(){
         }
 
     });
+});*/
+
+$(document).ready(function(){
+
+    $("#allreply #modify_div").hide();
+
 });
+var ridx = -1;
+function replymodify(i) {
+
+    if(ridx != -1){
+        alert('이미 수정 중인 댓글이 있습니다.')
+        return;
+    }
+
+    if(confirm("해당 댓글을 수정하시겠습니까?")) {
+
+        var test = document.getElementsByName("reply_con")[i].innerHTML;
+
+        $("#modify_div #modify_text").eq(i).val(test);
+
+        showReplyForm(true,i);
+
+    }
+}
+
+function showReplyForm(f, i){
+    if(f){
+        ridx = i;
+        document.getElementsByName("reply_div")[i].style.display = "none";
+        document.getElementsByName("modify_div")[i].style.display = "block";
+    }
+    else {
+        ridx = -1;
+        document.getElementsByName("reply_div")[i].style.display = "block";
+        document.getElementsByName("modify_div")[i].style.display = "none";
+    }
+}
+
+function reply_delete(pk) {
+
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+    var text = $("#modify_div #modify_text").eq(ridx).val();
+    var BoardreplyDto = {
+        id : pk,
+        replycontents : text
+    }
+
+    if(confirm("댓글을 정말 수정하시겠습니까?")){
+
+        $.ajax({
+
+            url : "/replydel",
+            data : BoardreplyDto, BoardDto,
+            type : "POST",
+            beforeSend : function(xhr)
+                {   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+                    xhr.setRequestHeader(header, token);
+                },
+
+            success : function(result) {
+                /*alert("삭제되었습니다.");*/
+                alert(result);
+                /*$("#allreply").load(location.href+' #allreply');
+                $("#allreply #replyinfo").load(location.href+' #allreply #replyinfo');
+                $("#allreply #reply_div").load(location.href+' #allreply #reply_div');
+                $("#allreply #modify_div").hide();*/
+                $("#allreply").remove();
+
+            },
+            error : function(result) {
+                alert(result);
+            }
+
+        })
+
+    }
+
+}
 
 /* booklist 장바구니 추가 js */
 function cart_check() {
