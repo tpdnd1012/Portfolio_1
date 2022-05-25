@@ -13,46 +13,6 @@ $(document).ready(function(){
 
     $("#final").text(money3.toLocaleString() + " 원");
 
-    /*$("#rentalselect").change(function(){
-
-        var test = $("#pageName-rentalselect").val();
-
-        %("#input[name=test]")
-
-        var money = $(".classTest").text();
-
-        var split = money.split("원");
-
-        var won1 = split[0].replaceAll(",","");
-        alert(won1);
-        won1 = won1.replace("원","");
-
-        var won2 = split[1].replaceAll(",","");
-        won2 = won2.replace("원","");
-
-        var sum = 0;
-        sum = parseInt(won1) + parseInt(won2);
-
-        var result = 0;
-
-        if (test == 7) {
-            result = sum * 0.5;
-        }
-        else if (test == 14) {
-            result = sum * 0.7;
-        }
-        else {
-            result = sum;
-        }
-
-        var temp = String(result);
-
-        temp = temp.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-
-        $("#final").text(temp);
-
-    });*/
-
 });
 
 
@@ -62,12 +22,6 @@ function rentalchange(i) {
     var money = document.getElementsByName("money")[i].value;
 
     var money2 = new Array(money);
-
-    /*var money5 = $("input[name='money']").length;
-
-    for(var i = 0; i < money5; i++) {
-        alert($("input[name='money']").eq(i).val());
-    }*/
 
     var tmoney = document.getElementsByName("tmoney")[i].value;
 
