@@ -129,7 +129,7 @@ public class BoardService {
     }
 
     // 게시물 댓글 작성시 rcountup
-    public void rcountup(Long id) {
+    /*public void rcountup(Long id) {
 
         // 엔티티 찾기
         Optional<BoardEntity> optionalBoardEntity = boardRepository.findById(id);
@@ -140,10 +140,10 @@ public class BoardService {
         // 댓글 카운트 증가
         boardEntity.rcountup();
 
-    }
+    }*/
 
     // 게시물 댓글 작성시 rcountdownå
-    public void rcountdown(Long id) {
+    /*public void rcountdown(Long id) {
 
         // 엔티티 찾기
         Optional<BoardEntity> optionalBoardEntity = boardRepository.findById(id);
@@ -154,7 +154,7 @@ public class BoardService {
         // 댓글 카운트 증가
         boardEntity.rcountdown();
 
-    }
+    }*/
 
     // 게시물 삭제 처리
     @Transactional

@@ -5,6 +5,7 @@ import Spring.service.BoardreplyService;
 import Spring.web.dto.BoardDto;
 import Spring.web.dto.BoardreplyDto;
 import lombok.RequiredArgsConstructor;
+import net.minidev.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,12 +34,6 @@ public class BoardreplyController {
 
         boardreplyDto.setReplycontents(replycontents.replace("\r\n", "<br>"));
 
-        if(rcount != -1) {
-
-            boardService.rcountup(boardid);
-
-        }
-
         boardreplyService.replysave(boardreplyDto);
 
         re.addAttribute("id", boardreplyDto.getBoardid());
@@ -66,24 +61,43 @@ public class BoardreplyController {
 
     }*/
 
+    // 게시판 댓글 삭제
     @ResponseBody
     @RequestMapping(value = "/replydel", method = RequestMethod.POST)
-    public String replydel(Model model, BoardreplyDto boardreplyDto, BoardDto boardDto, RedirectAttributes re) {
-
-        if(boardDto.getRcount() != -1) {
-            boardService.rcountdown(boardreplyDto.getBoardid());
-        }
+    public String replydel(Model model, BoardreplyDto boardreplyDto, RedirectAttributes re) {
 
         boolean result = boardreplyService.replydelete(boardreplyDto.getId());
 
         re.addAttribute("id", boardreplyDto.getBoardid());
         re.addAttribute("count", -1);
 
-        List<BoardreplyDto> boardreplyDtos = boardreplyService.boardreplyDtoList(boardDto.getId());
+        List<BoardreplyDto> boardreplyDtos = boardreplyService.boardreplyDtoList(boardreplyDto.getId());
         model.addAttribute("replyDto", boardreplyDtos);
 
         return result ? "댓글이 삭제되었습니다." : "실패...관리자에게 문의하세요.";
         //return "";
+
+    }
+
+    // 게시판 댓글 수정
+    @ResponseBody
+    @RequestMapping(value = "/replymodify", method = RequestMethod.POST)
+    public String replymodify(Model model, BoardreplyDto boardreplyDto) {
+
+        String contents = boardreplyDto.getReplycontents();
+
+        boardreplyDto.setReplycontents(contents.replace("\r\n", "<br>"));
+
+        boardreplyService.replymodify(boardreplyDto);
+
+        String getcontents = boardreplyService.getcontents(boardreplyDto.getId());
+
+        JSONObject jo = new JSONObject();
+
+        jo.put("contents", getcontents);
+        jo.put("msg", "댓글 수정이 완료되었습니다.");
+
+        return jo.toString();
 
     }
 

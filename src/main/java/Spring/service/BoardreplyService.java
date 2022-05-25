@@ -43,6 +43,7 @@ public class BoardreplyService {
 
     }*/
 
+    // 게시판 댓글 삭제
     @Transactional
     public boolean replydelete(Long id) {
 
@@ -80,6 +81,21 @@ public class BoardreplyService {
 
     }
 
+    // 댓글 수정
+    @Transactional
+    public void replymodify(BoardreplyDto boardreplyDto) {
+
+        // 1. 해당 엔티티 찾기
+        Optional<BoardreplyEntity> optionalBoardreplyEntity = boardreplyRepository.findById(boardreplyDto.getId());
+
+        // 2. 엔티티 가져오기
+        BoardreplyEntity boardreplyEntity = optionalBoardreplyEntity.get();
+
+        // 3. 수정 처리
+        boardreplyEntity.replymodify(boardreplyDto);
+
+    }
+
     // 댓글 출력
     public List<BoardreplyDto> boardreplyDtoList(Long boardid) {
 
@@ -103,6 +119,14 @@ public class BoardreplyService {
 
         }
         return boardreplyDtos;
+    }
+
+    public String getcontents(Long id) {
+
+        String contents = boardreplyRepository.contents(id);
+
+        return contents;
+
     }
 
 }

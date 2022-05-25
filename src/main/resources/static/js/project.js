@@ -148,19 +148,17 @@ function id_check() {
           });
 }
 
-// 게시판 댓글 삭제 ajax
-function reply_delete(a, b, c) {
+/*// 게시판 댓글 삭제 ajax
+function reply_delete(a, b, i) {
 
     var token = $("meta[name='_csrf']").attr("content");
     var header = $("meta[name='_csrf_header']").attr("content");
 
+    var idxid = $("#allreply").data("rm_id");
+
     var BoardreplyDto = {
         id : a,
         boardid : b
-    }
-
-    var BoardDto = {
-        rcount : c
     }
 
     if(confirm("댓글을 정말 삭제하시겠습니까?")){
@@ -168,21 +166,21 @@ function reply_delete(a, b, c) {
         $.ajax({
 
             url : "/replydel",
-            data : BoardreplyDto, BoardDto,
+            data : BoardreplyDto,
             type : "POST",
             beforeSend : function(xhr)
-                {   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+                {   *//*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*//*
                     xhr.setRequestHeader(header, token);
                 },
 
             success : function(result) {
-                /*alert("삭제되었습니다.");*/
                 alert(result);
-                /*$("#allreply").load(location.href+' #allreply');
-                $("#allreply #replyinfo").load(location.href+' #allreply #replyinfo');
-                $("#allreply #reply_div").load(location.href+' #allreply #reply_div');
-                $("#allreply #modify_div").hide();*/
-                $("#allreply").remove();
+                //console.log("div_value : " + idxid);
+                //console.log("delete_pk : " + a);
+                //$("#div[value=allreply").remove();
+                //rdiv.remove();
+                //$(".allreply:eq("+ rdiv +")").remove();
+                $("#allreply" + a).remove();
 
             },
             error : function(result) {
@@ -193,7 +191,7 @@ function reply_delete(a, b, c) {
 
     }
 
-}
+}*/
 
 // 로그인
 function info_check() {
@@ -271,52 +269,16 @@ function boardwrite_check() {
 
 }
 
-/* boardview js 댓글 수정*/
+// 게시판 페이지 로드
 /*$(document).ready(function(){
 
-    $("#allreply #modify_div").hide();
+    var replyid = $("#replyid").val();
 
-    $("a[id=reply_modify]").click(function(){
+    $("allreply" + replyid + "modify_div").hide();
 
-        if(confirm('댓글을 수정하시겠습니까?')) {
-
-            var idxid = $(this).attr("idxid");
-            console.log(idxid);
-            $("#reply_div").eq(idxid).hide();
-            $("#reply_text").eq(idxid).hide();
-            $("#reply_span").eq(idxid).hide();
-
-            $("#modify_div").eq(idxid).show();
-            $("#modify_text").eq(idxid).show();
-            $("#modify_span").eq(idxid).show();
-
-            const toreply = $("#reply_text").eq(idxid).text();
-            $("#modify_text").eq(idxid).val(toreply);
-
-        }
-
-    });
-
-    $("#modify_back").click(function(){
-
-        if(confirm('댓글 수정을 취소하시겠습니까?')) {
-
-            $("#reply_text").show();
-            $("#reply_span").show();
-
-            $("#modify_text").hide();
-            $("#modify_span").hide();
-
-        }
-
-    });
 });*/
 
-$(document).ready(function(){
-
-    $("#allreply #modify_div").hide();
-
-});
+/*// 댓글 수정
 var ridx = -1;
 function replymodify(i) {
 
@@ -349,11 +311,12 @@ function showReplyForm(f, i){
     }
 }
 
-function reply_delete(pk) {
+function modifyComplete(pk) {
 
     var token = $("meta[name='_csrf']").attr("content");
     var header = $("meta[name='_csrf_header']").attr("content");
     var text = $("#modify_div #modify_text").eq(ridx).val();
+
     var BoardreplyDto = {
         id : pk,
         replycontents : text
@@ -363,22 +326,16 @@ function reply_delete(pk) {
 
         $.ajax({
 
-            url : "/replydel",
-            data : BoardreplyDto, BoardDto,
+            url : "/replymodify",
+            data : BoardreplyDto,
             type : "POST",
             beforeSend : function(xhr)
-                {   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+                {   *//*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*//*
                     xhr.setRequestHeader(header, token);
                 },
 
-            success : function(result) {
-                /*alert("삭제되었습니다.");*/
-                alert(result);
-                /*$("#allreply").load(location.href+' #allreply');
-                $("#allreply #replyinfo").load(location.href+' #allreply #replyinfo');
-                $("#allreply #reply_div").load(location.href+' #allreply #reply_div');
-                $("#allreply #modify_div").hide();*/
-                $("#allreply").remove();
+            success : function(data) {
+                alert(data);
 
             },
             error : function(result) {
@@ -389,7 +346,7 @@ function reply_delete(pk) {
 
     }
 
-}
+}*/
 
 /* booklist 장바구니 추가 js */
 function cart_check() {
@@ -430,58 +387,3 @@ $(function(){
        }
   });
 });
-
-/* cart 대여일 선택시 금액 변경 jq */
-/*$(document).ready(function(){
-
-    $("#cartlist #rentalselect").change(function(i){
-
-    var money = $("#cartlist #money")[i].val();
-
-        var value = $(this).val();
-
-            if(value == "7") {
-                $("#money")[i].val(5000);
-            }
-
-    });
-
-});*/
-
-/*function rentalchange(i) {
-
-    var money = document.getElementsByName("money")[i].value;
-
-    *//* i번 select 값 *//*
-    var s_val = document.getElementsByName("period")[i].value;
-
-    alert(money);
-    alert(s_val);
-
-    if(s_val == 7) {
-
-        *//*document.getElementsByName("money")[i].value = money * 0.5;*//*
-        *//*document.getElementsByName("rentalmoney")[i].innerHTML = (money * 0.5).toLocaleString() + " 원";*//*
-
-        money = money * 0.5;
-
-        $("#final").val(money);
-
-    }
-
-    if(s_val == 14) {
-
-        *//*document.getElementsByName("money")[i].value = money * 0.3;*//*
-        document.getElementsByName("rentalmoney")[i].innerHTML = (money * 0.7).toLocaleString() + " 원";
-
-
-    }
-
-    if(s_val == 30) {
-
-            *//*document.getElementsByName("money")[i].value = money;*//*
-            document.getElementsByName("rentalmoney")[i].innerHTML = (money).toLocaleString() + " 원";
-
-    }
-
-}*/

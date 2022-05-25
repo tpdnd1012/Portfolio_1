@@ -8,6 +8,9 @@
   <meta name="_csrf" th:content="${_csrf.token}"/>
   <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
   <title>Board-View</title>
+
+  <script th:src="@{../static/js/board.js}"></script>
+
 </head>
 <body>
 <div layout:fragment="content">
@@ -92,9 +95,10 @@
         </form>
 
         <!-- 댓글 출력 창 -->
-        <div class="card mt-2" id="allreply" th:each="replyDto, num : ${replyDto}" style="width: 66%; margin: 0 auto;">
+        <div class="card mt-2 allreply" name="allreply" th:id="'allreply'+${replyDto.id}" th:each="replyDto, num : ${replyDto}" style="width: 66%; margin: 0 auto;">
 
             <input type="hidden" id="replyid" th:value="${replyDto.id}">
+            <input type="hidden" id="replyid2" th:value="${num.index}">
 
             <div class="card-header p-2" id="replyinfo">
 
@@ -116,27 +120,18 @@
 
             </div>
 
-            <!--<div class="card-body" id="reply_modify_div">
-                <textarea class="form-control" name="replycontents" id="modify_text" rows="3"></textarea>
-                <span th:if="${session.loginuser.no == replyDto.no}" class="badge badge-dark" style="cursor: pointer; color: black; padding: 0;">
-                    <a id="modify_commit" style="margin-right: 15px;">수정완료</a>
-                    <a id="modify_back">취소</a>
-                </span>
-            </div>-->
-
             <div class="card-body" id="reply_div" name="reply_div">
                 <!-- 댓글내용 -->
                 <p class="card-text" id="reply_con" name="reply_con" th:utext="${replyDto.replycontents}" style="text-align: left;"></p>
                 <!-- 수정, 삭제 버튼 -->
                 <span th:if="${session.loginuser.no == replyDto.no}" id="reply_span" class="badge badge-dark" style="cursor: pointer; color: black; padding: 0;">
                     <a id="reply_modify" th:onclick="replymodify([[${num.index}]])" style="margin-right: 15px;">수정</a>
-                    <!--<a th:href="@{/replydelete(id=${replyDto.id}, boardid=${replyDto.boardid}, rcount=${boardDto.rcount})}" th:onclick="return confirm('댓글을 삭제하시겠습니까?');">삭제</a>-->
-                    <a type="button" th:onclick="reply_delete(id=[[${replyDto.id}]], boardid=[[${replyDto.boardid}]], rcount=[[${boardDto.rcount}]])">삭제</a>
+                    <a type="button" id="rm_btn" th:onclick="reply_delete(id=[[${replyDto.id}]], boardid=[[${replyDto.boardid}]], [[${num.index}]])">삭제</a>
                 </span>
 
             </div>
 
-            <div class="card-body" id="modify_div" name="modify_div">
+            <div class="card-body" id="modify_div" name="modify_div" style="display: none;">
 
                 <textarea class="form-control" name="replycontents" id="modify_text" rows="3"></textarea>
                 <span th:if="${session.loginuser.no == replyDto.no}" id="modify_span" class="badge badge-dark" style="cursor: pointer; color: black; padding: 0;">
