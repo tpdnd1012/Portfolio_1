@@ -122,7 +122,7 @@
 
             <div class="card-body" id="reply_div" name="reply_div">
                 <!-- 댓글내용 -->
-                <p class="card-text" id="reply_con" name="reply_con" th:utext="${replyDto.replycontents}" style="text-align: left;"></p>
+                <p class="card-text" th:id="'reply_con'+${replyDto.id}" name="reply_con" th:utext="${replyDto.replycontents}" style="text-align: left;"></p>
                 <!-- 수정, 삭제 버튼 -->
                 <span th:if="${session.loginuser.no == replyDto.no}" id="reply_span" class="badge badge-dark" style="cursor: pointer; color: black; padding: 0;">
                     <a id="reply_modify" th:onclick="replymodify([[${num.index}]])" style="margin-right: 15px;">수정</a>
@@ -135,7 +135,7 @@
 
                 <textarea class="form-control" name="replycontents" id="modify_text" rows="3"></textarea>
                 <span th:if="${session.loginuser.no == replyDto.no}" id="modify_span" class="badge badge-dark" style="cursor: pointer; color: black; padding: 0;">
-                        <a id="modify_commit" th:onclick="modifyComplete([[${replyDto.id}]])" style="margin-right: 15px;">수정완료</a>
+                        <a id="modify_commit" th:onclick="modifyComplete([[${replyDto.id}]], [[${num.index}]])" style="margin-right: 15px;">수정완료</a>
                         <a id="modify_back" th:onclick="showReplyForm(false, [[${num.index}]])">취소</a>
                 </span>
 

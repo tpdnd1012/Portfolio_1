@@ -88,17 +88,23 @@ public class BoardreplyController {
 
         boardreplyDto.setReplycontents(contents.replace("\r\n", "<br>"));
 
-        boardreplyService.replymodify(boardreplyDto);
-
-        String getcontents = boardreplyService.getcontents(boardreplyDto.getId());
+        boolean result = boardreplyService.replymodify(boardreplyDto);
 
         JSONObject jo = new JSONObject();
 
-        jo.put("contents", getcontents);
-        jo.put("msg", "댓글 수정이 완료되었습니다.");
+        if(result) {
+
+            String getcontents = boardreplyService.getcontents(boardreplyDto.getId());
+
+            jo.put("msg", "댓글 수정이 완료되었습니다.");
+            jo.put("contents", getcontents);
+
+            return jo.toString();
+
+        }
+        jo.put("msg", "관리자에게 문의해주세요.");
 
         return jo.toString();
-
     }
 
 }

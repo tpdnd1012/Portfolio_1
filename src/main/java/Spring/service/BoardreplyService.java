@@ -61,17 +61,7 @@ public class BoardreplyService {
 
                 boardreplyRepository.delete(boardreplyEntity);
 
-
-                /*
-
-                    {
-                        "result" : true,
-                        "message" : "tnwjd dhksfy"
-                    }
-                 */
-
                 return true;
-                /*return "{ \"result\" : true, \"message\":\""}" ;*/
 
             }
 
@@ -83,16 +73,30 @@ public class BoardreplyService {
 
     // 댓글 수정
     @Transactional
-    public void replymodify(BoardreplyDto boardreplyDto) {
+    public boolean replymodify(BoardreplyDto boardreplyDto) {
 
-        // 1. 해당 엔티티 찾기
-        Optional<BoardreplyEntity> optionalBoardreplyEntity = boardreplyRepository.findById(boardreplyDto.getId());
+        List<BoardreplyEntity> boardreplyEntityList = boardreplyRepository.findAll();
 
-        // 2. 엔티티 가져오기
-        BoardreplyEntity boardreplyEntity = optionalBoardreplyEntity.get();
+        for(BoardreplyEntity temp : boardreplyEntityList) {
 
-        // 3. 수정 처리
-        boardreplyEntity.replymodify(boardreplyDto);
+            if(temp.getId().equals(boardreplyDto.getId())) {
+
+                // 1. 해당 엔티티 찾기
+                Optional<BoardreplyEntity> optionalBoardreplyEntity = boardreplyRepository.findById(boardreplyDto.getId());
+
+                // 2. 엔티티 가져오기
+                BoardreplyEntity boardreplyEntity = optionalBoardreplyEntity.get();
+
+                // 3. 수정 처리
+                boardreplyEntity.replymodify(boardreplyDto);
+
+                return true;
+
+            }
+
+        }
+
+        return false;
 
     }
 
