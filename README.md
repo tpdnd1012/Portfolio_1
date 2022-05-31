@@ -20,7 +20,7 @@ Spring을 활용한 도서대여 사이트 구현
 - 메인 페이지 - 부트스트랩을 이용한 캐러셀<br>
 ![메인](https://user-images.githubusercontent.com/64762466/157845007-24ed1dc2-3614-4716-a7bc-d78c95c0f433.gif)
 
-- 회원가입 - ajax를 활용한 아이디 중복체크<br>
+- 회원가입 - Ajax를 활용한 아이디 중복체크<br>
 ![회원가입](https://user-images.githubusercontent.com/64762466/157845096-fa556cd7-29c8-4fc0-b8c1-0584fa1057cb.gif)
 
 - 게시판 - 페이징, 검색기능, 게시물 댓글<br>
@@ -28,7 +28,7 @@ Spring을 활용한 도서대여 사이트 구현
 ![게시판_2](https://user-images.githubusercontent.com/64762466/157847208-d6cf0679-cbe4-4958-a6f3-914af7036848.gif)
 ![게시판_3](https://user-images.githubusercontent.com/64762466/158072161-dd498723-6c48-4695-a9b1-16e33ddae005.gif)
 
-- 댓글 - ajax를 활용한 댓글 수정, 삭제<br>
+- 댓글 - Ajax를 활용한 댓글 수정, 삭제<br>
 ![댓글 수정](https://user-images.githubusercontent.com/64762466/171098960-fd1a1ce4-b0ef-4c75-b0ac-d2befd492249.gif)
 ![댓글 삭제](https://user-images.githubusercontent.com/64762466/171099708-a959c803-04e4-449d-9ebe-5be4d825b650.gif)
 
