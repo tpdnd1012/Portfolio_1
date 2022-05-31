@@ -30,7 +30,7 @@ Spring을 활용한 도서대여 사이트 구현
 
 - 댓글 - 수정, 삭제<br>
 ![댓글 수정](https://user-images.githubusercontent.com/64762466/171098960-fd1a1ce4-b0ef-4c75-b0ac-d2befd492249.gif)
-
+![댓글 삭제](https://user-images.githubusercontent.com/64762466/171099708-a959c803-04e4-449d-9ebe-5be4d825b650.gif)
 
 - 도서목록 - 상세보기, 장바구니 추가<br>
 ![도서목록](https://user-images.githubusercontent.com/64762466/158072779-fb1c3db1-7073-4806-894c-641924580ea5.gif)
