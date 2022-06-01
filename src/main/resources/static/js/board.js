@@ -8,6 +8,7 @@ $(document).ready(function(){
 
 });
 
+
 // 게시판 댓글 삭제 ajax
 function reply_delete(a, b, i) {
 
