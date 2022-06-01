@@ -11,21 +11,26 @@ Spring을 활용한 도서대여 사이트 구현
 - HTML, CSS, JavaScript
 - Bootstrap
 - Tomcat
-- jQuery, Ajax
+- jQuery, Ajax, Tymeleaf, JSON
 - Java 8
 - Gradle
+- H2 Database
 
 ## 웹 구성
 - 메인 페이지 - 부트스트랩을 이용한 캐러셀<br>
 ![메인](https://user-images.githubusercontent.com/64762466/157845007-24ed1dc2-3614-4716-a7bc-d78c95c0f433.gif)
 
-- 회원가입 - ajax를 활용한 아이디 중복체크<br>
+- 회원가입 - Ajax를 활용한 아이디 중복체크<br>
 ![회원가입](https://user-images.githubusercontent.com/64762466/157845096-fa556cd7-29c8-4fc0-b8c1-0584fa1057cb.gif)
 
 - 게시판 - 페이징, 검색기능, 게시물 댓글<br>
 ![게시판_1](https://user-images.githubusercontent.com/64762466/157845157-e62bb924-ffed-49a1-9ec6-60e7fcc7967d.gif)
 ![게시판_2](https://user-images.githubusercontent.com/64762466/157847208-d6cf0679-cbe4-4958-a6f3-914af7036848.gif)
 ![게시판_3](https://user-images.githubusercontent.com/64762466/158072161-dd498723-6c48-4695-a9b1-16e33ddae005.gif)
+
+- 댓글 - Ajax를 활용한 댓글 수정, 삭제<br>
+![댓글 수정](https://user-images.githubusercontent.com/64762466/171098960-fd1a1ce4-b0ef-4c75-b0ac-d2befd492249.gif)
+![댓글 삭제](https://user-images.githubusercontent.com/64762466/171099708-a959c803-04e4-449d-9ebe-5be4d825b650.gif)
 
 - 도서목록 - 상세보기, 장바구니 추가<br>
 ![도서목록](https://user-images.githubusercontent.com/64762466/158072779-fb1c3db1-7073-4806-894c-641924580ea5.gif)
@@ -49,7 +54,8 @@ Spring을 활용한 도서대여 사이트 구현
   - 카카오, 네이버, 구글 로그인
   - 관리자페이지(도서목록 추가, 수정, 삭제)
   - 도서목록 리스트, 장바구니(대여일에 따른 금액 변동)
-  - 게시판(글 추가, 삭제, 수정, 게시판 댓글, 페이징, 게시물 검색)
+  - 게시판(글 추가, 삭제, 수정, 페이징, 게시물 검색)
+  - 게시글 댓글(댓글 등록, Ajax를 이용한 댓글 수정, 삭제)
 
 ## 참고자료
 
