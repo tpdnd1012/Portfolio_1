@@ -44,24 +44,6 @@ public class BoardreplyController {
     }
 
     // 게시판 댓글 삭제
-    /*@RequestMapping(value = "/replydelete")
-    public String replydelete (@RequestParam("id") Long id, @RequestParam("boardid") Long boardid,
-                               @RequestParam("rcount") int rcount, RedirectAttributes re) {
-
-        if(rcount != -1) {
-            boardService.rcountdown(boardid);
-        }
-
-        boardreplyService.replydelete(id);
-
-        re.addAttribute("id", boardid);
-        re.addAttribute("count", -1);
-
-        return "redirect:/boardview";
-
-    }*/
-
-    // 게시판 댓글 삭제
     @ResponseBody
     @RequestMapping(value = "/replydel", method = RequestMethod.POST)
     public String replydel(Model model, BoardreplyDto boardreplyDto, RedirectAttributes re) {

@@ -82,7 +82,7 @@ function showReplyForm(f, i){
     }
 }
 
-function modifyComplete(pk) {
+function modifyComplete(pk, i) {
 
     var token = $("meta[name='_csrf']").attr("content");
     var header = $("meta[name='_csrf_header']").attr("content");
@@ -105,8 +105,18 @@ function modifyComplete(pk) {
                     xhr.setRequestHeader(header, token);
                 },
 
-            success : function(data) {
-                alert(data);
+            success : function(obj) {
+
+                var data = JSON.parse(obj);
+
+                alert(data['msg']);
+
+                document.getElementsByName("reply_div")[i].style.display = "block";
+                document.getElementsByName("modify_div")[i].style.display = "none";
+
+                $("#reply_con" + pk).text(data['contents']);
+
+                ridx = -1;
 
             },
             error : function(result) {

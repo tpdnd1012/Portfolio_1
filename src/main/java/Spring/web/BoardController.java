@@ -57,18 +57,6 @@ public class BoardController {
 
     }
 
-    // 게시판 페이지 요청[페이징처리x]
-    /*@GetMapping("/board")
-    public String board(Model model) {
-
-        List<BoardDto> boardDtos = boardService.list();
-
-        model.addAttribute("boardDtos", boardDtos);
-
-        return "board";
-
-    }*/
-
     // 게시판 등록 화면 요청
     @GetMapping("/boardwrite")
     public String boardwrite() {

@@ -30,20 +30,6 @@ public class BoardreplyService {
     }
 
     // 게시판 댓글 삭제
-    /*@Transactional
-    public void replydelete(Long id) {
-
-        // 엔티티 찾기
-        Optional<BoardreplyEntity> optionalBoardreplyEntity = boardreplyRepository.findById(id);
-
-        // 엔티티 가져오기
-        BoardreplyEntity boardreplyEntity = optionalBoardreplyEntity.get();
-
-        boardreplyRepository.delete(boardreplyEntity);
-
-    }*/
-
-    // 게시판 댓글 삭제
     @Transactional
     public boolean replydelete(Long id) {
 

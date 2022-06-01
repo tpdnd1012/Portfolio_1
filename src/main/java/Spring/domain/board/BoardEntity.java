@@ -68,18 +68,4 @@ public class BoardEntity extends BaseTime {
 
     }
 
-    // 댓글 증가 메소드
-    public void rcountup() {
-
-        this.rcount++;
-
-    }
-
-    // 댓글 삭제 감소 메소드
-    public void rcountdown() {
-
-        this.rcount--;
-
-    }
-
 }

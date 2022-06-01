@@ -130,12 +130,4 @@ public class RentalController {
 
     }
 
-    // 대여완료
-   /* @PostMapping("/rental")
-    public String rental() {
-
-        return "/";
-
-    }*/
-
 }
