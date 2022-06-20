@@ -2,11 +2,13 @@ package Spring.config;
 
 import Spring.service.Oauth2Service;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration // 외부 라이브러리 설정 값 변경시
 @EnableWebSecurity // 시큐리티 정의시 : extends WebSecurityConfigurerAdapter(기본적인 Web 보안을 활성화 하겠다는 어노테이션)
@@ -14,6 +16,11 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final Oauth2Service oauth2Service;
+
+    @Bean
+    public PasswordEncoder getPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -25,14 +32,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/member/info").hasRole("MEMBER")
                 .antMatchers("/**").permitAll() // 이후 모든 URL접근 가능
 
-        .and()
+                .and()
                 .logout() // 로그아웃 관련 설정
                 //.logoutRequestMatcher(new AntPathRequestMatcher("logout")) // 로그아웃 URL 설정
                 .logoutUrl("/logout")
                 .invalidateHttpSession(true) // 세션 초기화
                 .logoutSuccessUrl("/") // 로그아웃 성공시
 
-        .and() // 연결 메소드
+                .and() // 연결 메소드
                 .csrf() // 사이트 간 요청 위조, html 입력에 관련된 페이지는 무시
                 .ignoringAntMatchers("/h2-console/**") // 사이트 간 요청 위조 방지를 제거해서 console 사용
                 //.ignoringAntMatchers("/login")
@@ -45,14 +52,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //.ignoringAntMatchers("/boardmodify")
                 //.ignoringAntMatchers("/boardwrite")
 
-        .and()
-               .oauth2Login() // Oauth2 로그인 설정
-               .loginPage("/login")
-               .userInfoEndpoint()
-               .userService(oauth2Service);
+                .and()
+                .oauth2Login() // Oauth2 로그인 설정
+                .loginPage("/login")
+                .userInfoEndpoint()
+                .userService(oauth2Service)
+
+                .and()
+                .and()
+                .httpBasic();
 
 
         http.headers().frameOptions().disable(); // h2 접근하기 위해 frame 제거
 
     }
+
 }

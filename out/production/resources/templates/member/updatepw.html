@@ -27,7 +27,7 @@
 
       <div class="row omb_row-sm-offset-3">
         <div class="col-xs-12 col-sm-6">
-          <form method="post" action="/updatepwcomplete" name="updatepwform" onsubmit="return updatepw()">
+          <form method="post" th:action="@{/updatepwcomplete}" name="updatepwform" onsubmit="return updatepw()">
 
             <input type="hidden" name="no" th:value="${member.no}">
             <input type="hidden" name="password" th:value="${member.member_pw}">

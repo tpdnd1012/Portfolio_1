@@ -14,4 +14,6 @@ public enum Role {
     private final String key; // 변수
     private final String title; // 변수
 
+    //ROLE_ADMIN, ROLE_USER
+
 }

@@ -1,5 +1,6 @@
 package Spring.domain.member;
 
+import Spring.web.dto.MemberDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -24,4 +25,5 @@ public interface MemberRepository extends JpaRepository<MemberEntity, Long> {
 
     @Query(value = "select * from Member where member_id=?1 and birth=?2 and email=?3", nativeQuery = true)
     Optional<MemberEntity> findpw(String member_id, String birth, String email);
+
 }
