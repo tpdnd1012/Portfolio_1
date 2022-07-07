@@ -12,7 +12,7 @@ Spring을 활용한 도서대여 사이트 구현
 - Bootstrap
 - Tomcat
 - jQuery, Ajax, Tymeleaf, JSON
-- Java 8
+- Java 11
 - Gradle
 - H2 Database
 - NAVER Lucy xss filter
